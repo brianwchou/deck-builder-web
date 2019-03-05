@@ -1,11 +1,121 @@
 import React, {Component} from 'react';
 import { fuzzySearchURL } from './URLs';
+import ReactDOM from 'react-dom';
+import './App.css';
+
+const cardBoxStyle = {
+  border: 'solid black thin',
+  width: '100vw',
+  height: '50vh',
+}
+
+class CardBox extends Component {
+  constructor() {
+    super()
+  }
+
+  handleMouseMove() {
+
+  }
+
+  render() {
+    return(
+      <div style={cardBoxStyle} draggable={true}>
+        dummy text
+      </div>
+    )
+  }
+}
+
 
 // card should not create itself
 class Card extends Component {
   render() {
     return(
-      <img src={this.props.url} />
+      <DraggableContainer>
+        <img draggable={false} src={this.props.url} />
+      </DraggableContainer>
+    )
+  }
+}
+
+class DraggableContainer extends Component {
+  constructor(props) {
+    super(props)
+    this.state = {
+      dragging: false,
+      pos: {x: 0, y:0},
+      rel: null
+    };
+
+    this.onDrag = this.onDrag.bind(this);
+    this.onDragStart = this.onDragStart.bind(this);
+    this.onDragEnd = this.onDragEnd.bind(this);
+  }
+
+  componentDidUpdate() {
+    if (this.state.dragging) {
+      document.addEventListener('onDrag', this.onDrag)
+      document.addEventListener('onDragEnd', this.onDragEnd)
+    } else if (!this.state.dragging) {
+      document.removeEventListener('onDrag', this.onDrag)
+      document.removeEventListener('onDragEnd', this.onDragEnd)
+    }
+  }
+
+  onDragStart(e) {
+    var pos = ReactDOM.findDOMNode(this);
+    this.setState({
+      dragging: true,
+      rel: {
+        x: e.pageX - pos.offsetLeft,
+        y: e.pageY - pos.offsetTop
+      }
+    })
+    e.dataTransfer.setData()
+    e.dataTransfer.setDragImage()
+    e.stopPropagation()
+  }
+
+  onDragEnd(e) {
+    this.setState({
+      dragging: false,
+      pos: {
+        x: e.pageX - this.state.rel.x,
+        y: e.pageY - this.state.rel.y
+      }
+    })
+    
+    e.preventDefault()
+    e.stopPropagation()
+  }
+
+  onDrag(e) {
+    this.setState({
+      pos: {
+        x: e.pageX - this.state.rel.x,
+        y: e.pageY - this.state.rel.y
+      }
+    })
+
+    e.preventDefault()
+    e.stopPropagation()
+  }
+
+  render() {
+    return(
+      <div className={'my-draggable'} 
+        draggable={true}
+        style={{position: 'absolute',
+                left: this.state.pos.x + 'px',
+                top: this.state.pos.y + 'px'}} 
+        onDrag={this.onDrag}
+        onDragEnd={this.onDragEnd}
+        onDragStart={this.onDragStart}
+        >
+        
+        {this.props.children}
+      </div>
     )
   }
 }
@@ -16,7 +126,8 @@ export default class Search extends Component {
 
     this.state = {
       cardURLs: [],
-      searchCardName: ""
+      searchCardName: "",
+      insideCardBox: []
     };
 
     this.getCard = this.getCard.bind(this);
@@ -49,8 +160,10 @@ export default class Search extends Component {
     });
 
     console.log(cardURL);
-    this.state.cardURLs.push(cardURL);
-    this.setState({ ...this.state.cardURLs });
+    if (cardURL !== null ) {
+      this.state.cardURLs.push(cardURL);
+      this.setState({ ...this.state.cardURLs });
+    }
   }
 
   clear() { this.setState({cardURLs: []}) }
@@ -67,7 +180,11 @@ export default class Search extends Component {
           <input type="text" onChange={this.onCardNameChange}/>
           <button type="submit"> submit </button>
         </form>
-        {cards}  
+        {cards}
+        <Card url={'https://img.scryfall.com/cards/small/en/ima/128.jpg?1530592214'} />
+        <CardBox>
+
+        </CardBox>
       </div>
     )
   }
