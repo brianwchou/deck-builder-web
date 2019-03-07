@@ -5,8 +5,7 @@ import './App.css';
 
 class Card extends Component {
   constructor(props) {
-    super(props)
-
+    super(props);
     this.handleOnDragStart = this.handleOnDragStart.bind(this);
   }
 

@@ -14,21 +14,15 @@ class CardBox extends Component {
     super()
   }
 
-  handleMouseMove() {
-
-  }
-
   render() {
     return(
-      <div style={cardBoxStyle} draggable={true}>
+      <div style={cardBoxStyle} >
         dummy text
       </div>
     )
   }
 }
 
-
-// card should not create itself
 class Card extends Component {
   render() {
     return(
