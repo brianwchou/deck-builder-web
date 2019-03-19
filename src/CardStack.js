@@ -3,16 +3,42 @@ import Card from './components/Card';
 
 const CardStackStyle = {
     display: 'inline-block',
-    width: '176px',
-    minHeight: '100px',
-    maxHeight: '50vh',
-    border: '1px solid black',
-    overflow: 'hidden'
+    width: '145px',
+    minHeight: '75vh',
+    maxHeight: '75vh',
+    backgroundColor: 'white',
+    overflow: 'hidden',
+    padding: '10px',
+    textAlign: 'center'
 }
 
 export default class CardStack extends React.Component {
+    state = {
+        test: 0
+    }
+
     constructor(props) {
         super(props);
+        this.onDragLeave = this.onDragLeave.bind(this)
+        this.onDragEnter = this.onDragEnter.bind(this)
+    }
+
+    onDragEnter(e){
+        if (this.state.test === 0) {
+            e.currentTarget.style.backgroundColor = "pink" 
+        }
+        this.setState({test: this.state.test + 1})
+    }
+
+    onDragLeave(e) {
+        
+        if (this.state.test === 1) {
+            e.currentTarget.style.backgroundColor = "white"
+        }
+        
+        this.setState({
+            test: this.state.test - 1
+        })
     }
 
     render() {
@@ -22,9 +48,12 @@ export default class CardStack extends React.Component {
         });
 
         return(
-            <div style={CardStackStyle}>
-                {cards}
-            </div>
+                <div style={CardStackStyle}  
+                    onDragLeave={this.onDragLeave}
+                    onDragEnter={this.onDragEnter}
+                >
+                    {cards}
+                </div>
         )
     }
 }

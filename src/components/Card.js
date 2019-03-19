@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 
 const cardStyle = {
-    display: 'inline-block',
+    display: 'block-inline'
 }
 
 export default class Card extends Component {

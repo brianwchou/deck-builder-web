@@ -5,21 +5,22 @@ import {Provider} from 'react-redux'
 import {createStore} from 'redux'
 import App from './App';
 import * as serviceWorker from './serviceWorker';
-import { cardBundle } from './utility/URLs'
+import { blueTron } from './utility/URLs'
 
 const initialState = {
-    urls: cardBundle,
+    cardStacks: blueTron,
 }
 
 const reducer = (state=initialState, action) => {
+    console.log(state)
     switch(action.type) {
         case 'UPDATE_URL_STORE':
-            return { ...state,
-                urls: [...state.urls, action.url]
+            return { ...state, 
+                cardStacks: [...state.cardStacks, action.url]
             }
         case 'CLEAR_URL_STORE':
             return { ...state,
-                urls: []
+                cardStacks: []
             }
         default:
             return state

@@ -2,25 +2,16 @@ import React from 'react';
 import { connect } from 'react-redux';
 import CardStack from './CardStack';
 
-const separateInToComponents = (urls) => {
-    let arrays = [];
-    for (var i = 0 ; i < urls.length; i+= 16) {
-        arrays.push(urls.slice(i, i+16))
-    }
-    return arrays
-}
-
 const mapStateToProps = (state) => {
     return {
-        urls: separateInToComponents(state.urls),
+        cardStacks: state.cardStacks,
     }
 }
 
 const cardBoxStyle = {
     border: 'solid black thin',
     width: '100vw',
-    minHeight: '50vh',
-    display: 'inline-block'
+    height: '80vh'
   }
 
 class CardBox extends React.Component {
@@ -32,11 +23,9 @@ class CardBox extends React.Component {
 
     }
 
-
-
     render() {
-        var cardstacks = this.props.urls.map((array, index) => {
-            return <CardStack cards={array} key={index} dragleave/>
+        var cardstacks = this.props.cardStacks.map((array, index) => {
+            return <CardStack cards={array} key={index} />
         }) 
 
         return (
