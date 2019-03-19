@@ -31,11 +31,9 @@ export default class CardStack extends React.Component {
     }
 
     onDragLeave(e) {
-        
         if (this.state.test === 1) {
             e.currentTarget.style.backgroundColor = "white"
         }
-        
         this.setState({
             test: this.state.test - 1
         })

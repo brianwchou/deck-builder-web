@@ -43,6 +43,7 @@ class Search extends Component {
       if (cardURL !== null ) {
         this.props.dispatch({
             type: 'UPDATE_URL_STORE',
+            stackNo: 1,
             url: cardURL
           })
       }

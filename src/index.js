@@ -7,16 +7,21 @@ import App from './App';
 import * as serviceWorker from './serviceWorker';
 import { blueTron } from './utility/URLs'
 
+
 const initialState = {
-    cardStacks: blueTron,
+    cardStacks: blueTron
 }
 
 const reducer = (state=initialState, action) => {
-    console.log(state)
+    
     switch(action.type) {
         case 'UPDATE_URL_STORE':
             return { ...state, 
-                cardStacks: [...state.cardStacks, action.url]
+                cardStacks: [
+                    ...state.cardStacks.slice(0, action.stackNo),
+                    [...(state.cardStacks[action.stackNo] || []), action.url],
+                    ...state.cardStacks.slice(action.stackNo + 1)
+                ]
             }
         case 'CLEAR_URL_STORE':
             return { ...state,
