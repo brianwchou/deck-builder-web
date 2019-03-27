@@ -1,8 +1,10 @@
 const baseURL = 'https://api.scryfall.com';
 const searchURL = baseURL + '/cards/named';
+const listURL = baseURL + '/cards/search';
 
 export const exactSearchURL = searchURL + '?exact=';
 export const fuzzySearchURL = searchURL + '?fuzzy=';
+export const testListURL = listURL + '?q=';
 
 const walkingBalista = 'https://img.scryfall.com/cards/small/front/3/2/329a8738-3e17-403a-857a-0ba529ce8cd1.jpg?1543701177';
 const snapCaster = 'https://img.scryfall.com/cards/small/front/7/e/7e41765e-43fe-461d-baeb-ee30d13d2d93.jpg?1547516526';
