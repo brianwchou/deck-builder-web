@@ -7,7 +7,6 @@ import Navbar from './Navbar'
 import NoMatch from './NoMatch';
 import Home from './Home';
 
-
 const Brian = () => {
   return (
     <div>
@@ -22,18 +21,18 @@ class App extends Component {
     return (
       <div>
 
-      <Navbar />
-      <BrowserRouter>
-      <Switch>
-        <Route exact path="/Home" component={Home} />
-        <Route exact path="/">
-          <Redirect to="/Home" />
-        </Route>
-        <Route component = {NoMatch}/>
-      </Switch>
-      </BrowserRouter>
+        <Navbar />
+        <BrowserRouter>
+        <Switch>
+          <Route exact path="/Home" component={Home} />
+          <Route exact path="/">
+            <Redirect to="/Home" />
+          </Route>
+          <Route component = {NoMatch}/>
+        </Switch>
+        </BrowserRouter>
      
-    </div>
+      </div>
     )
   }
 }
