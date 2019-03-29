@@ -9,27 +9,44 @@ import { blueTron } from './utility/URLs'
 
 
 const initialState = {
-    cardStacks: blueTron
+    urls: []
 }
 
-const reducer = (state=initialState, action) => {
+const reducer = (state = initialState, action) => {
     switch(action.type) {
-        case 'UPDATE_URL_STORE':
-            return { ...state, 
-                cardStacks: [
-                    ...state.cardStacks.slice(0, action.stackNo),
-                    [...(state.cardStacks[action.stackNo] || []), action.url],
-                    ...state.cardStacks.slice(action.stackNo + 1)
-                ]
+        case 'UPDATEurls':
+            return {...state,
+                urls: [...state.urls, action.url]
             }
-        case 'CLEAR_URL_STORE':
-            return { ...state,
-                cardStacks: []
+        case 'CLEARURLSTORE':
+            return {...state,
+                urls: []
             }
         default:
             return state
     }
 }
+
+// const reducer = (state = initialState, action) => {
+//     switch (action.type) {
+//         case 'UPDATE_URL_STORE':
+//             return {
+//                 ...state,
+//                 cardStacks: [
+//                     ...state.cardStacks.slice(0, action.stackNo),
+//                     [...(state.cardStacks[action.stackNo] || []), action.url],
+//                     ...state.cardStacks.slice(action.stackNo + 1)
+//                 ]
+//             }
+//         case 'CLEAR_URL_STORE':
+//             return {
+//                 ...state,
+//                 cardStacks: []
+//             }
+//         default:
+//             return state
+//     }
+// }
 
 const store = createStore(reducer);
 

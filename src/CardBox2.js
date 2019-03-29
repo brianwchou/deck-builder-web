@@ -1,11 +1,10 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import CardSearchDisplay from './CardSearchDisplay';
-import CardStack from './CardStack'
 
 const mapStateToProps = (state) => {
     return {
-        cardStacks: state.cardStacks,
+        urls: state.urls,
     }
 }
 
@@ -17,17 +16,20 @@ const cardBoxStyle = {
 }
 
 class CardBox2 extends React.Component {
+
+    get() {
+
+    }
+
     render() {
-        var cardStacks = this.props.cardStacks.map((urls, index) => {
-            return <CardStack urls={urls} key={index} />
-        })
 
         return (
             <div style={cardBoxStyle}>
-               
+                <CardSearchDisplay cards={this.props.urls}/>
             </div>
         )
     }
 }
+
 
 export default connect(mapStateToProps)(CardBox2)
