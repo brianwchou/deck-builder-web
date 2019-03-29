@@ -20,7 +20,6 @@ class App extends Component {
   render() {
     return (
       <div>
-
         <Navbar />
         <BrowserRouter>
         <Switch>
@@ -31,7 +30,6 @@ class App extends Component {
           <Route component = {NoMatch}/>
         </Switch>
         </BrowserRouter>
-     
       </div>
     )
   }

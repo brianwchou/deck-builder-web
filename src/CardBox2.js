@@ -1,12 +1,5 @@
 import React from 'react';
-import { connect } from 'react-redux';
-import CardSearchDisplay from './CardSearchDisplay';
-
-const mapStateToProps = (state) => {
-    return {
-        urls: state.urls,
-    }
-}
+import Card from './components/Card';
 
 const cardBoxStyle = {
     border: 'solid black thin',
@@ -15,21 +8,17 @@ const cardBoxStyle = {
     display: 'inline-block'
 }
 
-class CardBox2 extends React.Component {
+const CardBox2 = (props) => {
+    const cards  = props.cards.map((info, index) => {
+        return <Card info={info} type={"Clickable"} key={index} />
+    });
 
-    get() {
-
-    }
-
-    render() {
-
-        return (
-            <div style={cardBoxStyle}>
-                <CardSearchDisplay cards={this.props.urls}/>
-            </div>
-        )
-    }
+    return (
+        <div style={cardBoxStyle}>
+            {cards}
+        </div>
+    )
 }
 
 
-export default connect(mapStateToProps)(CardBox2)
+export default CardBox2

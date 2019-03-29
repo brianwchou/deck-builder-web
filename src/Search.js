@@ -1,6 +1,8 @@
 import React from 'react'
-import { testListURL } from './utility/URLs';
+import { filteredSearchURL } from './utility/URLs';
 import { connect } from 'react-redux';
+import CardBox2 from './CardBox2';
+import Card from './components/Card';
 import "./App.css";
 
 const manaSymbolStyle = {
@@ -8,16 +10,13 @@ const manaSymbolStyle = {
     maxHeight: "15px",
 }
 
-const mapStateToProps = (state) => {
-    return {urls: state.urls}
-}
-
 class Search extends React.Component {
     constructor() {
         super();
         this.state = {
             textbox:"",
-            filterColor:""
+            filterColor:"",
+            cards: []
         }
 
         this.getCard = this.getCard.bind(this);
@@ -49,10 +48,10 @@ class Search extends React.Component {
 
         var cardURL = [];
 
-        var searchCardNameURL = testListURL + this.state.textbox + "+c:" +  this.state.filterColor + "&unique=cards";
+        var searchCardNameURL = filteredSearchURL + this.state.textbox + "+c:" +  this.state.filterColor + "&unique=cards";
 
         if (this.state.filterColor === "") {
-          searchCardNameURL = testListURL + this.state.textbox + "&unique=cards"
+          searchCardNameURL = filteredSearchURL + this.state.textbox + "&unique=cards"
         }
 
         await fetch(searchCardNameURL)
@@ -65,24 +64,31 @@ class Search extends React.Component {
             }
         })
         .then( (json) => {
-            var groupURL
-            if (json !==null) {
-                for (var i=0; i<json.data.length; i++){
-                    groupURL = json.data[i].image_uris.small
-                    cardURL.push(groupURL)
-                    console.log(groupURL)
-                }
-            }
+          console.log(json)
+          var groupURL
+          if (json !== null) {
+            
+           cardURL = json.data.map((info)=> {
+              return {
+                artist: info.artist,
+                cmc: info.cmc,
+                color_identity: info.color_identity,
+                colors: info.colors,
+                image_uris: info.image_uris,
+                mana_cost: info.mana_cost,
+                name: info.name,
+                oracle_text: info.oracle_text,
+                power: info.power,
+                rarity: info.rarity,
+                reserved: info.reserved,
+                setName: info.setName,
+                toughness: info.toughness,
+                type_line: info.type_line,
+              }
+            })
+          }
+          this.setState({cards: cardURL})
         });
-
-        for (var i=0; i<cardURL.length; i++) {
-            if (cardURL !== null) {
-                this.props.dispatch( {
-                    type: 'UPDATEurls',
-                    url: cardURL[i]
-                })
-            }
-        }
     }
 
     clear = () => {
@@ -90,45 +96,46 @@ class Search extends React.Component {
     }    
 
     render() {
-        return (
-            <div>
-                <form onSubmit={this.getCard}>
-                    <input className="field" type="text" onChange={this.onCardNameChange}/>
-                    <button className="submitbutton" type="submit"> submit </button>
-                    <button className="clearbutton" type="button" onClick={this.clear}> clear </button><br/>
+      return (
+        <>
+          <form onSubmit={this.getCard}>
+              <input className="field" type="text" onChange={this.onCardNameChange}/>
+              <button className="submitbutton" type="submit"> submit </button>
+              <button className="clearbutton" type="button" onClick={this.clear}> clear </button><br/>
 
-                    Card Color: &nbsp;
-                    <input type="checkbox" onClick={this.handleCheck} name="color1" value="w"></input> 
-                    <img src="https://gamepedia.cursecdn.com/mtgsalvation_gamepedia/8/8e/W.svg" alt="white_mana" style={manaSymbolStyle}/>White &nbsp;
+              Card Color: &nbsp;
+              <input type="checkbox" onClick={this.handleCheck} name="color1" value="w"></input> 
+              <img src="https://gamepedia.cursecdn.com/mtgsalvation_gamepedia/8/8e/W.svg" alt="white_mana" style={manaSymbolStyle}/>White &nbsp;
 
-                    <input type="checkbox" onClick={this.handleCheck} name="color2" value="u"></input>
-                    <img src="https://gamepedia.cursecdn.com/mtgsalvation_gamepedia/9/9f/U.svg" alt="blue_mana" style={manaSymbolStyle}/>Blue &nbsp;
-                    
-                    <input type="checkbox" onClick={this.handleCheck} name="color3" value="b"></input>
-                    <img src="https://gamepedia.cursecdn.com/mtgsalvation_gamepedia/2/2f/B.svg" alt="black_mana" style={manaSymbolStyle}/>Black &nbsp;
-                    
-                    <input type="checkbox" onClick={this.handleCheck} name="color4" value="r"></input>
-                    <img src="https://gamepedia.cursecdn.com/mtgsalvation_gamepedia/8/87/R.svg" alt="red_mana" style={manaSymbolStyle}/>Red &nbsp;
-                    
-                    <input type="checkbox" onClick={this.handleCheck} name="color5" value="g"></input>
-                    <img src="https://gamepedia.cursecdn.com/mtgsalvation_gamepedia/8/88/G.svg" alt="green_mana" style={manaSymbolStyle}/>Green 
+              <input type="checkbox" onClick={this.handleCheck} name="color2" value="u"></input>
+              <img src="https://gamepedia.cursecdn.com/mtgsalvation_gamepedia/9/9f/U.svg" alt="blue_mana" style={manaSymbolStyle}/>Blue &nbsp;
+              
+              <input type="checkbox" onClick={this.handleCheck} name="color3" value="b"></input>
+              <img src="https://gamepedia.cursecdn.com/mtgsalvation_gamepedia/2/2f/B.svg" alt="black_mana" style={manaSymbolStyle}/>Black &nbsp;
+              
+              <input type="checkbox" onClick={this.handleCheck} name="color4" value="r"></input>
+              <img src="https://gamepedia.cursecdn.com/mtgsalvation_gamepedia/8/87/R.svg" alt="red_mana" style={manaSymbolStyle}/>Red &nbsp;
+              
+              <input type="checkbox" onClick={this.handleCheck} name="color5" value="g"></input>
+              <img src="https://gamepedia.cursecdn.com/mtgsalvation_gamepedia/8/88/G.svg" alt="green_mana" style={manaSymbolStyle}/>Green 
 
-                    <br/>
+              <br/>
 
-                    Card Type: &nbsp;
-                    <select>
-                        <option value="artifact">Artifact</option>
-                        <option value="creature">Creature</option>
-                        <option value="enchantment">Enchantment</option>
-                        <option value="instant">Instant</option>
-                        <option value="sorcery">Sorcery</option>
-                        <option value="planeswalker">Planeswalker</option>
-                        <option value="land">Land</option>
-                    </select>
-                </form>
-            </div>
-        )
+              Card Type: &nbsp;
+              <select>
+                  <option value="artifact">Artifact</option>
+                  <option value="creature">Creature</option>
+                  <option value="enchantment">Enchantment</option>
+                  <option value="instant">Instant</option>
+                  <option value="sorcery">Sorcery</option>
+                  <option value="planeswalker">Planeswalker</option>
+                  <option value="land">Land</option>
+              </select>
+          </form>
+          <CardBox2 cards={this.state.cards}/>
+        </>
+      )
     }
 }
 
-export default connect(mapStateToProps)(Search)
+export default connect()(Search)

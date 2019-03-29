@@ -1,6 +1,6 @@
 import React from 'react';
 import Search from './Search';
-import CardBox2 from './CardBox2'
+
 import './App.css'
 import Decklist from './Decklist';
 import Metrics from './Metrics'
@@ -11,7 +11,7 @@ export default class Home extends React.Component {
       <div>
         <Search/>
         <div className="flexboxes">
-          <CardBox2/>
+          
           <div>
             <Metrics/>
             <Decklist/>
