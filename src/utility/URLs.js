@@ -4,10 +4,7 @@ const listURL = baseURL + '/cards/search';
 
 export const exactSearchURL = searchURL + '?exact=';
 export const fuzzySearchURL = searchURL + '?fuzzy=';
-
 export const filteredSearchURL = listURL + '?q=';
-
-
 
 const walkingBalista = 'https://img.scryfall.com/cards/small/front/3/2/329a8738-3e17-403a-857a-0ba529ce8cd1.jpg?1543701177';
 const snapCaster = 'https://img.scryfall.com/cards/small/front/7/e/7e41765e-43fe-461d-baeb-ee30d13d2d93.jpg?1547516526';
@@ -39,9 +36,6 @@ const tetonicEdge = 'https://img.scryfall.com/cards/small/en/c14/313.jpg?1530679
 const tolariaWest = 'https://img.scryfall.com/cards/small/en/fut/173.jpg?1530718954';
 const oboroPalaceInTheClouds = 'https://img.scryfall.com/cards/small/en/sok/164.jpg?1517813031';
 const fieldOfRuin = 'https://img.scryfall.com/cards/small/en/xln/254.jpg?1527431443';
-
-
-
 
 export const blueTron = [
                             [walkingBalista, 

@@ -2,7 +2,6 @@ import React from 'react'
 import { filteredSearchURL } from './utility/URLs';
 import { connect } from 'react-redux';
 import CardBox2 from './CardBox2';
-import Card from './components/Card';
 import "./App.css";
 
 const manaSymbolStyle = {
@@ -16,7 +15,7 @@ class Search extends React.Component {
         this.state = {
             textbox:"",
             filterColor:"",
-            cards: []
+            cardData: []
         }
 
         this.getCard = this.getCard.bind(this);
@@ -29,32 +28,29 @@ class Search extends React.Component {
         
         if (filterColor.includes(color)) {
             newFilterColor = filterColor.replace(color,"")
-            this.setState ( {filterColor: newFilterColor} )
+            this.setState({ filterColor: newFilterColor })
             console.log(this.state.filterColor)
         }
         if (!filterColor.includes(color)) {
-            this.setState( {filterColor: filterColor.concat(e.target.value)} )
+            this.setState({ filterColor: filterColor.concat(e.target.value) })
             console.log(this.state.filterColor)
         }
     }
 
-
-    onCardNameChange = (e) => {
-        this.setState( {textbox:e.target.value} )
+    onSearchTextChange = (e) => {
+        this.setState({ textbox: e.target.value })
     }
 
     async getCard(e) {
-        e.preventDefault();
+      e.preventDefault();
+      
+      var searchCardNameURL = filteredSearchURL + this.state.textbox + "+c:" +  this.state.filterColor + "&unique.cardData";
 
-        var cardURL = [];
+      if (this.state.filterColor === "") {
+        searchCardNameURL = filteredSearchURL + this.state.textbox + "&unique.cardData"
+      }
 
-        var searchCardNameURL = filteredSearchURL + this.state.textbox + "+c:" +  this.state.filterColor + "&unique=cards";
-
-        if (this.state.filterColor === "") {
-          searchCardNameURL = filteredSearchURL + this.state.textbox + "&unique=cards"
-        }
-
-        await fetch(searchCardNameURL)
+      await fetch(searchCardNameURL)
         .then(response => {
             if (response.status === 200) {
                 return response.json();
@@ -65,10 +61,8 @@ class Search extends React.Component {
         })
         .then( (json) => {
           console.log(json)
-          var groupURL
-          if (json !== null) {
-            
-           cardURL = json.data.map((info)=> {
+          if (json) {
+            var cardURL = json.data.map((info)=> {
               return {
                 artist: info.artist,
                 cmc: info.cmc,
@@ -86,22 +80,23 @@ class Search extends React.Component {
                 type_line: info.type_line,
               }
             })
+            this.setState({ cardData: cardURL })
           }
-          this.setState({cards: cardURL})
         });
     }
 
     clear = () => {
-        this.props.dispatch( {type: 'CLEARURLSTORE'} )
+        this.props.dispatch({ type: 'CLEARURLSTORE' })
     }    
 
     render() {
       return (
         <>
           <form onSubmit={this.getCard}>
-              <input className="field" type="text" onChange={this.onCardNameChange}/>
+              <input className="field" type="text" onChange={this.onSearchTextChange}/>
               <button className="submitbutton" type="submit"> submit </button>
-              <button className="clearbutton" type="button" onClick={this.clear}> clear </button><br/>
+              <button className="clearbutton" type="button" onClick={this.clear}> clear </button>
+              <br/>
 
               Card Color: &nbsp;
               <input type="checkbox" onClick={this.handleCheck} name="color1" value="w"></input> 
@@ -132,7 +127,7 @@ class Search extends React.Component {
                   <option value="land">Land</option>
               </select>
           </form>
-          <CardBox2 cards={this.state.cards}/>
+          <CardBox2 data={this.state.cardData}/>
         </>
       )
     }

@@ -5,10 +5,6 @@ import Xaxis from './Xaxis'
 import Bar from './Bar'
 
 export default class Graph extends React.Component {
-    state = {
-        
-    }
-
     renderLines() {
         return Array(10).fill(null).map((el, i) => (
             <Line
@@ -40,17 +36,13 @@ export default class Graph extends React.Component {
     render() {
         return (
             <div className="graph-wrapper">
-                
                 <div className="graph">
-
                     <div className="bar-lines-container">
                         {this.renderLines()}
                         {this.renderBars()}
                     </div>
                     <Xaxis manacurve={this.props.manacurve} />
-
                 </div>
-
             </div>
         )
     }

@@ -1,8 +1,8 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Card from './components/Card';
 
 const CardStackStyle = {
-    display: 'inline-block',
+    display: 'inline-block', 
     width: '145px',
     minHeight: '75vh',
     maxHeight: '75vh',
@@ -12,46 +12,46 @@ const CardStackStyle = {
     textAlign: 'center'
 }
 
-export default class CardStack extends React.Component {
-    state = {
-        test: 0
-    }
+export default function CardStack({ urls }) {
+    const [test, setTest] = useState(0);
+    const [currentCardNo, setCurrentCardNo] = useState(-1);
 
-    constructor(props) {
-        super(props);
-        this.onDragLeave = this.onDragLeave.bind(this)
-        this.onDragEnter = this.onDragEnter.bind(this)
-    }
-
-    onDragEnter(e){
-        if (this.state.test === 0) {
+    const onDragEnter = (e) => {
+        if (test === 0) {
             e.currentTarget.style.backgroundColor = "pink" 
         }
-        this.setState({test: this.state.test + 1})
+        setTest(test + 1);
     }
 
-    onDragLeave(e) {
-        if (this.state.test === 1) {
+    const onDragLeave = (e) => {
+        if (test === 1) {
             e.currentTarget.style.backgroundColor = "white"
+            console.log(currentCardNo)
+            
+            // this.props.dispatch({
+            //     type: 'DELETE_URL_STORE',
+            //     stackNo: this.props.index,
+            //     url: "",
+            // })
         }
-        this.setState({
-            test: this.state.test - 1
-        })
+        setTest(test - 1)
+        e.stopPropagation()
     }
 
-    render() {
-        // multiples of 185 pixels for small
-        var cards = this.props.cards.map((url, index) => {
-            return <Card url={url} key={index} style={{transform: `translateY(-${185 * index}px)`}} />
-        });
-
-        return(
-                <div style={CardStackStyle}  
-                    onDragLeave={this.onDragLeave}
-                    onDragEnter={this.onDragEnter}
-                >
-                    {cards}
-                </div>
-        )
+    const getCardNo = (cardIndex) => {
+        setCurrentCardNo(cardIndex)
     }
+
+    var cards = urls.map((url, index) => {
+        return <Card url={url} key={index} index={index} getCardNo={getCardNo} style={{transform: `translateY(-${185 * index}px)`}} />
+    });
+
+    return(
+        <div style={CardStackStyle}  
+            onDragLeave={onDragLeave}
+            onDragEnter={onDragEnter}
+        >
+            {cards}
+        </div>
+    )   
 }

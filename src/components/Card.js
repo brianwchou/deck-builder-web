@@ -17,12 +17,17 @@ export default class Card extends Component {
     }
 
     handleOnCLick(e) {
-        console.log(this.props.info.name)
+        this.props.updateCardCount({
+            name: this.props.info.name
+            
+        })
     }
 
     render() {
         let {info, style} = this.props; 
         style = {...style, ...cardStyle}
+
+        // dyanamic props
         switch(this.props.type) {
             case "Clickable":
                 return (
@@ -40,8 +45,8 @@ export default class Card extends Component {
                         onDragStart={this.handleOnDragStart}      
                     />
                 )
-        }
-
-        
+        }   
     }
   }
+
+  
