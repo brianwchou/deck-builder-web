@@ -11,13 +11,10 @@ export default class Home extends React.Component {
       <div>
         <Search/>
         <div className="flexboxes">
-          
-          <div>
-            <Metrics/>
-            <Decklist/>
-          </div>
+          <Metrics/>
+          <Decklist/>
         </div>
-        <img className="background" src="https://stmed.net/sites/default/files/kingdom-of-heaven-wallpapers-29683-4482399.jpg" alt="default"/>
+        <img className="background" src="https://cdn.arstechnica.net/wp-content/uploads/2016/01/159984_CN-980x597.jpg" alt="default"/>
       </div>
     )
   }

@@ -19,7 +19,6 @@ export default class Card extends Component {
     handleOnCLick(e) {
         this.props.updateCardCount({
             name: this.props.info.name
-            
         })
     }
 

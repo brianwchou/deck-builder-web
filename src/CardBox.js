@@ -9,7 +9,8 @@ const mapStateToProps = (state) => {
 }
 
 const cardBoxStyle = {
-    border: 'solid black thin',
+    display: 'flex',
+    border: 'solid thin',
     width: '100vw',
     height: '80vh'
   }

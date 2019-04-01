@@ -5,7 +5,7 @@ const decklistStyle = {
     border: 'solid black thin',
     width: '40vw',
     height: '50vh',
-    display: 'inline-block'
+    display: 'flex'
 }
 
 class Decklist extends React.Component {

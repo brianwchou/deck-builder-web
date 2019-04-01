@@ -4,12 +4,11 @@ import { connect } from 'react-redux';
 
 const cardBoxStyle = {
     border: 'solid black thin',
-    width: '80vw',
+    width: '70vw',
     height: '80vh',
-    display: 'inline-block'
 }
 
-class CardBox2 extends React.Component {
+class CardDisplay extends React.Component {
     constructor(props){
         super(props);
 
@@ -34,4 +33,4 @@ class CardBox2 extends React.Component {
 }
 
 
-export default connect()(CardBox2)
+export default connect()(CardDisplay)
