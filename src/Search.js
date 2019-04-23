@@ -1,7 +1,7 @@
 import React from 'react'
 import { filteredSearchURL } from './utility/URLs';
 import { connect } from 'react-redux';
-import CardDisplay from './CardDisplay';
+import { getCardSearchData } from './actions/searchActions';
 import "./App.css";
 
 const manaSymbolStyle = {
@@ -17,9 +17,20 @@ class Search extends React.Component {
             filterColors: "",
             cardData: []
         }
-
         this.getCard = this.getCard.bind(this);
-        this.clear = this.clear.bind(this);
+    }
+
+    getCard = (e) => {
+      e.preventDefault();
+      var searchCardNameURL 
+    
+      if (!this.state.filterColors) {
+        searchCardNameURL = filteredSearchURL + this.state.textbox + "&unique"
+      } else {
+        searchCardNameURL = filteredSearchURL + this.state.textbox + "+c:" +  this.state.filterColors + "&unique";
+      }
+
+      this.props.dispatch(getCardSearchData(searchCardNameURL));
     }
 
     handleCheck = (e) => {
@@ -38,65 +49,12 @@ class Search extends React.Component {
         this.setState({ textbox: e.target.value })
     }
 
-    async getCard(e) {
-      e.preventDefault();
-      
-      var searchCardNameURL = filteredSearchURL + this.state.textbox + "+c:" +  this.state.filterColors + "&unique.cardData";
-
-      if (!this.state.filterColors) {
-        searchCardNameURL = filteredSearchURL + this.state.textbox + "&unique.cardData"
-      }
-
-      await fetch(searchCardNameURL)
-        .then(response => {
-            if (response.status === 200) {
-                return response.json();
-            } else {
-                console.log("response", response.status)
-                return null;
-            }
-        })
-        .then( (json) => {
-          console.log(json)
-          if (json) {
-            // this doesnt work when the cards are double faced
-            var cardURL = json.data.map((info)=> {
-              return {
-                artist: info.artist,
-                cmc: info.cmc,
-                color_identity: info.color_identity,
-                colors: info.colors,
-                image_uris: info.image_uris,
-                mana_cost: info.mana_cost,
-                name: info.name,
-                oracle_text: info.oracle_text,
-                power: info.power,
-                rarity: info.rarity,
-                reserved: info.reserved,
-                setName: info.setName,
-                toughness: info.toughness,
-                type_line: info.type_line,
-              }
-            })
-            this.setState({ cardData: cardURL })
-          }
-        });
-    }
-
-    clear = () => {
-        this.setState({
-          cardData: [],
-          textbox: "",
-        })
-    }    
-
     render() {
       return (
         <>
           <form onSubmit={this.getCard}>
             <input className="field" type="text" onChange={this.onSearchTextChange}/>
             <button className="submitbutton" type="submit"> submit </button>
-            <button className="clearbutton" type="button" onClick={this.clear}> clear </button>
             <br/>
 
             Card Color: &nbsp;
@@ -128,7 +86,6 @@ class Search extends React.Component {
                 <option value="land">Land</option>
             </select>
           </form>
-          <CardDisplay data={this.state.cardData}/>
         </>
       )
     }

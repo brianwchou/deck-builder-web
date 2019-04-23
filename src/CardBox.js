@@ -19,11 +19,6 @@ class CardBox extends React.Component {
     constructor(props){
         super(props)
     }
-
-    get() {
-
-    }
-
     render() {
         var cardstacks = this.props.cardStacks.map((array, index) => {
             return <CardStack urls={array} key={index} />

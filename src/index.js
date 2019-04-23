@@ -1,18 +1,14 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import {Provider} from 'react-redux'
-import {createStore} from 'redux'
+import { Provider } from 'react-redux';
+import { createStore, applyMiddleware, combineReducers } from 'redux';
+import thunk from 'redux-thunk';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 import { blueTron } from './utility/URLs'
 
-
-const initialState = {
-    urls: []
-}
-
-const reducer = (state = initialState, action) => {
+const searchReducer = (state={urls: []}, action) => {
     switch(action.type) {
         case 'UPDATEurls':
             return {...state,
@@ -26,6 +22,25 @@ const reducer = (state = initialState, action) => {
             return state
     }
 }
+
+
+// what kind of actions do i need here
+const searchDisplayReducer = (state={searchDisplayCards: []}, action) => {
+    switch(action.type) {
+        case 'LOAD_SEARCH_CARDS':
+            return Object.assign({}, state, {
+                searchDisplayCards: action.cards
+            });
+        default:
+            return state;
+    }
+}
+
+
+const rootReducer = combineReducers({
+    search: searchReducer, 
+    searchDisplay: searchDisplayReducer
+})
 
 // const reducer = (state = initialState, action) => {
 //     switch (action.type) {
@@ -48,7 +63,10 @@ const reducer = (state = initialState, action) => {
 //     }
 // }
 
-const store = createStore(reducer);
+const store = createStore(
+    rootReducer,
+    applyMiddleware(thunk)
+);
 
 ReactDOM.render(
     <Provider store={store}>

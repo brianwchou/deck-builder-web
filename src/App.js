@@ -5,13 +5,13 @@ import Search from './Search';
 import './App.css';
 import Navbar from './Navbar'
 import NoMatch from './NoMatch';
-import Home from './Home';
+import DeckBuilder from './DeckBuilder';
 
 const Brian = () => {
   return (
     <div>
-    <Search />
-    <CardBox />
+      <Search />
+      <CardBox />
     </div>
   )
 }
@@ -23,9 +23,9 @@ class App extends Component {
         <Navbar />
         <BrowserRouter>
         <Switch>
-          <Route exact path="/Home" component={Home} />
+          <Route exact path="/home" component={DeckBuilder} />
           <Route exact path="/">
-            <Redirect to="/Home" />
+            <Redirect to="/home" />
           </Route>
           <Route component = {NoMatch}/>
         </Switch>
