@@ -7,20 +7,14 @@ const cardStyle = {
 export default class Card extends Component {
     constructor(props) {
       super(props);
-      this.handleOnDragStart = this.handleOnDragStart.bind(this);
+
       this.handleOnCLick = this.handleOnCLick.bind(this)
     }
 
-    handleOnDragStart(e) {
-        let {url} = this.props;
-        e.dataTransfer.setData("text/plain", url);
-    }
-
     handleOnCLick(e) {
-        this.props.updateCardCount({
-            name: this.props.info.name
-        })
+        this.props.getCardInfo(this.props.info);
     }
+    
 
     render() {
         let {info, style} = this.props; 

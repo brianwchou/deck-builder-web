@@ -51,7 +51,7 @@ export const getCardSearchData = (url) => {
                   type_line: info.type_line,
                 }
             })
-  
+            console.log(cards)
             dispatch(loadSearchCards(cards));
           }
         });

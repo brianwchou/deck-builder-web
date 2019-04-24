@@ -15,7 +15,6 @@ class Search extends React.Component {
         this.state = {
             textbox: "",
             filterColors: "",
-            cardData: []
         }
         this.getCard = this.getCard.bind(this);
     }
@@ -51,42 +50,40 @@ class Search extends React.Component {
 
     render() {
       return (
-        <>
-          <form onSubmit={this.getCard}>
-            <input className="field" type="text" onChange={this.onSearchTextChange}/>
-            <button className="submitbutton" type="submit"> submit </button>
-            <br/>
+        <form onSubmit={this.getCard}>
+          <input className="field" type="text" onChange={this.onSearchTextChange}/>
+          <button className="submitbutton" type="submit"> submit </button>
+          <br/>
 
-            Card Color: &nbsp;
-            <input type="checkbox" onClick={this.handleCheck} name="color1" value="w"></input> 
-            <img src="https://gamepedia.cursecdn.com/mtgsalvation_gamepedia/8/8e/W.svg" alt="white_mana" style={manaSymbolStyle}/>White &nbsp;
+          Card Color: &nbsp;
+          <input type="checkbox" onClick={this.handleCheck} name="color1" value="w"></input> 
+          <img src="https://gamepedia.cursecdn.com/mtgsalvation_gamepedia/8/8e/W.svg" alt="white_mana" style={manaSymbolStyle}/>White &nbsp;
 
-            <input type="checkbox" onClick={this.handleCheck} name="color2" value="u"></input>
-            <img src="https://gamepedia.cursecdn.com/mtgsalvation_gamepedia/9/9f/U.svg" alt="blue_mana" style={manaSymbolStyle}/>Blue &nbsp;
-            
-            <input type="checkbox" onClick={this.handleCheck} name="color3" value="b"></input>
-            <img src="https://gamepedia.cursecdn.com/mtgsalvation_gamepedia/2/2f/B.svg" alt="black_mana" style={manaSymbolStyle}/>Black &nbsp;
-            
-            <input type="checkbox" onClick={this.handleCheck} name="color4" value="r"></input>
-            <img src="https://gamepedia.cursecdn.com/mtgsalvation_gamepedia/8/87/R.svg" alt="red_mana" style={manaSymbolStyle}/>Red &nbsp;
-            
-            <input type="checkbox" onClick={this.handleCheck} name="color5" value="g"></input>
-            <img src="https://gamepedia.cursecdn.com/mtgsalvation_gamepedia/8/88/G.svg" alt="green_mana" style={manaSymbolStyle}/>Green 
+          <input type="checkbox" onClick={this.handleCheck} name="color2" value="u"></input>
+          <img src="https://gamepedia.cursecdn.com/mtgsalvation_gamepedia/9/9f/U.svg" alt="blue_mana" style={manaSymbolStyle}/>Blue &nbsp;
+          
+          <input type="checkbox" onClick={this.handleCheck} name="color3" value="b"></input>
+          <img src="https://gamepedia.cursecdn.com/mtgsalvation_gamepedia/2/2f/B.svg" alt="black_mana" style={manaSymbolStyle}/>Black &nbsp;
+          
+          <input type="checkbox" onClick={this.handleCheck} name="color4" value="r"></input>
+          <img src="https://gamepedia.cursecdn.com/mtgsalvation_gamepedia/8/87/R.svg" alt="red_mana" style={manaSymbolStyle}/>Red &nbsp;
+          
+          <input type="checkbox" onClick={this.handleCheck} name="color5" value="g"></input>
+          <img src="https://gamepedia.cursecdn.com/mtgsalvation_gamepedia/8/88/G.svg" alt="green_mana" style={manaSymbolStyle}/>Green 
 
-            <br/>
+          <br/>
 
-            Card Type: &nbsp;
-            <select>
-                <option value="artifact">Artifact</option>
-                <option value="creature">Creature</option>
-                <option value="enchantment">Enchantment</option>
-                <option value="instant">Instant</option>
-                <option value="sorcery">Sorcery</option>
-                <option value="planeswalker">Planeswalker</option>
-                <option value="land">Land</option>
-            </select>
-          </form>
-        </>
+          Card Type: &nbsp;
+          <select>
+              <option value="artifact">Artifact</option>
+              <option value="creature">Creature</option>
+              <option value="enchantment">Enchantment</option>
+              <option value="instant">Instant</option>
+              <option value="sorcery">Sorcery</option>
+              <option value="planeswalker">Planeswalker</option>
+              <option value="land">Land</option>
+          </select>
+        </form>
       )
     }
 }

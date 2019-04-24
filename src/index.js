@@ -1,11 +1,11 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import './index.css';
-import { Provider } from 'react-redux';
-import { createStore, applyMiddleware, combineReducers } from 'redux';
-import thunk from 'redux-thunk';
-import App from './App';
-import * as serviceWorker from './serviceWorker';
+import React from 'react'
+import ReactDOM from 'react-dom'
+import './index.css'
+import { Provider } from 'react-redux'
+import { createStore, applyMiddleware, combineReducers } from 'redux'
+import thunk from 'redux-thunk'
+import App from './App'
+import * as serviceWorker from './serviceWorker'
 import { blueTron } from './utility/URLs'
 
 const searchReducer = (state={urls: []}, action) => {
@@ -37,9 +37,22 @@ const searchDisplayReducer = (state={searchDisplayCards: []}, action) => {
 }
 
 
+const deckListReducer = (state={deckListData: []}, action) => {
+    switch(action.type) {
+        case 'ADD_TO_DECKLIST':
+            return Object.assign({}, state, {
+                deckListData: [...state.deckListData, action.card] 
+            })
+        default:
+            return state
+    }
+}
+
+
 const rootReducer = combineReducers({
     search: searchReducer, 
-    searchDisplay: searchDisplayReducer
+    searchDisplay: searchDisplayReducer,
+    deckList: deckListReducer,
 })
 
 // const reducer = (state = initialState, action) => {

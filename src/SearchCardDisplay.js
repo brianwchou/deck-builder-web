@@ -16,10 +16,22 @@ const cardBoxStyle = {
 }
 
 class SearchCardDisplay extends React.Component {
+    constructor() {
+        super();
+
+        this.getCardInfo = this.getCardInfo.bind(this);
+    }
+
+    getCardInfo(cardInfo) {
+        console.log(cardInfo);
+        this.props.dispatch({type:'ADD_TO_DECKLIST', card: cardInfo});
+    }
+
     render() {
         const cards  = this.props.cards.map((info, index) => {
-            return <Card info={info} updateCardCount={this.updateCardCount} type={"Clickable"} key={index} />
+            return <Card info={info} type={"Clickable"} getCardInfo={this.getCardInfo} key={index} />
         });
+
         return (
             <div style={cardBoxStyle}>
                 {cards}
