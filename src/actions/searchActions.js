@@ -48,7 +48,7 @@ export const getCardSearchData = (url) => {
                   reserved: info.reserved,
                   setName: info.setName,
                   toughness: info.toughness,
-                  type_line: info.type_line,
+                  typeLine: info.type_line,
                 }
             })
             console.log(cards)

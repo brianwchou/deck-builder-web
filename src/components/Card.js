@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 
 const cardStyle = {
     display: 'block-inline'
@@ -15,7 +15,6 @@ export default class Card extends Component {
         this.props.getCardInfo(this.props.info);
     }
     
-
     render() {
         let {info, style} = this.props; 
         style = {...style, ...cardStyle}

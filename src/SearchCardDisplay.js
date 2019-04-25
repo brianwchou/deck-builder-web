@@ -23,7 +23,6 @@ class SearchCardDisplay extends React.Component {
     }
 
     getCardInfo(cardInfo) {
-        console.log(cardInfo);
         this.props.dispatch({type:'ADD_TO_DECKLIST', card: cardInfo});
     }
 

@@ -1,28 +1,12 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import './index.css'
 import { Provider } from 'react-redux'
 import { createStore, applyMiddleware, combineReducers } from 'redux'
 import thunk from 'redux-thunk'
 import App from './App'
 import * as serviceWorker from './serviceWorker'
 import { blueTron } from './utility/URLs'
-
-const searchReducer = (state={urls: []}, action) => {
-    switch(action.type) {
-        case 'UPDATEurls':
-            return {...state,
-                urls: [...state.urls, action.url]
-            }
-        case 'CLEARURLSTORE':
-            return {...state,
-                urls: []
-            }
-        default:
-            return state
-    }
-}
-
+import './index.css'
 
 // what kind of actions do i need here
 const searchDisplayReducer = (state={searchDisplayCards: []}, action) => {
@@ -36,12 +20,11 @@ const searchDisplayReducer = (state={searchDisplayCards: []}, action) => {
     }
 }
 
-
-const deckListReducer = (state={deckListData: []}, action) => {
+const deckListReducer = (state={main: []}, action) => {
     switch(action.type) {
         case 'ADD_TO_DECKLIST':
             return Object.assign({}, state, {
-                deckListData: [...state.deckListData, action.card] 
+                main: [...state.main, action.card] 
             })
         default:
             return state
@@ -50,31 +33,9 @@ const deckListReducer = (state={deckListData: []}, action) => {
 
 
 const rootReducer = combineReducers({
-    search: searchReducer, 
     searchDisplay: searchDisplayReducer,
     deckList: deckListReducer,
 })
-
-// const reducer = (state = initialState, action) => {
-//     switch (action.type) {
-//         case 'UPDATE_URL_STORE':
-//             return {
-//                 ...state,
-//                 cardStacks: [
-//                     ...state.cardStacks.slice(0, action.stackNo),
-//                     [...(state.cardStacks[action.stackNo] || []), action.url],
-//                     ...state.cardStacks.slice(action.stackNo + 1)
-//                 ]
-//             }
-//         case 'CLEAR_URL_STORE':
-//             return {
-//                 ...state,
-//                 cardStacks: []
-//             }
-//         default:
-//             return state
-//     }
-// }
 
 const store = createStore(
     rootReducer,
