@@ -12,8 +12,10 @@ export default class DeckBuilder extends React.Component {
         <Search />
         <div className="flexboxes">
           <SearchCardDisplay />
-          <Metrics />
-          <DeckList />
+          <div className="column">
+            <DeckList />
+            <Metrics />
+          </div>
         </div>
         <img className="background" src="https://cdn.arstechnica.net/wp-content/uploads/2016/01/159984_CN-980x597.jpg" alt="default"/>
       </div>
