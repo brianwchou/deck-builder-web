@@ -20,17 +20,32 @@ const searchDisplayReducer = (state={searchDisplayCards: []}, action) => {
     }
 }
 
-const deckListReducer = (state={main: []}, action) => {
+const deckListReducerInitialState = {
+    main: [],
+    cardCount: {}
+}
+
+const deckListReducer = (state=deckListReducerInitialState, action) => {
     switch(action.type) {
         case 'ADD_TO_DECKLIST':
             return Object.assign({}, state, {
-                main: [...state.main, action.card] 
+                main: [...state.main, action.card],
+                cardCount: Object.assign({}, state.cardCount, {
+                    [action.card.name]: 1
+                }
+            )})
+        
+        case 'INCREMENT_CARD_COUNT':
+            return Object.assign({}, state, {
+                cardCount: Object.assign({}, state.cardCount, {
+                    [action.name]: (state.cardCount[action.name]) ? state.cardCount[action.name] + 1 : 1
+                })
             })
+        
         default:
             return state
     }
 }
-
 
 const rootReducer = combineReducers({
     searchDisplay: searchDisplayReducer,

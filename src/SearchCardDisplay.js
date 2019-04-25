@@ -4,7 +4,8 @@ import { connect } from 'react-redux';
 
 const mapStateToProps = (state) => {
     return {
-        cards: state.searchDisplay.searchDisplayCards
+        cards: state.searchDisplay.searchDisplayCards,
+        counts: state.deckList.cardCount
     }
 }
 
@@ -15,6 +16,17 @@ const cardBoxStyle = {
     overflow: 'scroll'
 }
 
+const addCard = (cardInfo) => {
+    return (dispatch, getState) => {
+        const state = getState();
+        if (state.deckList.main.includes(cardInfo)) {
+            dispatch({type: 'INCREMENT_CARD_COUNT', name: cardInfo.name})
+        } else {
+            dispatch({type:'ADD_TO_DECKLIST', card: cardInfo});
+        }
+    }
+}
+
 class SearchCardDisplay extends React.Component {
     constructor() {
         super();
@@ -23,7 +35,7 @@ class SearchCardDisplay extends React.Component {
     }
 
     getCardInfo(cardInfo) {
-        this.props.dispatch({type:'ADD_TO_DECKLIST', card: cardInfo});
+        this.props.dispatch(addCard(cardInfo));
     }
 
     render() {

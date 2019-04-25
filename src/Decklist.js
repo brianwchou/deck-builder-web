@@ -2,7 +2,10 @@ import React from 'react';
 import { connect } from 'react-redux';
 
 const mapStateToProps = (state) => {
-    return {main: state.deckList.main}
+    return {
+        main: state.deckList.main,
+        counts: state.deckList.cardCount
+    }
 }
 
 const decklistStyle = {
@@ -13,8 +16,9 @@ const decklistStyle = {
 
 // presentational
 const DeckListEntries = (props) => {
+
     let entries = props.data.map((entry, index)=> {
-        return <li key={index}> {entry.name} </li>
+        return <li key={index}> {entry.name} {props.counts[entry.name]} </li>
     }) 
     return (entries.length) ? (
         <div>
@@ -73,21 +77,19 @@ class DeckList extends React.Component {
                 other: []
         })
 
-        console.log(sortedByTypes)
-
         return (
             <div style={decklistStyle}>
+                <div> DECK TITLE </div>
                 <div>
                     <DeckTypeSelection />
                 </div>
-                <DeckListEntries type={"Creatures"} data={sortedByTypes.creatures}/>
-                <DeckListEntries type={"Spells"} data={sortedByTypes.spells}/>
-                <DeckListEntries type={"Enchantments"} data={sortedByTypes.enchantments}/>
-                <DeckListEntries type={"Artifacts"} data={sortedByTypes.artifacts}/>
-                <DeckListEntries type={"Planeswalkers"} data={sortedByTypes.planeswalkers}/>
-                <DeckListEntries type={"Lands"} data={sortedByTypes.lands}/>
-                <DeckListEntries type={"Other *debugging*"} data={sortedByTypes.other}/>
-
+                <DeckListEntries type={"Creatures"} data={sortedByTypes.creatures} counts={this.props.counts}/>
+                <DeckListEntries type={"Spells"} data={sortedByTypes.spells} counts={this.props.counts} />
+                <DeckListEntries type={"Enchantments"} data={sortedByTypes.enchantments} counts={this.props.counts}/>
+                <DeckListEntries type={"Artifacts"} data={sortedByTypes.artifacts} counts={this.props.counts}/>
+                <DeckListEntries type={"Planeswalkers"} data={sortedByTypes.planeswalkers} counts={this.props.counts}/>
+                <DeckListEntries type={"Lands"} data={sortedByTypes.lands} counts={this.props.counts}/>
+                <DeckListEntries type={"Other *debugging*"} data={sortedByTypes.other} counts={this.props.counts}/>
             </div>
         )
     }
