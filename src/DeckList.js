@@ -10,8 +10,9 @@ const mapStateToProps = (state) => {
 
 const decklistStyle = {
     border: 'solid black thin',
-    width: '40vw',
+    width: '35vw',
     height: '50vh',
+    overflow: 'scroll',
 }
 
 // presentational

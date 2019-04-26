@@ -3,6 +3,7 @@ import Search from './Search';
 import DeckList from './DeckList';
 import Metrics from './Metrics'
 import SearchCardDisplay from './SearchCardDisplay';
+import MaybeBoardDisplay from './MaybeBoardDisplay';
 import './App.css'
 
 export default class DeckBuilder extends React.Component {
@@ -11,7 +12,10 @@ export default class DeckBuilder extends React.Component {
       <div>
         <Search />
         <div className="flexboxes">
+          <div className="column">
           <SearchCardDisplay />
+          <MaybeBoardDisplay />
+          </div>
           <div className="column">
             <DeckList />
             <Metrics />

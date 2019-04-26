@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
+import './buttons.css'
 
 const cardStyle = {
-    display: 'block-inline'
+    display: 'flex'
 }
 
 export default class Card extends Component {
@@ -9,10 +10,15 @@ export default class Card extends Component {
       super(props);
 
       this.handleOnCLick = this.handleOnCLick.bind(this)
+      this.handleOnCLick2 = this.handleOnCLick2.bind(this)
     }
 
     handleOnCLick(e) {
         this.props.getCardInfo(this.props.info);
+    }
+
+    handleOnCLick2(e) {
+        this.props.getCardInfoMaybe(this.props.info);
     }
     
     render() {
@@ -23,12 +29,24 @@ export default class Card extends Component {
         switch(this.props.type) {
             case "Clickable":
                 return (
-                    <img draggable={false}
-                        onClick={this.handleOnCLick}
-                        src={info.image_uris.small}
-                        style={style}    
+                    <div className="container">
+                        <img draggable={false}
+                            src={info.image_uris.small}
+                            style={style}
+                        />
+                        <button class="btn" onClick={this.handleOnCLick}>Add To Decklist</button>
+                        <button class="btn2" onClick={this.handleOnCLick2}>Butto2</button>
+                    </div>
+                )
+
+            case "Maybe":
+                return (
+                    <img src={info.image_uris.small}
+                        style={style}
                     />
                 )
+
+
             default: // draggable
                 return (
                     <img draggable={true}

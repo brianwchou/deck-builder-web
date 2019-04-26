@@ -4,7 +4,7 @@ import Graph from './graphs/Graph'
 
 const metricsStyle = {
     border: 'solid black thin',
-    width: '40vw',
+    width: '35vw',
     height: '30vh',
     display: 'inline-block'
 }

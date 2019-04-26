@@ -47,9 +47,21 @@ const deckListReducer = (state=deckListReducerInitialState, action) => {
     }
 }
 
+const maybeBoardReducer = (state={maybeBoardCards: []}, action) => {
+    switch(action.type) {
+        case 'ADD_TO_MAYBEBOARD':
+            return Object.assign({}, state, {
+                maybeBoardCards: [...state.maybeBoardCards, action.card]
+            })
+        default:
+            return state
+    }
+}
+
 const rootReducer = combineReducers({
     searchDisplay: searchDisplayReducer,
     deckList: deckListReducer,
+    maybeBoard: maybeBoardReducer,
 })
 
 const store = createStore(
