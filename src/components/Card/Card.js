@@ -10,15 +10,15 @@ export default class Card extends Component {
       super(props);
 
       this.handleOnCLick = this.handleOnCLick.bind(this)
-      this.handleOnCLick2 = this.handleOnCLick2.bind(this)
     }
 
     handleOnCLick(e) {
-        this.props.getCardInfo(this.props.info);
-    }
-
-    handleOnCLick2(e) {
-        this.props.getCardInfoMaybe(this.props.info);
+        if (e.target.name == "decklistAdd") {
+            this.props.getCardInfo(this.props.info);
+        } 
+        else if (e.target.name =="maybeboardAdd") { 
+            this.props.getCardInfoMaybe(this.props.info);
+        }
     }
     
     render() {
@@ -34,8 +34,8 @@ export default class Card extends Component {
                             src={info.image_uris.small}
                             style={style}
                         />
-                        <button class="btn" onClick={this.handleOnCLick}>Add To Decklist</button>
-                        <button class="btn2" onClick={this.handleOnCLick2}>Butto2</button>
+                        <button class="btn" name="decklistAdd" onClick={this.handleOnCLick}>Add To Decklist</button>
+                        <button class="btn2" name="maybeboardAdd" onClick={this.handleOnCLick}>Butto2</button>
                     </div>
                 )
 
