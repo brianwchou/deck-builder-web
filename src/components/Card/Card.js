@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import './buttons.css'
+import './Card.css';
 
 const cardStyle = {
     display: 'flex'
@@ -45,7 +45,6 @@ export default class Card extends Component {
                         style={style}
                     />
                 )
-
 
             default: // draggable
                 return (

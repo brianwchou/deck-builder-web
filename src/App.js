@@ -5,7 +5,6 @@ import Navbar from './Navbar'
 import NoMatch from './NoMatch';
 import DeckBuilder from './DeckBuilder';
 
-
 class App extends Component {
   render() {
     return (
