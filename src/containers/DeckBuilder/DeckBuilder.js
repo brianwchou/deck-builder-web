@@ -1,11 +1,11 @@
 import React from 'react';
-import Search from '../Search';
-import DeckList from '../DeckList';
-import Metrics from '../../components/Metrics'
-import SearchCardDisplay from '../SearchCardDisplay';
-import MaybeBoardDisplay from '../MaybeBoardDisplay';
+import Search from 'containers/Search';
+import DeckList from 'containers/DeckList';
+import Metrics from 'components/Metrics'
+import SearchCardDisplay from 'containers/SearchCardDisplay';
+import MaybeBoardDisplay from 'containers/MaybeBoardDisplay';
 import './DeckBuilder.css'
-import manacurve from '../../utility/testData'
+import manacurve from 'utility/testData'
 
 export default class DeckBuilder extends React.Component {
   render() {

@@ -3,9 +3,9 @@ import ReactDOM from 'react-dom'
 import { Provider } from 'react-redux'
 import { createStore, applyMiddleware, combineReducers } from 'redux'
 import thunk from 'redux-thunk'
-import App from './containers/App'
+import App from 'containers/App'
 import * as serviceWorker from './serviceWorker'
-import { blueTron } from './utility/URLs'
+import { blueTron } from 'utility/URLs'
 import './index.css'
 
 // what kind of actions do i need here
