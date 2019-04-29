@@ -30,8 +30,11 @@ const addCard = (cardInfo) => {
 }
 
 const addToMaybe = (cardInfo) => {
-    return(dispatch) => {
-        dispatch({type: 'ADD_TO_MAYBEBOARD', card: cardInfo});
+    return(dispatch, getState) => {
+        const state = getState();
+        if ((state.maybeBoard.maybeBoardCards.includes(cardInfo)) === false) {
+            dispatch({type: 'ADD_TO_MAYBEBOARD', card: cardInfo});
+        }
     }
 }
 
@@ -53,7 +56,7 @@ class SearchCardDisplay extends React.Component {
 
     render() {
         const cards  = this.props.cards.map((info, index) => {
-            return <Card info={info} type={"Clickable"} getCardInfoMaybe={this.getCardInfoMaybe} getCardInfo={this.getCardInfo} key={index} />
+            return <Card info={info} getCardInfoMaybe={this.getCardInfoMaybe} getCardInfo={this.getCardInfo} key={index} />
         });
 
         return (

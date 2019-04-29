@@ -20,7 +20,7 @@ const maybeBoardStyle = {
 class MaybeBoardDisplay extends React.Component {
     render() {
         const cards = this.props.cards.map((info, index) => {
-            return <Card info={info} type={"Clickable"} key={index} />
+            return <Card info={info} key={index} />
         })
 
         return(
