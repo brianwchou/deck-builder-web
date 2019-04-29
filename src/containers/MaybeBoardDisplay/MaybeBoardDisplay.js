@@ -1,5 +1,5 @@
 import React from 'react';
-import Card from './components/Card/Card';
+import Card from '../../components/Card';
 import { connect } from 'react-redux';
 
 const mapStateToProps = (state) => {
@@ -18,12 +18,7 @@ const maybeBoardStyle = {
 }
 
 class MaybeBoardDisplay extends React.Component {
-    constructor() {
-        super();
-    }
-
     render() {
-
         const cards = this.props.cards.map((info, index) => {
             return <Card info={info} type={"Clickable"} key={index} />
         })
@@ -34,10 +29,6 @@ class MaybeBoardDisplay extends React.Component {
             </div>
         )
     }
-
-
-
-
 }
 
 

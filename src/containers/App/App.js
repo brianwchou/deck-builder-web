@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import { BrowserRouter, Route, Switch, Redirect } from 'react-router-dom';
 import './App.css';
-import { Navbar } from './components'
-import NoMatch from './NoMatch';
-import DeckBuilder from './DeckBuilder';
+import Navbar from '../../components/Navbar'
+import NoMatch from '../../components/NoMatch';
+import DeckBuilder from '../DeckBuilder';
 
 class App extends Component {
   render() {

@@ -1,8 +1,8 @@
 import React from 'react'
-import { filteredSearchURL } from './utility/URLs';
+import { filteredSearchURL } from '../../utility/URLs';
 import { connect } from 'react-redux';
-import { getCardSearchData } from './actions/searchActions';
-import "./App.css";
+import { getCardSearchData } from '../../actions/searchActions';
+import './Search.css';
 
 const manaSymbolStyle = {
     maxWidth: "15px",
