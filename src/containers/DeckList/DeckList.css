@@ -1,14 +1,18 @@
-.right-align {
-    text-align: right;
-}
-.center-align {
-    text-align: left;
+.flex {
+    display: flex;
 }
 
-table, th, td {
-    border: 1px solid black;
+.count {
+    width: 55px;
 }
 
-table {
-    width: 100%
+.name {
+    margin-left: 5px;
+    flex-grow: 2;
+}
+
+.type_padding {
+    padding-bottom: 7px;
+    padding-top: 7px;
+    padding-left: 3px;
 }

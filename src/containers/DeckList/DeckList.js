@@ -13,19 +13,20 @@ const decklistStyle = {
     border: 'solid black thin',
     width: '35vw',
     height: '50vh',
+    padding: '15px',
     overflow: 'scroll',
 }
 
 const DeckListEntry = ({index, name, count}) => {
     return (
-        <tr key={index}> 
-            <td>{count}x <button>+</button></td>
-            <td className={'center-align'}>
+        <div className="flex alignment" key={index}> 
+            <div className="flex count">{count}x <button>+</button></div>
+            <div className="flex name">
                 {name} 
                 <button>-</button>
                 <button>maybe</button>
-                </td>        
-        </tr>
+            </div>        
+        </div>
     )
 }
 
@@ -36,10 +37,10 @@ const DeckListEntries = ({data, type, counts}) => {
     }) 
     return (entries.length) ? (
         <>
-            <thead>{type}</thead>
-            <tbody>
+            <div className="type_padding">{type}</div>
+            <div>
                 {entries}
-            </tbody>
+            </div>
         </>
     ) : null;
 }
@@ -95,7 +96,6 @@ class DeckList extends React.Component {
             <div style={decklistStyle}>
                 <div><b> DECK TITLE </b></div>
                 <DeckTypeSelection />
-                <table>
                     <DeckListEntries type={"Creatures"} data={sortedByTypes.creatures} counts={this.props.counts}/>
                     <DeckListEntries type={"Spells"} data={sortedByTypes.spells} counts={this.props.counts} />
                     <DeckListEntries type={"Enchantments"} data={sortedByTypes.enchantments} counts={this.props.counts}/>
@@ -103,7 +103,6 @@ class DeckList extends React.Component {
                     <DeckListEntries type={"Planeswalkers"} data={sortedByTypes.planeswalkers} counts={this.props.counts}/>
                     <DeckListEntries type={"Lands"} data={sortedByTypes.lands} counts={this.props.counts}/>
                     <DeckListEntries type={"Other *debugging*"} data={sortedByTypes.other} counts={this.props.counts}/>
-                </table>
             </div>
         )
     }
