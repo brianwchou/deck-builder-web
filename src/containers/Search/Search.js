@@ -24,13 +24,9 @@ class Search extends React.Component {
       e.preventDefault();
       var searchCardNameURL = filteredSearchURL + this.state.textbox
     
-      if (this.state.cardType) {
-        searchCardNameURL += "+type:" +  this.state.cardType;
-      }
+      searchCardNameURL += (this.state.cardType) ? `+t:${this.state.cardType}` : ""
 
-      if (this.state.filterColors) {
-        searchCardNameURL += "+c:" +  this.state.filterColors;
-      }
+      searchCardNameURL += (this.state.filterColors) ? `+c:${this.state.filterColors}` : ""
 
       searchCardNameURL += "&unique";
 
