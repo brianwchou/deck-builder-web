@@ -16,30 +16,30 @@ const decklistStyle = {
     overflow: 'scroll',
 }
 
-const DeckListEntry = ({key, name, count}) => {
+const DeckListEntry = ({index, name, count}) => {
     return (
-        <tr key={key}> 
-            <td>{name}</td>
-            <td className={'center-align'}>{count}</td>  
-            <td className={'right-align'}>
-                <button>plus</button>
-                /
-                <button>minus</button>
-            </td>
+        <tr key={index}> 
+            <td>{count}x <button>+</button></td>
+            <td className={'center-align'}>
+                {name} 
+                <button>-</button>
+                <button>maybe</button>
+                </td>        
         </tr>
     )
 }
 
 // presentational
 const DeckListEntries = ({data, type, counts}) => {
-
     let entries = data.map((entry, index)=> {
-        return <DeckListEntry key={index} name={entry.name} count={counts[entry.name]} />
+        return <DeckListEntry index={index} name={entry.name} count={counts[entry.name]} />
     }) 
     return (entries.length) ? (
         <>
-            <span><b>{type}</b></span>
-            {entries}
+            <thead>{type}</thead>
+            <tbody>
+                {entries}
+            </tbody>
         </>
     ) : null;
 }
@@ -82,13 +82,13 @@ class DeckList extends React.Component {
                 return {...sortedByTypes, other: [...sortedByTypes.other, cardData]}
             }
         }, {
-                artifacts: [],
-                enchantments: [],
-                spells: [],
-                planeswalkers: [],
-                lands: [],
-                creatures: [],
-                other: []
+            artifacts: [],
+            enchantments: [],
+            spells: [],
+            planeswalkers: [],
+            lands: [],
+            creatures: [],
+            other: []
         })
 
         return (

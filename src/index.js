@@ -53,6 +53,12 @@ const maybeBoardReducer = (state={maybeBoardCards: []}, action) => {
             return Object.assign({}, state, {
                 maybeBoardCards: [...state.maybeBoardCards, action.card]
             })
+        case 'REMOVE_FROM_MAYBEBOARD':
+            return Object.assign({}, state, {
+                maybeBoardCards: state.maybeBoardCards.filter((card) => {
+                    return card !== action.card;
+                })
+            })
         default:
             return state
     }

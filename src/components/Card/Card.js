@@ -10,12 +10,7 @@ export default class Card extends Component {
     }
 
     handleOnCLick(e) {
-        if (e.target.name === "decklistAdd") {
-            this.props.getCardInfo(this.props.info);
-        } 
-        else if (e.target.name ==="maybeboardAdd") { 
-            this.props.getCardInfoMaybe(this.props.info);
-        }
+        this.props.getCardInfo(this.props.info, e.target.name);
     }
     
     render() {
@@ -26,8 +21,8 @@ export default class Card extends Component {
                 <img draggable={false}
                     src={info.image_uris.small}
                 />
-                <button className="btn" name="decklistAdd" onClick={this.handleOnCLick}>Add To Decklist</button>
-                <button className="btn2" name="maybeboardAdd" onClick={this.handleOnCLick}>Add To Maybeboard</button>
+                <button className="btn" name="add" onClick={this.handleOnCLick}>Add To Decklist</button>
+                <button className="btn2" name="other" onClick={this.handleOnCLick}>{this.props.buttonDisplay}</button>
             </div>
         )
 
