@@ -60,7 +60,6 @@ class Search extends React.Component {
           <button className="submitbutton" type="submit"> submit </button>
           <br/>
 
-          Card Color: &nbsp;
           <input type="checkbox" onClick={this.handleCheck} value="w"></input> 
           <img src="https://gamepedia.cursecdn.com/mtgsalvation_gamepedia/8/8e/W.svg" alt="white_mana" style={manaSymbolStyle}/> &nbsp;
 
@@ -74,9 +73,7 @@ class Search extends React.Component {
           <img src="https://gamepedia.cursecdn.com/mtgsalvation_gamepedia/8/87/R.svg" alt="red_mana" style={manaSymbolStyle}/> &nbsp;
           
           <input type="checkbox" onClick={this.handleCheck} value="g"></input>
-          <img src="https://gamepedia.cursecdn.com/mtgsalvation_gamepedia/8/88/G.svg" alt="green_mana" style={manaSymbolStyle}/>
-
-          <br/>
+          <img src="https://gamepedia.cursecdn.com/mtgsalvation_gamepedia/8/88/G.svg" alt="green_mana" style={manaSymbolStyle}/> &nbsp;
 
           <select onChange={this.handleSelect}>
               <option value="">Choose A Card Type</option>
