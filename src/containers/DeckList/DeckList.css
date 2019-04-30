@@ -1,0 +1,8 @@
+.right-align {
+    text-align: right;
+}
+
+table, th, td {
+    border: 1px solid black;
+    width: 100%
+  }

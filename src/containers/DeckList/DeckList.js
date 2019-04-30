@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import './DeckList.css'
 
 const mapStateToProps = (state) => {
     return {
@@ -15,24 +16,36 @@ const decklistStyle = {
     overflow: 'scroll',
 }
 
-// presentational
-const DeckListEntries = (props) => {
+const DeckListEntry = ({key, name, count}) => {
+    return (
+        <tr key={key}> 
+            <td>{name}</td>
+            <td>{count}</td>  
+            <td className={'right-align'}>
+                <button>plus</button>
+                /
+                <button>minus</button>
+            </td>
+        </tr>
+    )
+}
 
-    let entries = props.data.map((entry, index)=> {
-        return <li key={index}> {entry.name} {props.counts[entry.name]} </li>
+// presentational
+const DeckListEntries = ({data, type, counts}) => {
+
+    let entries = data.map((entry, index)=> {
+        return <DeckListEntry key={index} name={entry.name} count={counts[entry.name]} />
     }) 
     return (entries.length) ? (
-        <div>
-            <span>{props.type}</span>
-            <ul>
-                {entries}
-            </ul>
-        </div>
+        <table>
+            <span>{type}</span>
+            {entries}
+        </table>
     ) : null;
 }
 
 // presentational
-const DeckTypeSelection = (props) => {
+const DeckTypeSelection = () => {
     return (
         <select>
             <option hidden disabled selected value> -- select a format -- </option>
@@ -50,7 +63,7 @@ const DeckTypeSelection = (props) => {
 class DeckList extends React.Component {
     render() {
         // expecting deck lists sort data here?
-        var sortedByTypes = this.props.main.reduce((sortedByTypes, cardData) => {
+        const sortedByTypes = this.props.main.reduce((sortedByTypes, cardData) => {
             if (cardData.typeLine.toLowerCase().includes('creature')) {
                 return {...sortedByTypes, creatures: [...sortedByTypes.creatures, cardData]}
             } else if (cardData.typeLine.toLowerCase().includes('land')) {
