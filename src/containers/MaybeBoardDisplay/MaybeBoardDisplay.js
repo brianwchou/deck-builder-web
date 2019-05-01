@@ -5,7 +5,7 @@ import {addToDeckList, deleteFromMaybe} from 'actions/cardActions';
 
 const mapStateToProps = (state) => {
     return {
-        cards: state.maybeBoard.maybeBoardCards
+        cards: state.maybeBoard.cards
     }
 }
 
@@ -19,8 +19,8 @@ const maybeBoardStyle = {
 }
 
 class MaybeBoardDisplay extends React.Component {
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
 
         this.getCardInfo = this.getCardInfo.bind(this);
     }
