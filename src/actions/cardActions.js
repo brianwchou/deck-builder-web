@@ -41,7 +41,6 @@ export const decrementCardCount = (cardInfo) => {
     }
 }
 
-
 export const addToMaybe = (cardInfo) => {
     return (dispatch, getState) => {
         const state = getState();

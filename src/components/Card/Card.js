@@ -20,6 +20,7 @@ export default class Card extends Component {
             <div className="container">
                 <img draggable={false}
                     src={info.image_uris.small}
+                    alt={info.name}
                 />
                 <button className="btn" name="add" onClick={this.handleOnCLick}>Add To Decklist</button>
                 <button className="btn2" name="other" onClick={this.handleOnCLick}>{this.props.buttonDisplay}</button>
