@@ -4,15 +4,9 @@ import Line from './Line'
 import Xaxis from './Xaxis'
 import Bar from './Bar'
 
-export default function Graph({manacurve}) {
-    /*
-        This value comes from DeckBuidler
-        where do we process data for manacurve?
-        manacurve: [{
-            cmc: integer,
-            numberOfCards: integer
-        }...]
-    */
+export default function Graph({metrics}) {
+
+    // this sets up the horizontal lines
     const renderLines= () => {
         return Array(10).fill(null).map((el, i) => (
             <Line
@@ -22,13 +16,14 @@ export default function Graph({manacurve}) {
         ))
     }
 
+    // sets up the vertical bars
     const renderBars = () => {
-        let sumOfAll = manacurve.reduce((acc, cost) => {
-            return acc + cost.numberOfCards;
+        let sumOfAll = metrics.reduce((acc, cost) => {
+            return acc + cost.count;
         }, 0);
 
-        return manacurve.map((cost) => {
-            const percent = (cost.numberOfCards / sumOfAll) * 100;
+        return metrics.map((cost) => {
+            const percent = (cost.count / sumOfAll) * 100;
             return (
                 <Bar
                     percent={percent}
@@ -45,7 +40,7 @@ export default function Graph({manacurve}) {
                     {renderLines()}
                     {renderBars()}
                 </div>
-                <Xaxis manacurve={manacurve} />
+                <Xaxis manacurve={metrics} />
             </div>
         </div>
     )

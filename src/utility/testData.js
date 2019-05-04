@@ -9,7 +9,7 @@ const manacurve =  [{
         numberOfCards: 10
     },{
         cmc: 3,
-        numberOfCards: 12
+        numberOfCards: 18
     },{
         cmc: 4,
         numberOfCards: 10

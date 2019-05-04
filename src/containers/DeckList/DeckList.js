@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import Metrics from 'components/Metrics'
 import './DeckList.css'
 import {incrementCardCount, decrementCardCount, moveToMaybe} from 'actions/cardActions';
 
@@ -72,7 +73,6 @@ const DeckTypeSelection = () => {
 class DeckList extends React.Component {
     constructor() {
         super();
-
         this.getCardInfo = this.getCardInfo.bind(this);
     }
 
@@ -120,16 +120,19 @@ class DeckList extends React.Component {
         })
 
         return (
-            <div style={decklistStyle}>
-                <div><b> DECK TITLE </b></div>
-                <DeckTypeSelection />
-                    <DeckListEntries getCardInfo={this.getCardInfo} type={"Creatures"} data={sortedByTypes.creatures} counts={this.props.counts}/>
-                    <DeckListEntries getCardInfo={this.getCardInfo} type={"Spells"} data={sortedByTypes.spells} counts={this.props.counts} />
-                    <DeckListEntries getCardInfo={this.getCardInfo} type={"Enchantments"} data={sortedByTypes.enchantments} counts={this.props.counts}/>
-                    <DeckListEntries getCardInfo={this.getCardInfo} type={"Artifacts"} data={sortedByTypes.artifacts} counts={this.props.counts}/>
-                    <DeckListEntries getCardInfo={this.getCardInfo} type={"Planeswalkers"} data={sortedByTypes.planeswalkers} counts={this.props.counts}/>
-                    <DeckListEntries getCardInfo={this.getCardInfo} type={"Lands"} data={sortedByTypes.lands} counts={this.props.counts}/>
-                    <DeckListEntries getCardInfo={this.getCardInfo} type={"Other *debugging*"} data={sortedByTypes.other} counts={this.props.counts}/>
+            <div>
+                <div style={decklistStyle}>
+                    <div><b> DECK TITLE </b></div>
+                    <DeckTypeSelection />
+                        <DeckListEntries getCardInfo={this.getCardInfo} type={"Creatures"} data={sortedByTypes.creatures} counts={this.props.counts}/>
+                        <DeckListEntries getCardInfo={this.getCardInfo} type={"Spells"} data={sortedByTypes.spells} counts={this.props.counts} />
+                        <DeckListEntries getCardInfo={this.getCardInfo} type={"Enchantments"} data={sortedByTypes.enchantments} counts={this.props.counts}/>
+                        <DeckListEntries getCardInfo={this.getCardInfo} type={"Artifacts"} data={sortedByTypes.artifacts} counts={this.props.counts}/>
+                        <DeckListEntries getCardInfo={this.getCardInfo} type={"Planeswalkers"} data={sortedByTypes.planeswalkers} counts={this.props.counts}/>
+                        <DeckListEntries getCardInfo={this.getCardInfo} type={"Lands"} data={sortedByTypes.lands} counts={this.props.counts}/>
+                        <DeckListEntries getCardInfo={this.getCardInfo} type={"Other *debugging*"} data={sortedByTypes.other} counts={this.props.counts}/>
+                </div>
+                <Metrics main={this.props.main} counts={this.props.counts}/>
             </div>
         )
     }

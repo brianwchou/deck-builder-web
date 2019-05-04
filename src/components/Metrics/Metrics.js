@@ -8,14 +8,47 @@ const metricsStyle = {
     display: 'inline-block'
 }
 
-class Metrics extends React.Component {
-    render() {
-        return (
-            <div style={metricsStyle}>
-                <Graph manacurve={this.props.manacurve} />
-            </div>
-        )
+function Metrics ({ main, counts }) {
+
+    const check = (i, graphInput) => {
+        for (let j = 0; j < graphInput.length; j++) {
+            if (main[i].cmc === graphInput[j].cmc) {
+                return true
+            }
+        }
+        return false
     }
+
+    const metrics = () => {
+        var graphInput = [];
+
+        for (let i = 0; i < main.length; i++) {
+            if (!check(i, graphInput)) {
+                var newObj = {
+                    cmc: main[i].cmc,
+                    count: counts[main[i].name]
+                }
+                graphInput.push(newObj)
+            }
+
+            else {
+                for (let k = 0; k < graphInput.length; k++) {
+                    if (main[i].cmc === graphInput[k].cmc) {
+                        graphInput[k].count += counts[main[i].name]
+                    }
+                }
+            }
+        }
+        return graphInput.sort((a, b) => a.cmc - b.cmc);
+    }
+
+    console.log(metrics());
+
+    return (
+        <div style={metricsStyle}>
+            <Graph metrics={metrics()} />
+        </div>
+    )
 }
 
 export default Metrics
