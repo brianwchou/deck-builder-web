@@ -1,7 +1,7 @@
 import React from 'react';
 import Card from 'components/Card';
 import { connect } from 'react-redux';
-import {addToDeckList, deleteFromMaybe} from 'actions/cardActions';
+import {addToDeckList, deleteFromMaybe} from 'actions/CardActions';
 
 const mapStateToProps = (state) => {
     return {

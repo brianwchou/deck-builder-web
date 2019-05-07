@@ -1,14 +1,16 @@
 /*
     action types
 */
-export const LOAD_SEARCH_CARDS = 'LOAD_SEARCH_CARDS'
+export const SEARCH = {
+  LOAD: 'SEARCH_LOAD_CARDS'
+}
 
 /*
     action creators
 */
 export const loadSearchCards = (cards) => {
     return {
-      type: LOAD_SEARCH_CARDS,
+      type: SEARCH.LOAD,
       cards
     }
   }

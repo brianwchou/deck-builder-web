@@ -2,12 +2,12 @@ import React from 'react';
 import { connect } from 'react-redux';
 import Metrics from 'components/Metrics'
 import './DeckList.css'
-import {incrementCardCount, decrementCardCount, moveToMaybe} from 'actions/cardActions';
+import {incrementCardCount, decrementCardCount, moveToMaybe} from 'actions/CardActions';
 
 const mapStateToProps = (state) => {
     return {
         main: state.deckList.main,
-        counts: state.deckList.cardCount
+        counts: state.cardCount.counts
     }
 }
 
@@ -20,7 +20,6 @@ const decklistStyle = {
 }
 
 const DeckListEntry = ({index, card, count, getCardInfo}) => {
-    
     const handleOnClick = (e) => {
         getCardInfo(card, e.target.name);
     }
@@ -78,13 +77,10 @@ class DeckList extends React.Component {
 
     getCardInfo(cardInfo, buttonType) {
         if (buttonType === 'increment') {
-            console.log(buttonType)
             this.props.dispatch(incrementCardCount(cardInfo));
         } else if (buttonType === 'decrement') {
-            console.log(buttonType)
             this.props.dispatch(decrementCardCount(cardInfo));
         } else if (buttonType === 'maybe') {
-            console.log(buttonType)
             this.props.dispatch(moveToMaybe(cardInfo));
         }
     }
@@ -123,7 +119,7 @@ class DeckList extends React.Component {
             <div>
                 <div style={decklistStyle}>
                     <div><b> DECK TITLE </b></div>
-                    <DeckTypeSelection />
+                        <DeckTypeSelection />
                         <DeckListEntries getCardInfo={this.getCardInfo} type={"Creatures"} data={sortedByTypes.creatures} counts={this.props.counts}/>
                         <DeckListEntries getCardInfo={this.getCardInfo} type={"Spells"} data={sortedByTypes.spells} counts={this.props.counts} />
                         <DeckListEntries getCardInfo={this.getCardInfo} type={"Enchantments"} data={sortedByTypes.enchantments} counts={this.props.counts}/>

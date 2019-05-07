@@ -1,7 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux';
 import { filteredSearchURL } from 'utility/URLs';
-import { getCardSearchData } from 'actions/searchActions';
+import { getCardSearchData } from 'actions/SearchActions';
 import './Search.css';
 
 const manaSymbolStyle = {

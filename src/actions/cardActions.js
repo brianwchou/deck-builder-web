@@ -1,18 +1,52 @@
+export const CARD_COUNT = {
+    INCREMENT: 'CARD_COUNT_INCREMENT',
+    ADD: 'CARD_COUNT_ADD',
+    DECREMENT: 'CARD_COUNT_DECREMENT',
+    REMOVE: 'CARD_COUNT_REMOVE'
+}
+
+export const DECKLIST = {
+    ADD: 'DECKLIST_ADD',
+    REMOVE: 'DECKLIST_REMOVE',
+}
+
+export const MAYBEBOARD = {
+    ADD: "MAYBEBOARD_ADD",
+    REMOVE: "MAYBEBOARD_REMOVE",
+}
+
 export const addToDeckList = (cardInfo) => {
     return (dispatch, getState) => {
         const state = getState();
         if (state.deckList.main.includes(cardInfo)) {
-            dispatch({type: 'INCREMENT_CARD_COUNT', name: cardInfo.name})
+            dispatch({
+                type: CARD_COUNT.INCREMENT, 
+                name: cardInfo.name
+            })
         } else {
-            dispatch({type:'ADD_TO_DECKLIST', card: cardInfo});
+            dispatch({
+                type: DECKLIST.ADD, 
+                card: cardInfo
+            });
+            dispatch({
+                type: CARD_COUNT.ADD, 
+                name: cardInfo.name
+            })
         }
     }
 }
 
 export const removeFromDeckList = (cardInfo) => {
     return (dispatch) => {
-            dispatch({type: 'REMOVE_FROM_CARD_COUNT', name: cardInfo.name})
-            dispatch({type:'REMOVE_FROM_DECKLIST', card: cardInfo});
+            dispatch({
+                type: DECKLIST.REMOVE, 
+                card: cardInfo
+             });
+            dispatch({
+                type: CARD_COUNT.REMOVE, 
+                name: cardInfo.name
+            })
+            
     }
 }
 
@@ -23,9 +57,10 @@ export const moveToMaybe = (cardInfo) => {
     }
 }
 
+// card count actions
 export const incrementCardCount = (cardInfo) => {
     return {
-        type: 'INCREMENT_CARD_COUNT', 
+        type: CARD_COUNT.INCREMENT, 
         name: cardInfo.name
     }
 }
@@ -33,10 +68,10 @@ export const incrementCardCount = (cardInfo) => {
 export const decrementCardCount = (cardInfo) => {
     return (dispatch, getState) => {   
         const state = getState();
-        if (state.deckList.cardCount[cardInfo.name] === 1) {
+        if (state.cardCount.counts[cardInfo.name] === 1) {
             dispatch(removeFromDeckList(cardInfo));
         } else {
-            dispatch({type: 'DECREMENT_CARD_COUNT', name: cardInfo.name});
+            dispatch({type: CARD_COUNT.DECREMENT, name: cardInfo.name});
         }
     }
 }
@@ -45,14 +80,14 @@ export const addToMaybe = (cardInfo) => {
     return (dispatch, getState) => {
         const state = getState();
         if (!state.maybeBoard.cards.includes(cardInfo)) {
-            dispatch({type: 'ADD_TO_MAYBEBOARD', card: cardInfo});
+            dispatch({type: MAYBEBOARD.ADD, card: cardInfo});
         }
     }
 }
 
 export const deleteFromMaybe = (cardInfo) => {
     return {
-        type: 'REMOVE_FROM_MAYBEBOARD',
+        type: MAYBEBOARD.REMOVE,
         card: cardInfo
     }
 }

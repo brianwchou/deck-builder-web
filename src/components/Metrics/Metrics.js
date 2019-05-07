@@ -42,8 +42,6 @@ function Metrics ({ main, counts }) {
         return graphInput.sort((a, b) => a.cmc - b.cmc);
     }
 
-    console.log(metrics());
-
     return (
         <div style={metricsStyle}>
             <Graph metrics={metrics()} />
