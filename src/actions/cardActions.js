@@ -46,7 +46,6 @@ export const removeFromDeckList = (cardInfo) => {
                 type: CARD_COUNT.REMOVE, 
                 name: cardInfo.name
             })
-            
     }
 }
 
