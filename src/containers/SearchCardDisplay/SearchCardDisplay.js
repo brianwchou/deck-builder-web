@@ -5,7 +5,7 @@ import {addToDeckList, addToMaybe} from 'actions/CardActions';
 
 const mapStateToProps = (state) => {
     return {
-        cards: state.searchDisplay.searchDisplayCards,
+        cards: state.searchDisplay.cards,
         counts: state.deckList.cardCount
     }
 }

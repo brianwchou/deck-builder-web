@@ -1,5 +1,5 @@
-import { DECKLIST } from 'actions/CardActions'
-const initialState = { main: [] }
+import { DECKLIST } from 'actions/CardActions';
+const initialState = { main: [] };
 
 export default function deckList(state=initialState, action){
     switch(action.type) {
@@ -10,10 +10,10 @@ export default function deckList(state=initialState, action){
         case DECKLIST.REMOVE:
             return Object.assign({}, state, {
                 main: state.main.filter((card) => {
-                    return card !== action.card;
+                    return !Object.is(card, action.card)
                 })
             })
         default:
-            return state
+            return state;
     }
 }

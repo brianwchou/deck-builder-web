@@ -1,6 +1,5 @@
-import { MAYBEBOARD } from 'actions/CardActions'
-
-const initialState = { cards: [] }
+import { MAYBEBOARD } from 'actions/CardActions';
+const initialState = { cards: [] };
 
 export default function maybeBoard(state=initialState, action) {
     switch(action.type) {
@@ -11,10 +10,10 @@ export default function maybeBoard(state=initialState, action) {
         case MAYBEBOARD.REMOVE:
             return Object.assign({}, state, {
                 cards: state.cards.filter((card) => {
-                    return card !== action.card;
+                    return !Object.is(card, action.card);
                 })
             })
         default:
-            return state
+            return state;
     }
 }
