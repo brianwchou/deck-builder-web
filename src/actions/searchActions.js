@@ -29,12 +29,12 @@ export const getCardSearchData = (url) => {
                 return null;
             }
         })
-        .then( (json) => {
+        .then((json) => {
           if (json) {
             var cards = json.data.filter((info) => {
               return info.layout === "normal"
             })
-            .map((info)=> {
+            .map((info) => {
                 return {
                   artist: info.artist,
                   cmc: info.cmc,
