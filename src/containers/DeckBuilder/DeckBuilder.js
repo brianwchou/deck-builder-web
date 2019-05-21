@@ -1,7 +1,7 @@
 import React from 'react';
 import Search from 'containers/Search';
 import DeckList from 'containers/DeckList';
-import SearchCardDisplay from 'containers/SearchCardDisplay';
+import SearchCardDisplay from 'containers/SearchCardDisplay/SearchCardDisplay';
 import MaybeBoardDisplay from 'containers/MaybeBoardDisplay';
 import './DeckBuilder.css';
 
