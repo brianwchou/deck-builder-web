@@ -56,4 +56,19 @@ describe('MaybeBoardDisplay', () => {
         
     })
 
+    test('getCardInfo does nothing when button name is neither add or other', () => {
+ 
+        const onClickSpy = jest.fn()
+        const wrapper = mount(<MaybeBoardDisplay cards={mockCards} dispatch={onClickSpy}  />)
+        
+        const mockTarget = {target: { name: ""} }
+        let container = wrapper.find("div")
+        let containerButton = container.find("button").at(0)
+
+        expect(onClickSpy).not.toHaveBeenCalled();
+        containerButton.simulate('click', mockTarget);
+        expect(onClickSpy).not.toHaveBeenCalled();
+        
+    })
+
 })
