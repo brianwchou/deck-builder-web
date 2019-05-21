@@ -41,4 +41,19 @@ describe('MaybeBoardDisplay', () => {
 
     })
 
+    test('getCardInfo dispatches deleteFromMaybe', () => {
+ 
+        const onClickSpy = jest.fn()
+        const wrapper = mount(<MaybeBoardDisplay cards={mockCards} dispatch={onClickSpy}  />)
+        
+        const mockTarget = {target: { name: "other"} }
+        let container = wrapper.find("div")
+        let containerButton = container.find("button").at(1)
+
+        expect(onClickSpy).not.toHaveBeenCalled();
+        containerButton.simulate('click', mockTarget);
+        expect(onClickSpy).toHaveBeenCalled();
+        
+    })
+
 })
