@@ -11,6 +11,7 @@ describe('[Unit] loadSearchCards', () => {
         const expectedPayload = { 
             type: 'SEARCH_LOAD_CARDS',
             cards: { name: 'thing in the ice' } };
+        
         expect(loadSearchCards(dummyCards)).toEqual(expectedPayload);
     });
 });

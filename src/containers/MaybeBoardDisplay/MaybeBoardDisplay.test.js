@@ -26,8 +26,7 @@ describe('MaybeBoardDisplay', () => {
         expect(tree).toMatchSnapshot();
     })
 
-    test('getCardInfo dispatches addToDecklist', () => {
-        
+    test('getCardInfo dispatches addToDecklist', () => {      
         const onClickSpy = jest.fn()
         const wrapper = mount(<MaybeBoardDisplay cards={mockCards} dispatch={onClickSpy} />)
 
@@ -38,11 +37,9 @@ describe('MaybeBoardDisplay', () => {
         expect(onClickSpy).not.toHaveBeenCalled();
         containerButton.simulate('click', mockTarget);
         expect(onClickSpy).toHaveBeenCalled();
-
     })
 
-    test('getCardInfo dispatches deleteFromMaybe', () => {
- 
+    test('getCardInfo dispatches deleteFromMaybe', () => { 
         const onClickSpy = jest.fn()
         const wrapper = mount(<MaybeBoardDisplay cards={mockCards} dispatch={onClickSpy}  />)
         
@@ -52,12 +49,10 @@ describe('MaybeBoardDisplay', () => {
 
         expect(onClickSpy).not.toHaveBeenCalled();
         containerButton.simulate('click', mockTarget);
-        expect(onClickSpy).toHaveBeenCalled();
-        
+        expect(onClickSpy).toHaveBeenCalled();        
     })
 
     test('getCardInfo does nothing when button name is neither add or other', () => {
- 
         const onClickSpy = jest.fn()
         const wrapper = mount(<MaybeBoardDisplay cards={mockCards} dispatch={onClickSpy}  />)
         
@@ -67,8 +62,6 @@ describe('MaybeBoardDisplay', () => {
 
         expect(onClickSpy).not.toHaveBeenCalled();
         containerButton.simulate('click', mockTarget);
-        expect(onClickSpy).not.toHaveBeenCalled();
-        
+        expect(onClickSpy).not.toHaveBeenCalled();     
     })
-
 })

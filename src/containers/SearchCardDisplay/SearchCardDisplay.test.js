@@ -28,11 +28,9 @@ describe('SearchCardDisplay', () => {
         expect(tree).toMatchSnapshot();
     })
 
-    test('getCardInfo dispatches addToDecklist', () => {
-        
+    test('getCardInfo dispatches addToDecklist', () => {       
         const onClickSpy = jest.fn()
         const wrapper = mount(<SearchCardDisplay cards={mockCards} dispatch={onClickSpy} />)
-
         const mockTarget = {target: { name: "add"} }
         let container = wrapper.find("div")
         let containerButton = container.find("button").at(0)
@@ -40,37 +38,29 @@ describe('SearchCardDisplay', () => {
         expect(onClickSpy).not.toHaveBeenCalled();
         containerButton.simulate('click', mockTarget);
         expect(onClickSpy).toHaveBeenCalled();
-
     })
 
     test('getCardInfo dispatches addToMaybe', () => {
- 
         const onClickSpy = jest.fn()
-        const wrapper = mount(<SearchCardDisplay cards={mockCards} dispatch={onClickSpy}  />)
-        
+        const wrapper = mount(<SearchCardDisplay cards={mockCards} dispatch={onClickSpy}  />)     
         const mockTarget = {target: { name: "other"} }
         let container = wrapper.find("div")
         let containerButton = container.find("button").at(1)
 
         expect(onClickSpy).not.toHaveBeenCalled();
         containerButton.simulate('click', mockTarget);
-        expect(onClickSpy).toHaveBeenCalled();
-        
+        expect(onClickSpy).toHaveBeenCalled();       
     })
 
     test('getCardInfo does nothing when button name is neither add or other', () => {
- 
         const onClickSpy = jest.fn()
-        const wrapper = mount(<SearchCardDisplay cards={mockCards} dispatch={onClickSpy}  />)
-        
+        const wrapper = mount(<SearchCardDisplay cards={mockCards} dispatch={onClickSpy}  />)       
         const mockTarget = {target: { name: ""} }
         let container = wrapper.find("div")
         let containerButton = container.find("button").at(0)
 
         expect(onClickSpy).not.toHaveBeenCalled();
         containerButton.simulate('click', mockTarget);
-        expect(onClickSpy).not.toHaveBeenCalled();
-        
+        expect(onClickSpy).not.toHaveBeenCalled();       
     })
-
 })
