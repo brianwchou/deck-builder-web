@@ -15,17 +15,17 @@ describe('SearchCardDisplay', () => {
     test('mapStateToProps', () => {
         const mockCards = [{name: "opt"}]
         const mockCardCount = {opt: 2}
-        const mockState = {searchDisplay:{cards: mockCards} , deckList: {cardCount: mockCardCount}}
+        const mockState = {searchDisplay: {cards: mockCards} , deckList: {cardCount: mockCardCount}}
 
         expect(mapStateToProps(mockState)).toEqual({ cards: [ { name: 'opt' } ], counts: { opt: 2 } })
     })
 
     test('rendering cards correctly', () => {
         const tree = renderer
-        .create(<SearchCardDisplay cards={mockCards}  />)
-        .toJSON();
+            .create(<SearchCardDisplay cards={mockCards}  />)
+            .toJSON();
 
-    expect(tree).toMatchSnapshot();
+        expect(tree).toMatchSnapshot();
     })
 
     test('getCardInfo dispatches addToDecklist', () => {
@@ -56,7 +56,6 @@ describe('SearchCardDisplay', () => {
         containerButton.simulate('click', mockTarget);
         expect(onClickSpy).toHaveBeenCalled();
         
-
     })
 
     test('getCardInfo does nothing when button name is neither add or other', () => {
@@ -72,7 +71,6 @@ describe('SearchCardDisplay', () => {
         containerButton.simulate('click', mockTarget);
         expect(onClickSpy).not.toHaveBeenCalled();
         
-
     })
 
 })
