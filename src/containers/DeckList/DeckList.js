@@ -6,7 +6,7 @@ import DeckListEntries from 'containers/DeckList/DeckListEntries';
 import {incrementCardCount, decrementCardCount, moveToMaybe} from 'actions/CardActions';
 import './DeckList.css'
 
-const mapStateToProps = (state) => {
+export const mapStateToProps = (state) => {
     return {
         main: state.deckList.main,
         counts: state.cardCount.counts
@@ -22,7 +22,7 @@ const decklistStyle = {
 }
 
 //container
-class DeckList extends React.Component {
+export class DeckList extends React.Component {
     constructor() {
         super();
         this.getCardInfo = this.getCardInfo.bind(this);

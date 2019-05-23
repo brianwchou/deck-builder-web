@@ -1,12 +1,12 @@
 import React from 'react'
 import DeckListEntries from 'containers/DeckList/DeckListEntries';
 import renderer from 'react-test-renderer'
-import { configure, shallow } from 'enzyme';
+import { configure} from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
 
 configure({ adapter: new Adapter() });
 
-describe('DeckListEntry', () => {
+describe('DeckListEntries', () => {
     
     test('rendering correctly', () => {
         const mockNoCard = []
