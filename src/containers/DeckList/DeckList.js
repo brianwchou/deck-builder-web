@@ -13,6 +13,36 @@ export const mapStateToProps = (state) => {
     }
 }
 
+export const organizeCards = (cards) => {
+    return cards.reduce((sortedByTypes, cardData) => {
+        if (cardData.typeLine.toLowerCase().includes('creature')) {
+            return {...sortedByTypes, creatures: [...sortedByTypes.creatures, cardData]}
+        } else if (cardData.typeLine.toLowerCase().includes('land')) {
+            return {...sortedByTypes, lands: [...sortedByTypes.lands, cardData]} 
+        } else if (cardData.typeLine.toLowerCase().includes('enchantment')) {
+            return {...sortedByTypes, enchantments: [...sortedByTypes.enchantments, cardData]}
+        } else if (cardData.typeLine.toLowerCase().includes('artifact')) {
+            return {...sortedByTypes, artifacts: [...sortedByTypes.artifacts, cardData]}
+        } else if (cardData.typeLine.toLowerCase().includes('planeswalker')) {
+            return {...sortedByTypes, planeswalkers: [...sortedByTypes.planeswalkers, cardData]}
+        } else if (cardData.typeLine.toLowerCase().includes('sorcery')) {
+            return {...sortedByTypes, spells: [...sortedByTypes.spells, cardData]}
+        } else if (cardData.typeLine.toLowerCase().includes('instant')) {
+            return {...sortedByTypes, spells: [...sortedByTypes.spells, cardData]}
+        } else {
+            return {...sortedByTypes, other: [...sortedByTypes.other, cardData]}
+        }
+    }, {
+        artifacts: [],
+        enchantments: [],
+        spells: [],
+        planeswalkers: [],
+        lands: [],
+        creatures: [],
+        other: []
+    })
+}
+
 const decklistStyle = {
     border: 'solid black thin',
     width: '35vw',
@@ -40,33 +70,7 @@ export class DeckList extends React.Component {
 
     render() {
         // expecting deck lists sort data here?
-        const sortedByTypes = this.props.main.reduce((sortedByTypes, cardData) => {
-            if (cardData.typeLine.toLowerCase().includes('creature')) {
-                return {...sortedByTypes, creatures: [...sortedByTypes.creatures, cardData]}
-            } else if (cardData.typeLine.toLowerCase().includes('land')) {
-                return {...sortedByTypes, lands: [...sortedByTypes.lands, cardData]} 
-            } else if (cardData.typeLine.toLowerCase().includes('enchantment')) {
-                return {...sortedByTypes, enchantments: [...sortedByTypes.enchantments, cardData]}
-            } else if (cardData.typeLine.toLowerCase().includes('artifact')) {
-                return {...sortedByTypes, artifacts: [...sortedByTypes.artifacts, cardData]}
-            } else if (cardData.typeLine.toLowerCase().includes('planeswalker')) {
-                return {...sortedByTypes, planeswalkers: [...sortedByTypes.planeswalkers, cardData]}
-            } else if (cardData.typeLine.toLowerCase().includes('sorcery')) {
-                return {...sortedByTypes, spells: [...sortedByTypes.spells, cardData]}
-            } else if (cardData.typeLine.toLowerCase().includes('instant')) {
-                return {...sortedByTypes, spells: [...sortedByTypes.spells, cardData]}
-            } else {
-                return {...sortedByTypes, other: [...sortedByTypes.other, cardData]}
-            }
-        }, {
-            artifacts: [],
-            enchantments: [],
-            spells: [],
-            planeswalkers: [],
-            lands: [],
-            creatures: [],
-            other: []
-        })
+        const sortedByTypes = organizeCards(this.props.main)
 
         return (
             <div>
