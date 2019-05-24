@@ -7,6 +7,7 @@ describe('[Unit] cardCount reducer', () => {
 
         const initialState = { counts: {} };
         const action = {type: CARD_COUNT.ADD, name: 'island'};
+        
         let newState = cardCount(initialState, action);
         expect(newState).toEqual({ counts: { [action.name]: 1 }})
     });
@@ -15,6 +16,7 @@ describe('[Unit] cardCount reducer', () => {
 
         const initialState = { counts: {thoughtseize: 3}};
         const action = {type: CARD_COUNT.INCREMENT, name: 'thoughtseize'};
+
         let newState = cardCount(initialState, action);
         expect(newState).toEqual({ counts: { [action.name]: 4 }})
     });
@@ -23,6 +25,7 @@ describe('[Unit] cardCount reducer', () => {
 
         const initialState = { counts: {regrowth: 2}};
         const action = {type: CARD_COUNT.DECREMENT, name: 'regrowth'};
+
         let newState = cardCount(initialState, action);
         expect(newState).toEqual({ counts: { [action.name]: 1 }})
     });
@@ -34,17 +37,17 @@ describe('[Unit] cardCount reducer', () => {
                 thoughtseize: 2
             }};
         const action = {type: CARD_COUNT.REMOVE, name: 'shock'};
+
         let newState = cardCount(initialState, action);
         expect(newState).toEqual({ counts: {thoughtseize: 2} })
     });
 
     test('initialize count', () => {
-
         const initialState = { counts: {} };
+
         let newState = cardCount(initialState, {});
         expect(newState).toEqual(initialState)
     }); 
-
 });
 
     

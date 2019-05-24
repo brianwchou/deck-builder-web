@@ -3,7 +3,7 @@ import Card from 'components/Card';
 import { connect } from 'react-redux';
 import {addToDeckList, addToMaybe} from 'actions/CardActions';
 
-const mapStateToProps = (state) => {
+export const mapStateToProps = (state) => {
     return {
         cards: state.searchDisplay.cards,
         counts: state.deckList.cardCount
@@ -20,7 +20,7 @@ const cardBoxStyle = {
 }
 
 
-class SearchCardDisplay extends React.Component {
+export class SearchCardDisplay extends React.Component {
     constructor() {
         super();
 

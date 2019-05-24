@@ -3,7 +3,7 @@ import Card from 'components/Card';
 import { connect } from 'react-redux';
 import {addToDeckList, deleteFromMaybe} from 'actions/CardActions';
 
-const mapStateToProps = (state) => {
+export const mapStateToProps = (state) => {
     return {
         cards: state.maybeBoard.cards
     }
@@ -18,7 +18,7 @@ const maybeBoardStyle = {
     overflow: 'scroll',
 }
 
-class MaybeBoardDisplay extends React.Component {
+export class MaybeBoardDisplay extends React.Component {
     constructor(props) {
         super(props);
 
