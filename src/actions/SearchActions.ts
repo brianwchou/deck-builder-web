@@ -9,7 +9,7 @@ export const SEARCH = {
 /*
     action creators
 */
-export const loadSearchCards = (cards) => {
+export const loadSearchCards = (cards: any) => {
     return {
       type: SEARCH.LOAD,
       cards
@@ -19,8 +19,8 @@ export const loadSearchCards = (cards) => {
 /*
     thunks
 */
-export const getCardSearchData = (url) => {
-    return (dispatch) => {
+export const getCardSearchData = (url: any) => {
+    return (dispatch: any) => {
       fetch(url)
         .then(response => {
             if (response.status === 200) {
@@ -32,10 +32,10 @@ export const getCardSearchData = (url) => {
         })
         .then((json) => {
           if (json) {
-            var cards = json.data.filter((info) => {
+            var cards = json.data.filter((info: any) => {
               return info.layout === "normal"
             })
-            .map((info) => {
+            .map((info: any) => {
                 return {
                   artist: info.artist,
                   cmc: info.cmc,
