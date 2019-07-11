@@ -4,13 +4,13 @@ import Line from './Line'
 import Xaxis from './Xaxis'
 import Bar from './Bar'
 
-interface GraphMetric {
+interface CMCMetric {
     cmc: number,
     count: number
 }
 
 interface GraphProps {
-    metrics: Array<GraphMetric>
+    metrics: Array<CMCMetric>
 }
 
 export default function Graph({metrics}: GraphProps) {
