@@ -19,7 +19,10 @@
     "noEmit": true,
     "jsx": "preserve"
   },
+  "files": [
+      "/Users/brian/Documents/Development/MTG/deck-builder-web/src/components/Metrics/Graph.tsx"
+  ],
   "include": [
-    "src"
+      "src/components/Card"
   ]
 }

@@ -4,8 +4,16 @@ import Line from './Line'
 import Xaxis from './Xaxis'
 import Bar from './Bar'
 
-export default function Graph({metrics}) {
+interface GraphMetric {
+    cmc: number,
+    count: number
+}
 
+interface GraphProps {
+    metrics: Array<GraphMetric>
+}
+
+export default function Graph({metrics}: GraphProps) {
     // this sets up the horizontal lines
     const renderLines= () => {
         return Array(10).fill(null).map((el, i) => (
@@ -18,7 +26,7 @@ export default function Graph({metrics}) {
 
     // sets up the vertical bars
     const renderBars = () => {
-        let sumOfAll = metrics.reduce((acc, cost) => {
+        let sumOfAll = metrics.reduce((acc: number, cost: any) => {
             return acc + cost.count;
         }, 0);
 

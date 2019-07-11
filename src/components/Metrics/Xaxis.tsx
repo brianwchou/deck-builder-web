@@ -1,6 +1,15 @@
 import React from 'react'
 
-const Xaxis = ({ manacurve }) => {
+interface CMCMetric {
+    cmc: number,
+    count: number
+}
+
+interface XaxisProps {
+    manacurve: Array<CMCMetric>
+}
+
+const Xaxis = ({ manacurve }: XaxisProps) => {
   Array(11).fill(null);
 
   return (

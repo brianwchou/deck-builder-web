@@ -1,7 +1,12 @@
 import React from 'react'
 import './graphs.css'
 
-const Line = ({ top }) => 
+interface LineProps {
+    top: number,
+    key: number
+}
+
+const Line = ({ top }: LineProps) => 
     <div className="line" style={{ top: `${top}%` }} />
 
 export default Line
