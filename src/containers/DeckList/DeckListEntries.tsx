@@ -1,8 +1,20 @@
 import React from 'react'
-import DeckListEntry from 'containers/DeckList/DeckListEntry';
+import DeckListEntry from './DeckListEntry'
+import { CardInfo } from '../../common/types';
 
-export default function DeckListEntries({data, type, counts, getCardInfo}) {
-    let entries = data.map((entry, index)=> {
+interface CardCount {
+    [index: string]: number
+}
+
+interface DeckListEntriesProps {
+    data: Array<CardInfo>,
+    type: string,
+    counts: CardCount,
+    getCardInfo(card: CardInfo, name: string): void,
+}
+
+export default function DeckListEntries({data, type, counts, getCardInfo}: DeckListEntriesProps) {
+    let entries = data.map((entry: CardInfo, index: number)=> {
         return <DeckListEntry index={index} card={entry} getCardInfo={getCardInfo} count={counts[entry.name]} />
     }) 
     return (entries.length) ? (

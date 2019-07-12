@@ -22,7 +22,8 @@
   "files": [
       "src/components/Metrics/Graph.tsx",
       "src/components/Metrics/Metrics.tsx",
-      "src/containers/DeckList/DeckListEntry.tsx"
+      "src/containers/DeckList/DeckListEntry.tsx",
+      "src/containers/DeckList/DeckListEntries.tsx"
   ],
   "include": [
       "src/components/Card"
