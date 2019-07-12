@@ -1,15 +1,21 @@
 import React, { Component } from 'react';
 import './Card.css';
+import { CardInfo } from '../../common/types';
 
+export interface CardProps {
+    info: CardInfo,
+    buttonDisplay: string,
+    getCardInfo(info: CardInfo, name: string): void
+}
 
-export default class Card extends Component {
-    constructor(props) {
+export default class Card extends Component<CardProps> {
+    constructor(props: CardProps) {
       super(props);
 
       this.handleOnCLick = this.handleOnCLick.bind(this)
     }
 
-    handleOnCLick(e) {
+    handleOnCLick(e: any) {
         this.props.getCardInfo(this.props.info, e.target.name);
     }
     
@@ -26,8 +32,6 @@ export default class Card extends Component {
                 <button className="btn2" name="other" onClick={this.handleOnCLick}>{this.props.buttonDisplay}</button>
             </div>
         )
-
-
     }   
   }
 

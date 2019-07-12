@@ -1,7 +1,15 @@
 import React from 'react';
+import { CardInfo } from '../../common/types';
 
-export default function DeckListEntry ({index, card, count, getCardInfo}) {
-    const handleOnClick = (e) => {
+interface DeckListEntryProps {
+    index: number,
+    card: CardInfo,
+    count: number,
+    getCardInfo(card: CardInfo, name: string): void   
+}
+
+export default function DeckListEntry ({index, card, count, getCardInfo}: DeckListEntryProps) {
+    const handleOnClick = (e: any) => {
         getCardInfo(card, e.target.name);
     }
 

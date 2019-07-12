@@ -1,5 +1,6 @@
 import React from 'react';
 import Graph from './Graph'
+import { CardInfo } from '../../common/types';
 
 const metricsStyle = {
     border: 'solid black thin',
@@ -8,9 +9,23 @@ const metricsStyle = {
     display: 'inline-block'
 }
 
-function Metrics ({ main, counts }) {
+interface CardCount {
+    [index: string]: number
+}
 
-    const check = (i, graphInput) => {
+interface MetricsProps {
+    main: Array<CardInfo>,
+    counts: CardCount
+}
+
+interface CMCMetric {
+    cmc: number,
+    count: number
+}
+
+function Metrics ({ main, counts }: MetricsProps) {
+
+    const check = (main: Array<CardInfo>, i: number, graphInput: Array<CMCMetric>): boolean => {
         for (let j = 0; j < graphInput.length; j++) {
             if (main[i].cmc === graphInput[j].cmc) {
                 return true
@@ -19,11 +34,11 @@ function Metrics ({ main, counts }) {
         return false
     }
 
-    const metrics = () => {
-        var graphInput = [];
+    const metrics = (main: Array<CardInfo>, counts: CardCount): Array<CMCMetric>=> {
+        var graphInput: Array<CMCMetric> = [];
 
         for (let i = 0; i < main.length; i++) {
-            if (!check(i, graphInput)) {
+            if (!check(main, i, graphInput)) {
                 var newObj = {
                     cmc: main[i].cmc,
                     count: counts[main[i].name]
@@ -44,7 +59,7 @@ function Metrics ({ main, counts }) {
 
     return (
         <div style={metricsStyle}>
-            <Graph metrics={metrics()} />
+            <Graph metrics={metrics(main, counts)} />
         </div>
     )
 }

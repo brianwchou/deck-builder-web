@@ -1,6 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux';
-import { filteredSearchURL } from 'utility/URLs';
+import { filteredSearchURL } from 'common/URLs';
 import { getCardSearchData } from 'actions/SearchActions';
 import './Search.css';
 
