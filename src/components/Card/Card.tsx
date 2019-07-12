@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
 import './Card.css';
+import { CardInfo } from '../../common/types';
 
 export interface CardProps {
-    info: any,
-    buttonDisplay: any,
-    getCardInfo(info:any, name: string): void
+    info: CardInfo,
+    buttonDisplay: string,
+    getCardInfo(info: CardInfo, name: string): void
 }
 
 export default class Card extends Component<CardProps> {

@@ -20,9 +20,9 @@
     "jsx": "preserve"
   },
   "files": [
-      "/home/zhi/Desktop/MTG/deck-builder-web/src/components/Metrics/Graph.tsx",
-      "/home/zhi/Desktop/MTG/deck-builder-web/src/components/Metrics/Metrics.tsx",
-      "/home/zhi/Desktop/MTG/deck-builder-web/src/containers/DeckList/DeckListEntry.tsx"
+      "src/components/Metrics/Graph.tsx",
+      "src/components/Metrics/Metrics.tsx",
+      "src/containers/DeckList/DeckListEntry.tsx",
   ],
   "include": [
       "src/components/Card"

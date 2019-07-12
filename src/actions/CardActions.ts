@@ -1,3 +1,7 @@
+import { CardInfo } from '../common/types';
+import { Dispatch, Reducer } from 'react';
+import { AnyAction, Middleware } from 'redux';
+
 
 export const CARD_COUNT = {
     INCREMENT: 'CARD_COUNT_INCREMENT',
@@ -17,7 +21,7 @@ export const MAYBEBOARD = {
 }
 
 export const addToDeckList = (cardInfo: CardInfo) => {
-    return (dispatch: any, getState: any) => {
+    return (dispatch: Dispatch<AnyAction>, getState: any) => {
         const state = getState();
         if (state.deckList.main.includes(cardInfo)) {
             dispatch({
@@ -37,14 +41,8 @@ export const addToDeckList = (cardInfo: CardInfo) => {
     }
 }
 
-interface CardInfo {
-    name: string
-}
-
-
-
 export const removeFromDeckList = (cardInfo: CardInfo) => {
-    return (dispatch: any) => {
+    return (dispatch: Dispatch<AnyAction>) => {
             dispatch({
                 type: DECKLIST.REMOVE, 
                 card: cardInfo
@@ -57,7 +55,7 @@ export const removeFromDeckList = (cardInfo: CardInfo) => {
 }
 
 export const moveToMaybe = (cardInfo: CardInfo) => {
-    return (dispatch: any) => {
+    return (dispatch: Dispatch<Reducer<any, AnyAction>>) => {
         dispatch(addToMaybe(cardInfo))
         dispatch(removeFromDeckList(cardInfo))
     }
@@ -83,7 +81,7 @@ export const decrementCardCount = (cardInfo: CardInfo) => {
 }
 
 export const addToMaybe = (cardInfo: CardInfo) => {
-    return (dispatch: any, getState: any) => {
+    return (dispatch: Dispatch<AnyAction>, getState: any) => {
         const state = getState();
         if (!state.maybeBoard.cards.includes(cardInfo)) {
             dispatch({type: MAYBEBOARD.ADD, card: cardInfo});

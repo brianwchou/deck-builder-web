@@ -1,3 +1,4 @@
+import { CardInfo } from '../common/types';
 
 /*
     action types
@@ -9,7 +10,7 @@ export const SEARCH = {
 /*
     action creators
 */
-export const loadSearchCards = (cards: any) => {
+export const loadSearchCards = (cards: Array<CardInfo>) => {
     return {
       type: SEARCH.LOAD,
       cards
@@ -19,7 +20,7 @@ export const loadSearchCards = (cards: any) => {
 /*
     thunks
 */
-export const getCardSearchData = (url: any) => {
+export const getCardSearchData = (url: string) => {
     return (dispatch: any) => {
       fetch(url)
         .then(response => {

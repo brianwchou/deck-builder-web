@@ -26,7 +26,7 @@ export default function Graph({metrics}: GraphProps) {
 
     // sets up the vertical bars
     const renderBars = () => {
-        let sumOfAll = metrics.reduce((acc: number, cost: any) => {
+        let sumOfAll = metrics.reduce((acc: number, cost: CMCMetric) => {
             return acc + cost.count;
         }, 0);
 
