@@ -1,5 +1,5 @@
-import maybeBoard from 'reducers/MaybeBoardReducer';
-import { MAYBEBOARD } from 'actions/CardActions';
+import maybeBoard from '../../reducers/MaybeBoardReducer';
+import { MAYBEBOARD } from '../../actions/CardActions';
 
 describe('[Unit] maybeBoard reducer', () => {
 

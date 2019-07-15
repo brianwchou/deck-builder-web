@@ -1,5 +1,5 @@
 import deckList from '../DeckListReducer'
-import { DECKLIST } from 'actions/CardActions'
+import { DECKLIST } from '../../actions/CardActions'
 
 describe('[Unit] deckList reducer', () => {
     /*

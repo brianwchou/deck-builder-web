@@ -1,5 +1,5 @@
-import cardCount from 'reducers/CardCountReducer';
-import { CARD_COUNT } from 'actions/CardActions';
+import cardCount from '../../reducers/CardCountReducer';
+import { CARD_COUNT } from '../../actions/CardActions';
 
 describe('[Unit] cardCount reducer', () => {
 

@@ -1,4 +1,4 @@
-import { CARD_COUNT } from 'actions/CardActions'
+import { CARD_COUNT } from '../actions/CardActions'
 const initialState = { counts: {} };
 
 export default function cardCount(state=initialState, action) {

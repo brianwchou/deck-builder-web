@@ -1,4 +1,4 @@
-import * as CardActions from 'actions/CardActions';
+import * as CardActions from '../../actions/CardActions';
 import configureMockStore from 'redux-mock-store';
 import thunk from 'redux-thunk';
 

@@ -1,4 +1,4 @@
-import { DeckList, mapStateToProps, organizeCards } from 'containers/DeckList/DeckList'
+import { DeckList, mapStateToProps, organizeCards } from '../../DeckList/DeckList'
 import React from 'react'
 import renderer from 'react-test-renderer'
 import { configure, shallow, mount } from 'enzyme';

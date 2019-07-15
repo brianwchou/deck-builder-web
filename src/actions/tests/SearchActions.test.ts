@@ -1,5 +1,3 @@
-import * as SearchActions from 'actions/CardActions';
-import { cardInfo } from 'utility/testData';
 import { loadSearchCards } from '../SearchActions';
 
 

@@ -1,4 +1,4 @@
-import { MaybeBoardDisplay, mapStateToProps } from 'containers/MaybeBoardDisplay/MaybeBoardDisplay'
+import { MaybeBoardDisplay, mapStateToProps } from '../MaybeBoardDisplay/MaybeBoardDisplay'
 import React from 'react'
 import renderer from 'react-test-renderer'
 import { configure, shallow, mount } from 'enzyme';
