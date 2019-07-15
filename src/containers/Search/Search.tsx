@@ -9,13 +9,13 @@ const manaSymbolStyle = {
     maxHeight: "15px",
 }
 
-interface SearchState {
+type SearchState = {
     textbox: string,
     filterColors: string,
     cardType: string
 }
 
-interface SearchProps {
+type SearchProps = {
     dispatch: Dispatch<any>
 }
 

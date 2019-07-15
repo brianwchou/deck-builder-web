@@ -6,7 +6,7 @@ interface CardCount {
     [index: string]: number
 }
 
-interface DeckListEntriesProps {
+type DeckListEntriesProps = {
     data: Array<CardInfo>,
     type: string,
     counts: CardCount,

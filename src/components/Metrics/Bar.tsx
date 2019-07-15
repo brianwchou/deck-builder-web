@@ -1,6 +1,6 @@
 import React from 'react'
 
-interface BarProps {
+type BarProps = {
     percent: number
 }
 

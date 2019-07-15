@@ -13,7 +13,7 @@ interface CardCount {
     [index: string]: number
 }
 
-interface MetricsProps {
+type MetricsProps = {
     main: Array<CardInfo>,
     counts: CardCount
 }
