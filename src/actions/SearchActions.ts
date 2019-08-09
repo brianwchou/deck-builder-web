@@ -43,14 +43,17 @@ export const getCardSearchData = (url: string) => {
                   color_identity: info.color_identity,
                   colors: info.colors,
                   image_uris: info.image_uris,
+                  layout: info.layout,
                   mana_cost: info.mana_cost,
                   name: info.name,
                   oracle_text: info.oracle_text,
                   power: info.power,
                   rarity: info.rarity,
+                  related_cards: info.all_parts,
                   reserved: info.reserved,
                   setName: info.setName,
                   toughness: info.toughness,
+                  transform_sides: info.card_faces,
                   typeLine: info.type_line,
                 }
             })
