@@ -1,7 +1,7 @@
-import React from 'react'
+import React, {  Dispatch } from 'react'
 import { connect } from 'react-redux';
-import { filteredSearchURL } from 'common/URLs';
-import { getCardSearchData } from 'actions/SearchActions';
+import { filteredSearchURL } from '../../common/URLs';
+import { getCardSearchData } from '../../actions/SearchActions';
 import './Search.css';
 
 const manaSymbolStyle = {
@@ -9,9 +9,19 @@ const manaSymbolStyle = {
     maxHeight: "15px",
 }
 
-class Search extends React.Component {
-    constructor() {
-        super();
+type SearchState = {
+    textbox: string,
+    filterColors: string,
+    cardType: string
+}
+
+type SearchProps = {
+    dispatch: Dispatch<any>
+}
+
+class Search extends React.Component<SearchProps, SearchState> {
+    constructor(props: SearchProps) {
+        super(props);
         this.state = {
             textbox: "",
             filterColors: "",
@@ -20,9 +30,9 @@ class Search extends React.Component {
         this.getCards = this.getCards.bind(this);
     }
 
-    getCards = (e) => {
+    getCards = (e: any) => {
       e.preventDefault();
-      var searchCardNameURL = filteredSearchURL + this.state.textbox
+      var searchCardNameURL: string = filteredSearchURL + this.state.textbox
     
       searchCardNameURL += (this.state.cardType) ? `+t:${this.state.cardType}` : ""
 
@@ -33,7 +43,7 @@ class Search extends React.Component {
       this.props.dispatch(getCardSearchData(searchCardNameURL));
     }
 
-    handleCheck = (e) => {
+    handleCheck = (e: any) => {
         let color = e.target.value
         let { filterColors } = this.state
         
@@ -45,11 +55,11 @@ class Search extends React.Component {
         }
     }
 
-    onSearchTextChange = (e) => {
+    onSearchTextChange = (e: any) => {
         this.setState({ textbox: e.target.value })
     }
 
-    handleSelect = (e) => {
+    handleSelect = (e: any) => {
         this.setState({ cardType: e.target.value })
     }
 

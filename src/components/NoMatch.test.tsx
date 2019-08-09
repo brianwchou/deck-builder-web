@@ -1,5 +1,5 @@
 import React from 'react';
-import NoMatch from 'components/NoMatch'
+import NoMatch from '../components/NoMatch'
 import renderer from 'react-test-renderer'
 import { BrowserRouter as Router } from 'react-router-dom';
 

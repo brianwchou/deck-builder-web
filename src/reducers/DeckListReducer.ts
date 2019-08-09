@@ -1,4 +1,4 @@
-import { DECKLIST } from 'actions/CardActions';
+import { DECKLIST } from '../actions/CardActions';
 const initialState = { main: [] };
 
 export default function deckList(state=initialState, action){

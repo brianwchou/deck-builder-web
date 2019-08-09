@@ -9,7 +9,7 @@ interface CMCMetric {
     count: number
 }
 
-interface GraphProps {
+type GraphProps = {
     metrics: Array<CMCMetric>
 }
 

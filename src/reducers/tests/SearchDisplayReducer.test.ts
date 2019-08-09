@@ -1,5 +1,5 @@
-import searchDisplay from 'reducers/SearchDisplayReducer';
-import { SEARCH } from 'actions/SearchActions';
+import searchDisplay from '../../reducers/SearchDisplayReducer';
+import { SEARCH } from '../../actions/SearchActions';
 
 describe('[Unit] searchDisplay reducer', () => {
     

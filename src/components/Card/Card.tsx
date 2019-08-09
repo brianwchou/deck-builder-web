@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import './Card.css';
 import { CardInfo } from '../../common/types';
 
-export interface CardProps {
+export type CardProps = {
     info: CardInfo,
     buttonDisplay: string,
     getCardInfo(info: CardInfo, name: string): void

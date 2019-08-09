@@ -1,5 +1,5 @@
 import React from 'react'
-import DeckTypeSelection from 'containers/DeckList/DeckTypeSelection';
+import DeckTypeSelection from '../../DeckList/DeckTypeSelection';
 import renderer from 'react-test-renderer'
 
 describe('DeckTypeSelection', () => {

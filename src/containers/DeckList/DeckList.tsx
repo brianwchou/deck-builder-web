@@ -1,9 +1,9 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import Metrics from 'components/Metrics';
-import DeckTypeSelection from 'containers/DeckList/DeckTypeSelection';
-import DeckListEntries from 'containers/DeckList/DeckListEntries';
-import {incrementCardCount, decrementCardCount, moveToMaybe} from 'actions/CardActions';
+import Metrics from '../../components/Metrics';
+import DeckTypeSelection from '../DeckList/DeckTypeSelection';
+import DeckListEntries from '../DeckList/DeckListEntries';
+import {incrementCardCount, decrementCardCount, moveToMaybe} from '../../actions/CardActions';
 import './DeckList.css'
 
 export const mapStateToProps = (state) => {

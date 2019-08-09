@@ -1,7 +1,7 @@
 import React from 'react';
 import { CardInfo } from '../../common/types';
 
-interface DeckListEntryProps {
+type DeckListEntryProps = {
     index: number,
     card: CardInfo,
     count: number,

@@ -1,5 +1,5 @@
 import React from 'react'
-import DeckListEntries from 'containers/DeckList/DeckListEntries';
+import DeckListEntries from '../../DeckList/DeckListEntries';
 import renderer from 'react-test-renderer'
 import { configure} from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';

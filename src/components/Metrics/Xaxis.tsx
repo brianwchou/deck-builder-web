@@ -5,7 +5,7 @@ interface CMCMetric {
     count: number
 }
 
-interface XaxisProps {
+type XaxisProps = {
     manacurve: Array<CMCMetric>
 }
 

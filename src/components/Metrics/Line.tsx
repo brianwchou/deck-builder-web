@@ -1,7 +1,7 @@
 import React from 'react'
 import './graphs.css'
 
-interface LineProps {
+type LineProps = {
     top: number,
     key: number
 }

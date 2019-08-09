@@ -1,4 +1,4 @@
-import { MAYBEBOARD } from 'actions/CardActions';
+import { MAYBEBOARD } from '../actions/CardActions';
 const initialState = { cards: [] };
 
 export default function maybeBoard(state=initialState, action) {

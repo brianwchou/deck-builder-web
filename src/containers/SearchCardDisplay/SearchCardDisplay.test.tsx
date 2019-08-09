@@ -1,4 +1,4 @@
-import { SearchCardDisplay, mapStateToProps } from 'containers/SearchCardDisplay/SearchCardDisplay'
+import { SearchCardDisplay, mapStateToProps } from '../../containers/SearchCardDisplay/SearchCardDisplay'
 import React from 'react'
 import renderer from 'react-test-renderer'
 import { configure, shallow, mount } from 'enzyme';
