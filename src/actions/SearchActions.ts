@@ -49,7 +49,7 @@ export const getCardSearchData = (url: string) => {
                     rarity: info.rarity,
                     related_cards: info.all_parts,
                     reserved: info.reserved,
-                    setName: info.setName,
+                    setName: info.set_name,
                     toughness: info.toughness,
                     transform_sides: info.card_faces,
                     typeLine: info.type_line,
@@ -60,10 +60,10 @@ export const getCardSearchData = (url: string) => {
                         colors: info.card_faces[0].colors,
                         image_uris: [info.card_faces[0].image_uris, info.card_faces[1].image_uris],
                         mana_cost: info.card_faces[0].mana_cost,
-                        oracle_text: [info.card_faces[0].orcale_text, info.card_faces[1].orcale_text],
+                        oracle_text: [info.card_faces[0].oracle_text, info.card_faces[1].oracle_text],
                         power: [info.card_faces[0].power, info.card_faces[1].power],
                         toughness: [info.card_faces[0].toughness, info.card_faces[1].toughness],
-                        typeLine: [info.card_faces[0].typeLine, info.card_faces[1].typeLine]
+                        typeLine: [info.card_faces[0].type_line, info.card_faces[1].type_line]
                     }
                     cardAttributes = Object.assign({}, cardAttributes, transformAttributes)
                 }
