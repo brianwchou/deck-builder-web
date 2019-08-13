@@ -18,6 +18,10 @@
   .container:hover .btn2{
     visibility: visible;
   }
+
+  .container:hover .btn3{
+    visibility: visible;
+  }
   
   /* Style the button and place it on container/image */
   .container .btn {
@@ -51,11 +55,31 @@
     border-radius: 5px;
     visibility: hidden;
   }
+
+  .container .btn3 {
+    position: absolute;
+    top: 93%;
+    left: 90%;
+    transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    background-color: #555;
+    color: white;
+    font-size: 10px;
+    padding: 4px 4px;
+    border: none;
+    cursor: pointer;
+    border-radius: 2px;
+    visibility: hidden;
+  }
   
   .container .btn:hover {
     background-color: black;
   }
 
   .container .btn2:hover {
+    background-color: black;
+  }
+
+  .container .btn3:hover {
     background-color: black;
   }

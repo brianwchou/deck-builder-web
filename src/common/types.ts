@@ -9,14 +9,7 @@ interface related_object {
 
 interface transform_object {
     colors: Array<string>,
-    image_uris: {
-        art_crop: string,
-        border_crop: string,
-        large: string,
-        normal: string,
-        png: string,
-        small: string
-    },
+    image_uris:Array<any>,
     manacost: string,
     name: string,
     oracle_text: string,
@@ -30,14 +23,7 @@ export interface CardInfo {
     cmc: number,
     color_identity: Array<string>,
     colors: Array<string>,
-    image_uris: {
-        art_crop: string,
-        border_crop: string,
-        large: string,
-        normal: string,
-        png: string,
-        small: string
-    },
+    image_uris: any,
     layout: string,
     mana_cost: string,
     name: string,
