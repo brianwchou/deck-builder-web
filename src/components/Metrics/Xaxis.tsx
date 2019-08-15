@@ -15,8 +15,8 @@ const Xaxis = ({ manacurve }: XaxisProps) => {
   return (
     <div className="xaxis">
       {
-        manacurve.map((cost) => (
-          <div className="label" key={cost.cmc}>
+        manacurve.map((cost, index) => (
+          <div className="label" key={index}>
             {cost.cmc}
           </div>
         ))

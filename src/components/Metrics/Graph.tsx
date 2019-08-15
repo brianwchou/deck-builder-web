@@ -30,12 +30,12 @@ export default function Graph({metrics}: GraphProps) {
             return acc + cost.count;
         }, 0);
 
-        return metrics.map((cost) => {
+        return metrics.map((cost, index) => {
             const percent = (cost.count / sumOfAll) * 100;
             return (
                 <Bar
                     percent={percent}
-                    key={cost.cmc}
+                    key={index}
                 />
             )
         })

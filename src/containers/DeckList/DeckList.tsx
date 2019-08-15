@@ -13,6 +13,8 @@ export const mapStateToProps = (state) => {
     }
 }
 
+const tags = ['artifacts', 'enchantments', 'spells', 'planeswalkers', 'lands', 'creatures', 'other']
+
 export const organizeCards = (cards) => {
     return cards.reduce((sortedByTypes, cardData) => {
         if (cardData.typeLine.toLowerCase().includes('creature')) {

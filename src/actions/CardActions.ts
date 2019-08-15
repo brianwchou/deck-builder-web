@@ -2,7 +2,6 @@ import { CardInfo } from '../common/types';
 import { Dispatch, Reducer } from 'react';
 import { AnyAction, Middleware } from 'redux';
 
-
 export const CARD_COUNT = {
     INCREMENT: 'CARD_COUNT_INCREMENT',
     ADD: 'CARD_COUNT_ADD',
