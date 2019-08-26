@@ -5,7 +5,7 @@ function NoMatch () {
     return (
         <div>
             <h1>link does not exist</h1>
-            <Link to = {'/Home'}>click to go back to Home page</Link> 
+            <Link to = {'/home'}>click to go back to Home page</Link> 
         </div>
     )
 }

@@ -10,14 +10,14 @@ class App extends Component {
     return (
       <div>
         <Navbar />
-        <BrowserRouter>
-        <Switch>
-          <Route exact path="/home" component={DeckBuilder} />
-          <Route exact path="/">
-            <Redirect to="/home" />
-          </Route>
-          <Route component = {NoMatch}/>
-        </Switch>
+        <BrowserRouter basename="/deck-builder-web/">
+            <Switch>
+                <Route path="/home" exact component={DeckBuilder} />
+                <Route exact path="/">
+                    <Redirect to="/home" />
+                </Route>
+                <Route component={NoMatch} />
+            </Switch>
         </BrowserRouter>
       </div>
     )
