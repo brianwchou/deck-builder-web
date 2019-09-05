@@ -18,7 +18,7 @@ type SearchState = {
 }
 
 type SearchProps = {
-    dispatch: Dispatch<any>
+    dispatch: Dispatch<any>;
 }
 
 class Search extends React.Component<SearchProps, SearchState> {
@@ -35,11 +35,11 @@ class Search extends React.Component<SearchProps, SearchState> {
 
     getCards = (e: any) => {
       e.preventDefault();
-      var searchCardNameURL: string = filteredSearchURL + this.state.textbox
+      var searchCardNameURL: string = filteredSearchURL + this.state.textbox;
     
-      searchCardNameURL += (this.state.cardType) ? `+t:${this.state.cardType}` : ""
+      searchCardNameURL += (this.state.cardType) ? `+t:${this.state.cardType}` : "";
 
-      searchCardNameURL += (this.state.filterColors) ? `+c:${this.state.filterColors}` : ""
+      searchCardNameURL += (this.state.filterColors) ? `+c:${this.state.filterColors}` : "";
 
       searchCardNameURL += "&unique";
 
@@ -47,23 +47,23 @@ class Search extends React.Component<SearchProps, SearchState> {
     }
 
     handleCheck = (e: any) => {
-        let color = e.target.value
-        let { filterColors } = this.state
+        let color = e.target.value;
+        let { filterColors } = this.state;
         
         if (filterColors.includes(color)) {
-            let newfilterColors = filterColors.replace(color, "")
-            this.setState({ filterColors: newfilterColors })
+            let newfilterColors = filterColors.replace(color, "");
+            this.setState({ filterColors: newfilterColors });
         } else {
-            this.setState({ filterColors: filterColors.concat(e.target.value) })
+            this.setState({ filterColors: filterColors.concat(e.target.value) });
         }
     }
 
     onSearchTextChange = (e: any) => {
-        this.setState({ textbox: e.target.value })
+        this.setState({ textbox: e.target.value });
     }
 
     handleSelect = (e: any) => {
-        this.setState({ cardType: e.target.value })
+        this.setState({ cardType: e.target.value });
     }
 
     render() {
@@ -72,8 +72,8 @@ class Search extends React.Component<SearchProps, SearchState> {
           <input className="field" type="text" onChange={this.onSearchTextChange}/>
           <button className="submitbutton" type="submit"> submit </button>
           <br/>
-        
-          <Error errorMessage="no"/>
+          
+          {this.state.searchError && <Error errorMessage="no"/>}
           
           <input type="checkbox" onClick={this.handleCheck} value="w"></input> 
           <img src="https://gamepedia.cursecdn.com/mtgsalvation_gamepedia/8/8e/W.svg" alt="white_mana" style={manaSymbolStyle}/> &nbsp;
@@ -105,4 +105,4 @@ class Search extends React.Component<SearchProps, SearchState> {
     }
 }
 
-export default connect()(Search)
+export default connect()(Search);

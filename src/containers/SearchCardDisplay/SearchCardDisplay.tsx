@@ -37,7 +37,6 @@ export const SearchCardDisplay = (props) => {
             {cards}
         </div>
     )
-
 }
 
 export default connect(mapStateToProps)(SearchCardDisplay)
