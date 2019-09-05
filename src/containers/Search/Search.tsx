@@ -21,9 +21,8 @@ type SearchProps = {
     error: boolean
 }
 
-const mapStateToProps = ({search}: {search: {error: boolean}} ) => {
-    console.log(search)
-    return {error: search.error};
+const mapStateToProps = ({searchDisplay}: {searchDisplay: {error: boolean}} ) => {
+    return {error: searchDisplay.error};
 }
 
 class Search extends React.Component<SearchProps, SearchState> {
@@ -78,7 +77,7 @@ class Search extends React.Component<SearchProps, SearchState> {
           <button className="submitbutton" type="submit"> submit </button>
           <br/>
           
-          {this.props.error && <Error errorMessage="no"/>}
+          {this.props.error && <Error errorMessage="no results, try again"/>}
           
           <input type="checkbox" onChange={this.handleCheck} value="w"></input> 
           <img src="https://gamepedia.cursecdn.com/mtgsalvation_gamepedia/8/8e/W.svg" alt="white_mana" style={manaSymbolStyle}/> &nbsp;

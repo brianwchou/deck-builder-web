@@ -8,6 +8,7 @@ export const SEARCH = {
 export const loadSearchCards = (cards: Array<CardInfo>) => {
     return {
       type: SEARCH.LOAD,
+      error: false,
       cards
     }
   }
