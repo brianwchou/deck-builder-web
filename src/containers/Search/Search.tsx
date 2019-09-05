@@ -14,21 +14,26 @@ type SearchState = {
     textbox: string;
     filterColors: string;
     cardType: string;
-    searchError: boolean;
 }
 
 type SearchProps = {
     dispatch: Dispatch<any>;
+    error: boolean
+}
+
+const mapStateToProps = ({search}: {search: {error: boolean}} ) => {
+    console.log(search)
+    return {error: search.error};
 }
 
 class Search extends React.Component<SearchProps, SearchState> {
     constructor(props: SearchProps) {
         super(props);
+
         this.state = {
             textbox: "",
             filterColors: "",
             cardType: "",
-            searchError: false
         }
         this.getCards = this.getCards.bind(this);
     }
@@ -58,11 +63,11 @@ class Search extends React.Component<SearchProps, SearchState> {
         }
     }
 
-    onSearchTextChange = (e: any) => {
+    onSearchTextChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         this.setState({ textbox: e.target.value });
     }
 
-    handleSelect = (e: any) => {
+    handleSelect = (e: React.ChangeEvent<HTMLSelectElement>) => {
         this.setState({ cardType: e.target.value });
     }
 
@@ -73,7 +78,7 @@ class Search extends React.Component<SearchProps, SearchState> {
           <button className="submitbutton" type="submit"> submit </button>
           <br/>
           
-          {this.state.searchError && <Error errorMessage="no"/>}
+          {this.props.error && <Error errorMessage="no"/>}
           
           <input type="checkbox" onChange={this.handleCheck} value="w"></input> 
           <img src="https://gamepedia.cursecdn.com/mtgsalvation_gamepedia/8/8e/W.svg" alt="white_mana" style={manaSymbolStyle}/> &nbsp;
@@ -105,4 +110,4 @@ class Search extends React.Component<SearchProps, SearchState> {
     }
 }
 
-export default connect()(Search);
+export default connect(mapStateToProps)(Search);

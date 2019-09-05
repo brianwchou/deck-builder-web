@@ -1,4 +1,5 @@
 import { SEARCH } from '../actions/SearchActions';
+
 const initialState = { cards: [] };
 
 export default function searchDisplay(state=initialState, action) {

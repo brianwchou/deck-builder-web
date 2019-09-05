@@ -1,15 +1,10 @@
 import { CardInfo } from '../common/types';
 
-/*
-    action types
-*/
 export const SEARCH = {
-  LOAD: 'SEARCH_LOAD_CARDS'
+  LOAD: 'SEARCH_LOAD_CARDS',
+  ERROR: 'SEARCH_ERROR'
 }
 
-/*
-    action creators
-*/
 export const loadSearchCards = (cards: Array<CardInfo>) => {
     return {
       type: SEARCH.LOAD,
@@ -17,18 +12,15 @@ export const loadSearchCards = (cards: Array<CardInfo>) => {
     }
   }
 
-/*
-    thunks
-*/
 export const getCardSearchData = (url: string) => {
     return (dispatch: any) => {
       fetch(url)
         .then(response => {
             if (response.status === 200) {
                 return response.json();
-            } else {
+            } else if (response.status === 404) {
                 console.log("response", response.status)
-                return null;
+                dispatch({type: SEARCH.ERROR})
             }
         })
         .then((json) => {

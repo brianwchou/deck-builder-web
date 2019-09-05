@@ -3,11 +3,11 @@ import Card from '../../components/Card';
 import { connect } from 'react-redux';
 import {addToDeckList, addToMaybe} from '../../actions/CardActions';
 
-export const mapStateToProps = (state) => {
+export const mapStateToProps = ({searchDisplay, deckList}) => {
     return {
-        cards: state.searchDisplay.cards,
-        counts: state.deckList.cardCount
-    }
+        cards: searchDisplay.cards,
+        counts: deckList.cardCount
+    };
 }
 
 const cardBoxStyle = {
@@ -26,17 +26,17 @@ export const SearchCardDisplay = (props) => {
         } else if (buttonType === "other") {
             this.props.dispatch(addToMaybe(cardInfo));
         }
-    }
+    };
 
     const cards = props.cards.map((info, index) => {
-        return <Card info={info} getCardInfo={getCardInfo} buttonDisplay={'Add to MaybeBoard'} key={index} />
+        return <Card info={info} getCardInfo={getCardInfo} buttonDisplay={'Add to MaybeBoard'} key={index} />;
     });
 
     return (
         <div style={cardBoxStyle}>
             {cards}
         </div>
-    )
+    );
 }
 
 export default connect(mapStateToProps)(SearchCardDisplay)
