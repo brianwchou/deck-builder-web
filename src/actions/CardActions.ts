@@ -20,6 +20,28 @@ export const MAYBEBOARD = {
     REMOVE: "MAYBEBOARD_REMOVE",
 }
 
+/*
+    // Helper to extract inferred return type of a function
+    type _ExtractReturn<B, F: (...args: any[]) => B> = B;
+    type ExtractReturn<F> = _ExtractReturn<*, F>;
+    // only need to provide types for arguments in action-creators
+    // return type will be inferred
+    function setAge(age: number) {
+        return { type: AGE, payload: age }
+    }
+    function setName(name: number) {
+        return { type: NAME, payload: name }
+    }
+    // Create a union type containing all the return types of
+    // of your chosen action-creators. 
+    // The result can be used as a tagged union 
+    // that allows Flow to narrow the payload type 
+    // based on 'type' property
+    type Actions =
+        ExtractReturn<typeof setAge> |
+        ExtractReturn<typeof setName>
+*/ 
+
 export const addToDeckList = (cardInfo: CardInfo) => {
     return (dispatch: Dispatch<AnyAction>, getState: any) => {
         const state = getState();

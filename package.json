@@ -24,9 +24,9 @@
     "typescript": "^3.5.2"
   },
   "scripts": {
-    "start": "NODE_PATH=src react-scripts start",
+    "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "NODE_PATH=src react-scripts test",
+    "test": "react-scripts test",
     "coverage": "npm test -- --coverage --watchAll=false",
     "eject": "react-scripts eject",
     "predeploy": "npm run build",

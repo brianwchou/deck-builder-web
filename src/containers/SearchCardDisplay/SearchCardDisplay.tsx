@@ -3,11 +3,11 @@ import Card from '../../components/Card';
 import { connect } from 'react-redux';
 import {addToDeckList, addToMaybe} from '../../actions/CardActions';
 
-export const mapStateToProps = (state) => {
+export const mapStateToProps = ({searchDisplay, deckList}) => {
     return {
-        cards: state.searchDisplay.cards,
-        counts: state.deckList.cardCount
-    }
+        cards: searchDisplay.cards,
+        counts: deckList.cardCount
+    };
 }
 
 const cardBoxStyle = {
@@ -17,36 +17,26 @@ const cardBoxStyle = {
     width: '63vw',
     height: '50vh',
     overflow: 'scroll',
-}
+} as React.CSSProperties
 
-
-export class SearchCardDisplay extends React.Component {
-    constructor() {
-        super();
-
-        this.getCardInfo = this.getCardInfo.bind(this);
-    }
-
-
-    getCardInfo(cardInfo, buttonType) {
+export const SearchCardDisplay = (props) => {
+    const getCardInfo = (cardInfo, buttonType) => {
         if (buttonType === "add") {
-            this.props.dispatch(addToDeckList(cardInfo));
+            props.dispatch(addToDeckList(cardInfo));
         } else if (buttonType === "other") {
-            this.props.dispatch(addToMaybe(cardInfo));
+            props.dispatch(addToMaybe(cardInfo));
         }
-    }
+    };
 
-    render() {
-        const cards  = this.props.cards.map((info, index) => {
-            return <Card info={info} getCardInfo={this.getCardInfo} buttonDisplay={'Add to MaybeBoard'} key={index} />
-        });
+    const cards = props.cards.map((info, index) => {
+        return <Card info={info} getCardInfo={getCardInfo} buttonDisplay={'Add to MaybeBoard'} key={index} />;
+    });
 
-        return (
-            <div style={cardBoxStyle}>
-                {cards}
-            </div>
-        )
-    }
+    return (
+        <div style={cardBoxStyle}>
+            {cards}
+        </div>
+    );
 }
 
 export default connect(mapStateToProps)(SearchCardDisplay)
