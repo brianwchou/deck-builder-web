@@ -22,9 +22,9 @@ const cardBoxStyle = {
 export const SearchCardDisplay = (props) => {
     const getCardInfo = (cardInfo, buttonType) => {
         if (buttonType === "add") {
-            this.props.dispatch(addToDeckList(cardInfo));
+            props.dispatch(addToDeckList(cardInfo));
         } else if (buttonType === "other") {
-            this.props.dispatch(addToMaybe(cardInfo));
+            props.dispatch(addToMaybe(cardInfo));
         }
     };
 

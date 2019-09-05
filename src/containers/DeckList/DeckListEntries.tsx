@@ -15,7 +15,7 @@ type DeckListEntriesProps = {
 
 export default function DeckListEntries({data, type, counts, getCardInfo}: DeckListEntriesProps) {
     let entries = data.map((entry: CardInfo, index: number)=> {
-        return <DeckListEntry index={index} card={entry} getCardInfo={getCardInfo} count={counts[entry.name]} />
+        return <DeckListEntry key={index} card={entry} getCardInfo={getCardInfo} count={counts[entry.name]} />
     }) 
     return (entries.length) ? (
         <>

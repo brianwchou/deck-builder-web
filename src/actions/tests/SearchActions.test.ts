@@ -8,7 +8,9 @@ describe('[Unit] loadSearchCards', () => {
         const dummyCards = { name: "thing in the ice" }; 
         const expectedPayload = { 
             type: 'SEARCH_LOAD_CARDS',
-            cards: { name: 'thing in the ice' } };
+            cards: { name: 'thing in the ice' },
+            error: false
+        };
         
         expect(loadSearchCards(dummyCards)).toEqual(expectedPayload);
     });
