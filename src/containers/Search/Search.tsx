@@ -33,8 +33,8 @@ class Search extends React.Component<SearchProps, SearchState> {
         this.getCards = this.getCards.bind(this);
     }
 
-    getCards = (e: any) => {
-      e.preventDefault();
+    getCards = (event: React.FormEvent<HTMLFormElement>) => {
+      event.preventDefault();
       var searchCardNameURL: string = filteredSearchURL + this.state.textbox;
     
       searchCardNameURL += (this.state.cardType) ? `+t:${this.state.cardType}` : "";
@@ -46,7 +46,7 @@ class Search extends React.Component<SearchProps, SearchState> {
       this.props.dispatch(getCardSearchData(searchCardNameURL));
     }
 
-    handleCheck = (e: any) => {
+    handleCheck = (e: React.ChangeEvent<HTMLInputElement>) => {
         let color = e.target.value;
         let { filterColors } = this.state;
         
@@ -75,19 +75,19 @@ class Search extends React.Component<SearchProps, SearchState> {
           
           {this.state.searchError && <Error errorMessage="no"/>}
           
-          <input type="checkbox" onClick={this.handleCheck} value="w"></input> 
+          <input type="checkbox" onChange={this.handleCheck} value="w"></input> 
           <img src="https://gamepedia.cursecdn.com/mtgsalvation_gamepedia/8/8e/W.svg" alt="white_mana" style={manaSymbolStyle}/> &nbsp;
 
-          <input type="checkbox" onClick={this.handleCheck} value="u"></input>
+          <input type="checkbox" onChange={this.handleCheck} value="u"></input>
           <img src="https://gamepedia.cursecdn.com/mtgsalvation_gamepedia/9/9f/U.svg" alt="blue_mana" style={manaSymbolStyle}/> &nbsp;
           
-          <input type="checkbox" onClick={this.handleCheck} value="b"></input>
+          <input type="checkbox" onChange={this.handleCheck} value="b"></input>
           <img src="https://gamepedia.cursecdn.com/mtgsalvation_gamepedia/2/2f/B.svg" alt="black_mana" style={manaSymbolStyle}/> &nbsp;
           
-          <input type="checkbox" onClick={this.handleCheck} value="r"></input>
+          <input type="checkbox" onChange={this.handleCheck} value="r"></input>
           <img src="https://gamepedia.cursecdn.com/mtgsalvation_gamepedia/8/87/R.svg" alt="red_mana" style={manaSymbolStyle}/> &nbsp;
           
-          <input type="checkbox" onClick={this.handleCheck} value="g"></input>
+          <input type="checkbox" onChange={this.handleCheck} value="g"></input>
           <img src="https://gamepedia.cursecdn.com/mtgsalvation_gamepedia/8/88/G.svg" alt="green_mana" style={manaSymbolStyle}/> &nbsp;
           <select onChange={this.handleSelect}>
               <option value="">Choose A Card Type</option>
