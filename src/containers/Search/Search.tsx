@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { filteredSearchURL } from '../../common/URLs';
 import { getCardSearchData } from '../../actions/SearchActions';
 import './Search.css';
+import { Error } from '../../components/Error/Error';
 
 const manaSymbolStyle = {
     maxWidth: "15px",
@@ -10,9 +11,10 @@ const manaSymbolStyle = {
 }
 
 type SearchState = {
-    textbox: string,
-    filterColors: string,
-    cardType: string
+    textbox: string;
+    filterColors: string;
+    cardType: string;
+    searchError: boolean;
 }
 
 type SearchProps = {
@@ -26,6 +28,7 @@ class Search extends React.Component<SearchProps, SearchState> {
             textbox: "",
             filterColors: "",
             cardType: "",
+            searchError: false
         }
         this.getCards = this.getCards.bind(this);
     }
@@ -69,7 +72,9 @@ class Search extends React.Component<SearchProps, SearchState> {
           <input className="field" type="text" onChange={this.onSearchTextChange}/>
           <button className="submitbutton" type="submit"> submit </button>
           <br/>
-
+        
+          <Error errorMessage="no"/>
+          
           <input type="checkbox" onClick={this.handleCheck} value="w"></input> 
           <img src="https://gamepedia.cursecdn.com/mtgsalvation_gamepedia/8/8e/W.svg" alt="white_mana" style={manaSymbolStyle}/> &nbsp;
 
@@ -84,7 +89,6 @@ class Search extends React.Component<SearchProps, SearchState> {
           
           <input type="checkbox" onClick={this.handleCheck} value="g"></input>
           <img src="https://gamepedia.cursecdn.com/mtgsalvation_gamepedia/8/88/G.svg" alt="green_mana" style={manaSymbolStyle}/> &nbsp;
-
           <select onChange={this.handleSelect}>
               <option value="">Choose A Card Type</option>
               <option value="artifact">Artifact</option>
