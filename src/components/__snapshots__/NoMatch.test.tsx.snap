@@ -6,7 +6,7 @@ exports[`NoMatch renders correctly 1`] = `
     link does not exist
   </h1>
   <a
-    href="/Home"
+    href="/home"
     onClick={[Function]}
   >
     click to go back to Home page

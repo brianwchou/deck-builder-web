@@ -10,7 +10,7 @@ exports[`Navbar renders correctly 1`] = `
     >
       <a
         className="changeColor"
-        href="Home"
+        href="/"
       >
         Home
       </a>
