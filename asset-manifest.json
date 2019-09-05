@@ -1,14 +1,14 @@
 {
   "files": {
     "main.css": "/deck-builder-web/static/css/main.4a2643eb.chunk.css",
-    "main.js": "/deck-builder-web/static/js/main.4b6d1a55.chunk.js",
-    "main.js.map": "/deck-builder-web/static/js/main.4b6d1a55.chunk.js.map",
+    "main.js": "/deck-builder-web/static/js/main.f5548a01.chunk.js",
+    "main.js.map": "/deck-builder-web/static/js/main.f5548a01.chunk.js.map",
     "runtime~main.js": "/deck-builder-web/static/js/runtime~main.04fec7b4.js",
     "runtime~main.js.map": "/deck-builder-web/static/js/runtime~main.04fec7b4.js.map",
-    "static/js/2.2362f831.chunk.js": "/deck-builder-web/static/js/2.2362f831.chunk.js",
-    "static/js/2.2362f831.chunk.js.map": "/deck-builder-web/static/js/2.2362f831.chunk.js.map",
+    "static/js/2.035d9ab1.chunk.js": "/deck-builder-web/static/js/2.035d9ab1.chunk.js",
+    "static/js/2.035d9ab1.chunk.js.map": "/deck-builder-web/static/js/2.035d9ab1.chunk.js.map",
     "index.html": "/deck-builder-web/index.html",
-    "precache-manifest.7f712716f837582304d5f7e3aea6dcb0.js": "/deck-builder-web/precache-manifest.7f712716f837582304d5f7e3aea6dcb0.js",
+    "precache-manifest.a29826949ce91bd807a078aaebb3536b.js": "/deck-builder-web/precache-manifest.a29826949ce91bd807a078aaebb3536b.js",
     "service-worker.js": "/deck-builder-web/service-worker.js",
     "static/css/main.4a2643eb.chunk.css.map": "/deck-builder-web/static/css/main.4a2643eb.chunk.css.map"
   }
