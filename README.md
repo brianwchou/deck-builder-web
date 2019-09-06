@@ -1,6 +1,8 @@
 # deck-builder-web
 [![CircleCI](https://circleci.com/gh/brianwchou/deck-builder-web/tree/master.svg?style=svg)](https://circleci.com/gh/brianwchou/deck-builder-web/tree/master)
 
+[checkout the app here](https://brianwchou.github.io/deck-builder-web/)
+
 **Modern interface for MTG deckbuilding**
 
 Built with typescript, react, redux and the [scryfall API](https://scryfall.com/docs/api)
