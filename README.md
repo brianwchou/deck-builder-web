@@ -5,14 +5,12 @@
 
 **Modern interface for MTG deckbuilding**
 
-Built with typescript, react, redux and the [scryfall API](https://scryfall.com/docs/api)
-
 ## QuickStart
 - clone the repo using `git clone`
-- cd into the dirctory and run npm start
+- cd into the dirctory and run `npm install`
+- run `npm start`
 
 ## Tech Stack
+Built with typescript, create-react-app, redux and the [scryfall API](https://scryfall.com/docs/api)
 
-## Notes
-
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Usage
