@@ -1,7 +1,7 @@
 import React from 'react'
 import {Link} from 'react-router-dom'
 
-function NoMatch () {
+export default function NoMatch () {
     return (
         <div>
             <h1>link does not exist</h1>
@@ -9,5 +9,3 @@ function NoMatch () {
         </div>
     )
 }
-
-export default NoMatch
