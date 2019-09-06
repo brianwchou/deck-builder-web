@@ -5,8 +5,7 @@ import SearchCardDisplay from '../../containers/SearchCardDisplay/SearchCardDisp
 import MaybeBoardDisplay from '../../containers/MaybeBoardDisplay/MaybeBoardDisplay';
 import './DeckBuilder.css';
 
-export default class DeckBuilder extends React.Component {
-  render() {
+export default function DeckBuilder() {
     return (
       <div>
         <Search />
@@ -22,5 +21,4 @@ export default class DeckBuilder extends React.Component {
         <img className="background" src="https://cdn.arstechnica.net/wp-content/uploads/2016/01/159984_CN-980x597.jpg" alt="default"/>
       </div>
     )
-  }
 }

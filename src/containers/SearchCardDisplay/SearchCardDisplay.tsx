@@ -19,22 +19,23 @@ const cardBoxStyle = {
     overflow: 'scroll',
 } as React.CSSProperties
 
-export const SearchCardDisplay = (props) => {
+export const SearchCardDisplay = ({cards, dispatch}) => {
+
     const getCardInfo = (cardInfo, buttonType) => {
         if (buttonType === "add") {
-            props.dispatch(addToDeckList(cardInfo));
+            dispatch(addToDeckList(cardInfo));
         } else if (buttonType === "other") {
-            props.dispatch(addToMaybe(cardInfo));
+            dispatch(addToMaybe(cardInfo));
         }
     };
 
-    const cards = props.cards.map((info, index) => {
+    const cardList = cards.map((info, index) => {
         return <Card info={info} getCardInfo={getCardInfo} buttonDisplay={'Add to MaybeBoard'} key={index} />;
     });
 
     return (
         <div style={cardBoxStyle}>
-            {cards}
+            {cardList}
         </div>
     );
 }

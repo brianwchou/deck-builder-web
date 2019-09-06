@@ -1,12 +1,11 @@
-import React, { Component } from 'react';
 import { BrowserRouter, Route, Switch, Redirect } from 'react-router-dom';
 import './App.css';
 import Navbar from '../../components/Navbar'
 import NoMatch from '../../components/NoMatch';
 import DeckBuilder from '../../containers/DeckBuilder';
+import React from 'react';
 
-class App extends Component {
-  render() {
+const App = () => {
     return (
       <div>
         <Navbar />
@@ -18,7 +17,6 @@ class App extends Component {
         </BrowserRouter>
       </div>
     )
-  }
 }
 
 export default App;
