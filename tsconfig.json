@@ -1,6 +1,6 @@
 {
   "compilerOptions": {
-    "target": "es6",
+    "target": "es5",
     "lib": [
       "dom",
       "dom.iterable",
@@ -17,16 +17,9 @@
     "resolveJsonModule": true,
     "isolatedModules": true,
     "noEmit": true,
-    "jsx": "preserve"
+    "jsx": "react"
   },
-  "files": [
-      "src/components/Metrics/Graph.tsx",
-      "src/components/Metrics/Metrics.tsx",
-      "src/containers/DeckList/DeckListEntry.tsx",
-      "src/containers/DeckList/DeckListEntries.tsx",
-      "src/containers/Search/Search.tsx"
-  ],
   "include": [
-      "src/components/Card"
+    "src"
   ]
 }
