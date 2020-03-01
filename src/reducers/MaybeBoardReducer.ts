@@ -1,7 +1,7 @@
 import { MAYBEBOARD } from '../actions/CardActions';
 const initialState = { cards: [] };
 
-export default function maybeBoard(state=initialState, action) {
+export default function maybeBoard(state=initialState, action: any) {
     switch(action.type) {
         case MAYBEBOARD.ADD:
             return Object.assign({}, state, {

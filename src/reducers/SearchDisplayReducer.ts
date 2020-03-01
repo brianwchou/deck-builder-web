@@ -2,7 +2,7 @@ import { SEARCH } from '../actions/SearchActions';
 
 const initialState = { cards: [], error: false };
 
-export default function searchDisplay(state=initialState, action) {
+export default function searchDisplay(state=initialState, action: any) {
     switch(action.type) {
         case SEARCH.LOAD:
             return Object.assign({}, state, {

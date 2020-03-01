@@ -1,23 +1,24 @@
 import { CardInfo } from '../common/types';
-import { Dispatch, Reducer } from 'react';
+import { Dispatch } from 'react';
 import { AnyAction } from 'redux';
+import { ThunkAction } from 'redux-thunk';
+import { RootState } from "../reducers"
 
-
-export const CARD_COUNT = {
-    INCREMENT: 'CARD_COUNT_INCREMENT',
-    ADD: 'CARD_COUNT_ADD',
-    DECREMENT: 'CARD_COUNT_DECREMENT',
-    REMOVE: 'CARD_COUNT_REMOVE'
+export enum CARD_COUNT {
+    INCREMENT = 'CARD_COUNT_INCREMENT',
+    ADD = 'CARD_COUNT_ADD',
+    DECREMENT = 'CARD_COUNT_DECREMENT',
+    REMOVE = 'CARD_COUNT_REMOVE'
 }
 
-export const DECKLIST = {
-    ADD: 'DECKLIST_ADD',
-    REMOVE: 'DECKLIST_REMOVE',
+export enum DECKLIST {
+    ADD = 'DECKLIST_ADD',
+    REMOVE = 'DECKLIST_REMOVE',
 }
 
-export const MAYBEBOARD = {
-    ADD: "MAYBEBOARD_ADD",
-    REMOVE: "MAYBEBOARD_REMOVE",
+export enum MAYBEBOARD {
+    ADD = "MAYBEBOARD_ADD",
+    REMOVE = "MAYBEBOARD_REMOVE",
 }
 
 /*
@@ -45,7 +46,7 @@ export const MAYBEBOARD = {
 export const addToDeckList = (cardInfo: CardInfo) => {
     return (dispatch: Dispatch<AnyAction>, getState: any) => {
         const state = getState();
-        if (state.deckList.main.includes(cardInfo)) {
+        if (state.deckList.includes(cardInfo)) {
             dispatch({
                 type: CARD_COUNT.INCREMENT, 
                 name: cardInfo.name
@@ -63,7 +64,8 @@ export const addToDeckList = (cardInfo: CardInfo) => {
     }
 }
 
-export const removeFromDeckList = (cardInfo: CardInfo) => {
+export const removeFromDeckList = function(cardInfo: CardInfo): 
+  ThunkAction<void, RootState, unknown, AnyAction> {
     return (dispatch: Dispatch<AnyAction>) => {
             dispatch({
                 type: DECKLIST.REMOVE, 
@@ -76,8 +78,8 @@ export const removeFromDeckList = (cardInfo: CardInfo) => {
     }
 }
 
-export const moveToMaybe = (cardInfo: CardInfo) => {
-    return (dispatch: Dispatch<Reducer<any, AnyAction>>) => {
+export const moveToMaybe = function(cardInfo: CardInfo): any {
+    return (dispatch: Function): void => {
         dispatch(addToMaybe(cardInfo))
         dispatch(removeFromDeckList(cardInfo))
     }
@@ -91,10 +93,10 @@ export const incrementCardCount = (cardInfo: CardInfo) => {
     }
 }
 
-export const decrementCardCount = (cardInfo: CardInfo) => {
-    return (dispatch: any, getState: any) => {   
+export const decrementCardCount = function(cardInfo: CardInfo): any {
+    return (dispatch: Function, getState: Function): void => {   
         const state = getState();
-        if (state.cardCount.counts[cardInfo.name] === 1) {
+        if (state.cardCount[cardInfo.name] === 1) {
             dispatch(removeFromDeckList(cardInfo));
         } else {
             dispatch({type: CARD_COUNT.DECREMENT, name: cardInfo.name});
@@ -102,8 +104,8 @@ export const decrementCardCount = (cardInfo: CardInfo) => {
     }
 }
 
-export const addToMaybe = (cardInfo: CardInfo) => {
-    return (dispatch: Dispatch<AnyAction>, getState: any) => {
+export const addToMaybe = function(cardInfo: CardInfo): any {
+    return (dispatch: Dispatch<any>, getState: any) => {
         const state = getState();
         if (!state.maybeBoard.cards.includes(cardInfo)) {
             dispatch({type: MAYBEBOARD.ADD, card: cardInfo});

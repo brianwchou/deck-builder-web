@@ -1,8 +1,32 @@
 import * as CardActions from '../../actions/CardActions';
 import configureMockStore from 'redux-mock-store';
 import thunk from 'redux-thunk';
+import { CardInfo } from '../../common/types';
 
-const dummyCard = { name: 'thing in the ice' };
+const dummyCard: CardInfo = { 
+  artist: "Kev Walker",
+  cmc: 2,
+  color_identity: ["B"],
+  colors: ["B"],
+  image_uris: {
+    small: "https://img.scryfall.com/cards/small/front/0/d/0d6d7d88-d82b-40f4-bf57-ec5d7c480689.jpg?1562898088",
+    normal: "https://img.scryfall.com/cards/normal/front/0/d/0d6d7d88-d82b-40f4-bf57-ec5d7c480689.jpg?1562898088",
+    large: "https://img.scryfall.com/cards/large/front/0/d/0d6d7d88-d82b-40f4-bf57-ec5d7c480689.jpg?1562898088",
+    png: "https://img.scryfall.com/cards/png/front/0/d/0d6d7d88-d82b-40f4-bf57-ec5d7c480689.png?1562898088",
+    art_crop: "https://img.scryfall.com/cards/art_crop/front/0/d/0d6d7d88-d82b-40f4-bf57-ec5d7c480689.jpg?1562898088",
+    border_crop: "https://img.scryfall.com/cards/border_crop/front/0/d/0d6d7d88-d82b-40f4-bf57-ec5d7c480689.jpg?1562898088"
+  },
+  mana_cost: "{1}{B}",
+  name: "Cover of Darkness",
+  oracle_text: "As Cover of Darkness enters the battlefield, choose a creature type.↵Creatures of the chosen type have fear. (They can't be blocked except by artifact creatures and/or black creatures.)",
+  power: undefined,
+  rarity: "rare",
+  reserved: false,
+  setName: undefined,
+  toughness: undefined,
+  typeLine: "Enchantment"
+};
+
 const mockStore = configureMockStore([thunk]);
 
 // TODO: get 100% code coverage in cardactionsjs file

@@ -1,19 +1,20 @@
 import { DECKLIST } from '../actions/CardActions';
-const initialState = { main: [] };
+import { CardInfo } from '../common/types';
 
-export default function deckList(state=initialState, action){
-    switch(action.type) {
-        case DECKLIST.ADD:
-            return Object.assign({}, state, {
-                main: [...state.main, action.card]
-            })
-        case DECKLIST.REMOVE:
-            return Object.assign({}, state, {
-                main: state.main.filter((card) => {
-                    return !Object.is(card, action.card)
-                })
-            })
-        default:
-            return state;
-    }
+interface DeckListAction {
+  type: string,
+  card: CardInfo
+}
+
+export default function deckList(state: CardInfo[] = [], action: DeckListAction){
+  switch(action.type) {
+    case DECKLIST.ADD:
+      return [...state, action.card]
+    case DECKLIST.REMOVE:
+      return state.filter((card) => {
+        return !Object.is(card, action.card)
+      })
+    default:
+      return state;
+  }
 }

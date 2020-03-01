@@ -1,6 +1,6 @@
 import { BrowserRouter, Route, Switch} from 'react-router-dom';
 import './App.css';
-import Navbar from '../../components/Navbar'
+import Navbar from '../../components/Navbar';
 import NoMatch from '../../components/NoMatch';
 import DeckBuilder from '../../containers/DeckBuilder';
 import React from 'react';
