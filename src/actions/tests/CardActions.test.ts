@@ -3,22 +3,46 @@ import configureMockStore from 'redux-mock-store';
 import thunk from 'redux-thunk';
 import { CardInfo } from '../../common/types';
 
-const dummyCard: CardInfo = { 
-  artist: "Kev Walker",
+const dummyCardStart: CardInfo = { 
+  artist: "",
   cmc: 2,
   color_identity: ["B"],
   colors: ["B"],
   image_uris: {
-    small: "https://img.scryfall.com/cards/small/front/0/d/0d6d7d88-d82b-40f4-bf57-ec5d7c480689.jpg?1562898088",
-    normal: "https://img.scryfall.com/cards/normal/front/0/d/0d6d7d88-d82b-40f4-bf57-ec5d7c480689.jpg?1562898088",
-    large: "https://img.scryfall.com/cards/large/front/0/d/0d6d7d88-d82b-40f4-bf57-ec5d7c480689.jpg?1562898088",
-    png: "https://img.scryfall.com/cards/png/front/0/d/0d6d7d88-d82b-40f4-bf57-ec5d7c480689.png?1562898088",
-    art_crop: "https://img.scryfall.com/cards/art_crop/front/0/d/0d6d7d88-d82b-40f4-bf57-ec5d7c480689.jpg?1562898088",
-    border_crop: "https://img.scryfall.com/cards/border_crop/front/0/d/0d6d7d88-d82b-40f4-bf57-ec5d7c480689.jpg?1562898088"
+    small: "",
+    normal: "",
+    large: "",
+    png: "",
+    art_crop: "",
+    border_crop: ""
   },
   mana_cost: "{1}{B}",
   name: "Cover of Darkness",
-  oracle_text: "As Cover of Darkness enters the battlefield, choose a creature type.↵Creatures of the chosen type have fear. (They can't be blocked except by artifact creatures and/or black creatures.)",
+  oracle_text: "",
+  power: undefined,
+  rarity: "rare",
+  reserved: false,
+  setName: undefined,
+  toughness: undefined,
+  typeLine: "Enchantment"
+};
+
+const dummyCardUnchanged: CardInfo = { 
+  artist: "",
+  cmc: 2,
+  color_identity: ["B"],
+  colors: ["B"],
+  image_uris: {
+    small: "",
+    normal: "",
+    large: "",
+    png: "",
+    art_crop: "",
+    border_crop: ""
+  },
+  mana_cost: "{1}{B}",
+  name: "Cover of Darkness",
+  oracle_text: "",
   power: undefined,
   rarity: "rare",
   reserved: false,
@@ -29,30 +53,29 @@ const dummyCard: CardInfo = {
 
 const mockStore = configureMockStore([thunk]);
 
-// TODO: get 100% code coverage in cardactionsjs file
 describe('[Unit] addToDeckList', () => {
 
     test('adding to decklist when the card is not in store', async () => {
-        const initialState = { deckList: { main: [] } };
+        const initialState = { deckList: []};
         const store = mockStore(initialState);
-        store.dispatch(CardActions.addToDeckList(dummyCard));
+        store.dispatch(CardActions.addToDeckList(dummyCardStart));
         
         const actions = store.getActions();
         const expectedPayload = [   
-            { type: 'DECKLIST_ADD', card: { name: 'thing in the ice' } },
-            { type: 'CARD_COUNT_ADD', name: 'thing in the ice' } 
+            { type: 'DECKLIST_ADD', card: dummyCardUnchanged },
+            { type: 'CARD_COUNT_ADD', name: 'Cover of Darkness' } 
         ];
 
         expect(actions).toEqual(expectedPayload);
     });
 
     test('adding to decklist when card is already inside the store', async () => {
-        const initialState = { deckList: { main: [dummyCard]} };
+        const initialState = { deckList: [dummyCardStart] };
         const store = mockStore(initialState);
-        store.dispatch(CardActions.addToDeckList(dummyCard));
+        store.dispatch(CardActions.addToDeckList(dummyCardStart));
        
         const actions = store.getActions();
-        const expectedPayload = [ { type: 'CARD_COUNT_INCREMENT', name: 'thing in the ice' } ];
+        const expectedPayload = [ { type: 'CARD_COUNT_INCREMENT', name: dummyCardUnchanged.name } ];
         
         expect(actions).toEqual(expectedPayload);
     });
@@ -61,14 +84,14 @@ describe('[Unit] addToDeckList', () => {
 describe('[Unit] removeFromDeckList', () => {
 
     test('removing a card from decklist', () => {
-        const initialState = { deckList: { main: [dummyCard] } };
+        const initialState = { deckList: [dummyCardStart] };
         const store = mockStore(initialState);
-        store.dispatch(CardActions.removeFromDeckList(dummyCard));
+        store.dispatch(CardActions.removeFromDeckList(dummyCardStart));
         
         const actions = store.getActions();
         const expectedPayload = [ 
-            { type: 'DECKLIST_REMOVE', card: { name: 'thing in the ice' } },
-            { type: 'CARD_COUNT_REMOVE', name: 'thing in the ice' } 
+            { type: 'DECKLIST_REMOVE', card: dummyCardUnchanged },
+            { type: 'CARD_COUNT_REMOVE', name: dummyCardUnchanged.name } 
         ];
 
         expect(actions).toEqual(expectedPayload);
@@ -79,16 +102,16 @@ describe('[Unit] moveToMaybe', () => {
 
     test('deleting card from maybeBoard', async () => {
         const initialState = { 
-            deckList: { main: [dummyCard] },
+            deckList: [dummyCardStart],
             maybeBoard: { cards: [] }
         };
         const store = mockStore(initialState);
-        store.dispatch(CardActions.moveToMaybe(dummyCard));
+        store.dispatch(CardActions.moveToMaybe(dummyCardStart));
 
         const actions = store.getActions();
-        const expectedPayload = [ { type: 'MAYBEBOARD_ADD', card: { name: 'thing in the ice' } },
-        { type: 'DECKLIST_REMOVE', card: { name: 'thing in the ice' } },
-        { type: 'CARD_COUNT_REMOVE', name: 'thing in the ice' } ];
+        const expectedPayload = [ { type: 'MAYBEBOARD_ADD', card: dummyCardUnchanged },
+          { type: 'DECKLIST_REMOVE', card: dummyCardUnchanged },
+          { type: 'CARD_COUNT_REMOVE', name: dummyCardUnchanged.name } ];
 
         expect(actions).toEqual(expectedPayload);
     });
@@ -97,33 +120,31 @@ describe('[Unit] moveToMaybe', () => {
 describe('[Unit] incrementCardCount', () => {
 
     test('increment the counter for a card', () => {
-        const expectedPayload = { type: CardActions.CARD_COUNT.INCREMENT, name: dummyCard.name }
+        const expectedPayload = { type: CardActions.CARD_COUNT.INCREMENT, name: dummyCardStart.name }
         
-        expect(CardActions.incrementCardCount(dummyCard)).toEqual(expectedPayload)
+        expect(CardActions.incrementCardCount(dummyCardStart)).toEqual(expectedPayload)
     });
 });
 
 describe('[Unit] decrementCardCount', () => {
 
     test('decrement the counter for a card when count is 1', () => {
-        const initialState = { cardCount: { counts: {[dummyCard.name]: 1} } };
+        const initialState = { cardCount: { counts: {[dummyCardStart.name]: 1} } };
         const store = mockStore(initialState);
-        store.dispatch(CardActions.decrementCardCount(dummyCard));
+        store.dispatch(CardActions.decrementCardCount(dummyCardStart));
 
         const actions = store.getActions();
-        const expectedPayload =  [ { type: 'DECKLIST_REMOVE', card: { name: 'thing in the ice' } },
-        { type: 'CARD_COUNT_REMOVE', name: 'thing in the ice' } ];
-        
+        const expectedPayload =  [ { type: 'CARD_COUNT_DECREMENT', name: dummyCardStart.name } ]
         expect(actions).toEqual(expectedPayload);
     });
 
     test('decrement the counter for a card when count is greater than 1', () => {
-        const initialState = { cardCount: { counts: [{[dummyCard.name]: 4}] } };
+        const initialState = { cardCount: { counts: [{[dummyCardStart.name]: 4}] } };
         const store = mockStore(initialState);
-        store.dispatch(CardActions.decrementCardCount(dummyCard));
+        store.dispatch(CardActions.decrementCardCount(dummyCardStart));
 
         const actions = store.getActions();
-        const expectedPayload = [ { type: 'CARD_COUNT_DECREMENT', name: 'thing in the ice' } ];
+        const expectedPayload = [ { type: 'CARD_COUNT_DECREMENT', name: dummyCardStart.name } ];
         
         expect(actions).toEqual(expectedPayload);
     });
@@ -136,20 +157,20 @@ describe('[Unit] addToMaybe', () => {
             maybeBoard: { cards: [] }
         };
         const store = mockStore(initialState);
-        store.dispatch(CardActions.addToMaybe(dummyCard));
+        store.dispatch(CardActions.addToMaybe(dummyCardStart));
 
         const actions = store.getActions();
-        const expectedPayload = [ { type: 'MAYBEBOARD_ADD', card: { name: 'thing in the ice' } } ];
+        const expectedPayload = [ { type: 'MAYBEBOARD_ADD', card: dummyCardStart } ];
         
         expect(actions).toEqual(expectedPayload);
     });
 
     test('adding existing card to maybeBoard', () => {
         const initialState = { 
-            maybeBoard: { cards: [dummyCard] }
+            maybeBoard: { cards: [dummyCardStart] }
         }
         const store = mockStore(initialState);
-        store.dispatch(CardActions.addToMaybe(dummyCard));
+        store.dispatch(CardActions.addToMaybe(dummyCardStart));
         
         const actions = store.getActions();
         const expectedPayload = [];
@@ -163,9 +184,9 @@ describe('[Unit] deleteFromMaybe', () => {
     test('deleting card from maybeBoard', () => {
         const expectedPayload = { 
             type: 'MAYBEBOARD_REMOVE',
-            card: { name: 'thing in the ice' } 
+            card: dummyCardStart 
         }
         
-        expect(CardActions.deleteFromMaybe(dummyCard)).toEqual(expectedPayload);
+        expect(CardActions.deleteFromMaybe(dummyCardStart)).toEqual(expectedPayload);
     });
 });
