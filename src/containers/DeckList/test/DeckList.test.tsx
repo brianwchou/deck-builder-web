@@ -10,30 +10,30 @@ configure({ adapter: new Adapter() });
 
 describe('DeckList', () => {
 
-    test('mapStateToProps', () => {
-      const mockDeckList = [dummyCardStart]
-      const mockCounts = dummyCardCount
-      const mockState: DeckListState = { deckList: mockDeckList, cardCount: mockCounts }
+  test('mapStateToProps', () => {
+    const mockDeckList = [dummyCardStart]
+    const mockCounts = dummyCardCount
+    const mockState: DeckListState = { deckList: mockDeckList, cardCount: mockCounts }
 
-      expect(mapStateToProps(mockState))
-        .toEqual({ deckList: [ dummyCardUnchanged ], cardCount: dummyCardCount })
-    });
+    expect(mapStateToProps(mockState))
+      .toEqual({ deckList: [ dummyCardUnchanged ], cardCount: dummyCardCount })
+  });
 
-    test('empty decklist renders correctly', () => {
-        const mockDeckList: CardInfo[] = []
-        const mockCounts = {}
-        const wrapper = shallow(<DeckList deckList={mockDeckList} cardCount={mockCounts} />)
+  test('empty decklist renders correctly', () => {
+    const mockDeckList: CardInfo[] = []
+    const mockCounts = {}
+    const wrapper = shallow(<DeckList deckList={mockDeckList} cardCount={mockCounts} />)
 
-        expect(wrapper).toMatchSnapshot();
-    });
+    expect(wrapper).toMatchSnapshot();
+  });
 
-    test('filled decklist renders correctly', () => {
-        const mockMain = [dummyCardStart]
-        const mockCounts = {}
-        const wrapper = shallow(<DeckList deckList={mockMain} cardCount={mockCounts} />)
+  test('filled decklist renders correctly', () => {
+    const mockMain = [dummyCardStart]
+    const mockCounts = {}
+    const wrapper = shallow(<DeckList deckList={mockMain} cardCount={mockCounts} />)
 
-        expect(wrapper).toMatchSnapshot();
-    });
+    expect(wrapper).toMatchSnapshot();
+  });
 
     // TODO: refactor required
 //     test('getCardInfo dispatches when button is clicked', () => {
