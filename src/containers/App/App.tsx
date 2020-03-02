@@ -6,17 +6,17 @@ import DeckBuilder from '../../containers/DeckBuilder';
 import React from 'react';
 
 const App = () => {
-    return (
-      <div>
-        <Navbar />
-        <BrowserRouter basename="/deck-builder-web/">
-            <Switch>
-                <Route exact path="/" component={DeckBuilder} />
-                <Route component={NoMatch} />
-            </Switch>
-        </BrowserRouter>
-      </div>
-    )
+  return (
+    <div>
+      <Navbar />
+      <BrowserRouter basename="/deck-builder-web/">
+          <Switch>
+            <Route exact path="/" component={DeckBuilder} />
+            <Route component={NoMatch} />
+          </Switch>
+      </BrowserRouter>
+    </div>
+  )
 }
 
 export default App;

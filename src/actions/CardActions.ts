@@ -5,20 +5,20 @@ import { ThunkAction } from 'redux-thunk';
 import { RootState } from "../reducers"
 
 export enum CARD_COUNT {
-    INCREMENT = 'CARD_COUNT_INCREMENT',
-    ADD = 'CARD_COUNT_ADD',
-    DECREMENT = 'CARD_COUNT_DECREMENT',
-    REMOVE = 'CARD_COUNT_REMOVE'
+  INCREMENT = 'CARD_COUNT_INCREMENT',
+  ADD = 'CARD_COUNT_ADD',
+  DECREMENT = 'CARD_COUNT_DECREMENT',
+  REMOVE = 'CARD_COUNT_REMOVE'
 }
 
 export enum DECKLIST {
-    ADD = 'DECKLIST_ADD',
-    REMOVE = 'DECKLIST_REMOVE',
+  ADD = 'DECKLIST_ADD',
+  REMOVE = 'DECKLIST_REMOVE',
 }
 
 export enum MAYBEBOARD {
-    ADD = "MAYBEBOARD_ADD",
-    REMOVE = "MAYBEBOARD_REMOVE",
+  ADD = "MAYBEBOARD_ADD",
+  REMOVE = "MAYBEBOARD_REMOVE",
 }
 
 /*
@@ -44,78 +44,79 @@ export enum MAYBEBOARD {
 */ 
 
 export const addToDeckList = (cardInfo: CardInfo) => {
-    return (dispatch: Dispatch<AnyAction>, getState: any) => {
-        const state = getState();
-        if (state.deckList.includes(cardInfo)) {
-            dispatch({
-                type: CARD_COUNT.INCREMENT, 
-                name: cardInfo.name
-            })
-        } else {
-            dispatch({
-                type: DECKLIST.ADD, 
-                card: cardInfo
-            });
-            dispatch({
-                type: CARD_COUNT.ADD, 
-                name: cardInfo.name
-            })
-        }
+  return (dispatch: Dispatch<AnyAction>, getState: any) => {
+    const state = getState();
+    if (state.deckList.includes(cardInfo)) {
+      dispatch({
+        type: CARD_COUNT.INCREMENT, 
+        name: cardInfo.name
+      })
+    } else {
+      dispatch({
+        type: DECKLIST.ADD, 
+        card: cardInfo
+      });
+      dispatch({
+        type: CARD_COUNT.ADD, 
+        name: cardInfo.name
+      })
     }
+  }
 }
 
 export const removeFromDeckList = function(cardInfo: CardInfo): 
   ThunkAction<void, RootState, unknown, AnyAction> {
-    return (dispatch: Dispatch<AnyAction>) => {
-            dispatch({
-                type: DECKLIST.REMOVE, 
-                card: cardInfo
-             });
-            dispatch({
-                type: CARD_COUNT.REMOVE, 
-                name: cardInfo.name
-            })
-    }
+
+  return (dispatch: Dispatch<AnyAction>) => {
+    dispatch({
+      type: DECKLIST.REMOVE, 
+      card: cardInfo
+    });
+    dispatch({
+      type: CARD_COUNT.REMOVE, 
+      name: cardInfo.name
+    })
+  }
 }
 
 export const moveToMaybe = function(cardInfo: CardInfo): any {
-    return (dispatch: Function): void => {
-        dispatch(addToMaybe(cardInfo))
-        dispatch(removeFromDeckList(cardInfo))
-    }
+  return (dispatch: Function): void => {
+    dispatch(addToMaybe(cardInfo))
+    dispatch(removeFromDeckList(cardInfo))
+  }
 }
 
 // card count actions
 export const incrementCardCount = (cardInfo: CardInfo) => {
-    return {
-        type: CARD_COUNT.INCREMENT, 
-        name: cardInfo.name
-    }
+  return {
+    type: CARD_COUNT.INCREMENT, 
+    name: cardInfo.name
+  }
 }
 
 export const decrementCardCount = function(cardInfo: CardInfo): any {
-    return (dispatch: Function, getState: Function): void => {   
-        const state = getState();
-        if (state.cardCount[cardInfo.name] === 1) {
-            dispatch(removeFromDeckList(cardInfo));
-        } else {
-            dispatch({type: CARD_COUNT.DECREMENT, name: cardInfo.name});
-        }
+  return (dispatch: Function, getState: Function): void => {   
+    const state = getState();
+    if (state.cardCount[cardInfo.name] === 1) {
+      dispatch(removeFromDeckList(cardInfo));
+    } else {
+      dispatch({type: CARD_COUNT.DECREMENT, name: cardInfo.name});
     }
+  }
 }
 
 export const addToMaybe = function(cardInfo: CardInfo): any {
-    return (dispatch: Dispatch<any>, getState: any) => {
-        const state = getState();
-        if (!state.maybeBoard.cards.includes(cardInfo)) {
-            dispatch({type: MAYBEBOARD.ADD, card: cardInfo});
-        }
+  return (dispatch: Dispatch<any>, getState: any) => {
+    const state = getState();
+    if (!state.maybeBoard.cards.includes(cardInfo)) {
+      dispatch({type: MAYBEBOARD.ADD, card: cardInfo});
     }
+  }
 }
 
 export const deleteFromMaybe = (cardInfo: CardInfo) => {
-    return {
-        type: MAYBEBOARD.REMOVE,
-        card: cardInfo
-    }
+  return {
+    type: MAYBEBOARD.REMOVE,
+    card: cardInfo
+  }
 }

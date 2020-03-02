@@ -5,10 +5,10 @@ import maybeBoard from '../reducers/MaybeBoardReducer';
 import cardCount from '../reducers/CardCountReducer';
 
 const rootReducer = combineReducers({
-    searchDisplay,
-    deckList,
-    cardCount,
-    maybeBoard,
+  searchDisplay,
+  deckList,
+  cardCount,
+  maybeBoard,
 });
 
 export default rootReducer
