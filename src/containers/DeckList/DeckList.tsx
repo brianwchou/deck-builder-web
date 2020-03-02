@@ -5,42 +5,84 @@ import DeckTypeSelection from '../DeckList/DeckTypeSelection';
 import DeckListEntries from '../DeckList/DeckListEntries';
 import {incrementCardCount, decrementCardCount, moveToMaybe} from '../../actions/CardActions';
 import './DeckList.css'
+import { CardInfo, CardCount } from '../../common/types'
+import { Dispatch } from 'react';
+import { AnyAction } from 'redux';
 
-export const mapStateToProps = (state) => {
-    return {
-        main: state.deckList.main,
-        counts: state.cardCount.counts
-    }
+export interface OrangizedCards {
+  artifacts: CardInfo[],
+  enchantments: CardInfo[],
+  spells: CardInfo[],
+  planeswalkers: CardInfo[],
+  lands: CardInfo[],
+  creatures: CardInfo[],
+  other: CardInfo[]
 }
 
-export const organizeCards = (cards) => {
-    return cards.reduce((sortedByTypes, cardData) => {
-        if (cardData.typeLine.toLowerCase().includes('creature')) {
-            return {...sortedByTypes, creatures: [...sortedByTypes.creatures, cardData]}
-        } else if (cardData.typeLine.toLowerCase().includes('land')) {
-            return {...sortedByTypes, lands: [...sortedByTypes.lands, cardData]} 
-        } else if (cardData.typeLine.toLowerCase().includes('enchantment')) {
-            return {...sortedByTypes, enchantments: [...sortedByTypes.enchantments, cardData]}
-        } else if (cardData.typeLine.toLowerCase().includes('artifact')) {
-            return {...sortedByTypes, artifacts: [...sortedByTypes.artifacts, cardData]}
-        } else if (cardData.typeLine.toLowerCase().includes('planeswalker')) {
-            return {...sortedByTypes, planeswalkers: [...sortedByTypes.planeswalkers, cardData]}
-        } else if (cardData.typeLine.toLowerCase().includes('sorcery')) {
-            return {...sortedByTypes, spells: [...sortedByTypes.spells, cardData]}
-        } else if (cardData.typeLine.toLowerCase().includes('instant')) {
-            return {...sortedByTypes, spells: [...sortedByTypes.spells, cardData]}
-        } else {
-            return {...sortedByTypes, other: [...sortedByTypes.other, cardData]}
-        }
-    }, {
-        artifacts: [],
-        enchantments: [],
-        spells: [],
-        planeswalkers: [],
-        lands: [],
-        creatures: [],
-        other: []
-    })
+export interface DeckListState {
+  deckList: CardInfo[],
+  cardCount: CardCount
+}
+
+export interface DeckListProps extends DeckListState {
+  dispatch?: Dispatch<AnyAction>
+}
+
+export const mapStateToProps = (state: DeckListState) => {
+  const {deckList, cardCount} = state
+  return {
+    deckList,
+    cardCount
+  }
+}
+
+export const organizeCards = (cards: CardInfo[]) => {
+  return cards.reduce((sortedByTypes: OrangizedCards, cardData: CardInfo) => {
+    const typeline: String = cardData.typeLine.toLowerCase()
+    const {
+      creatures, 
+      lands, 
+      enchantments, 
+      artifacts, 
+      planeswalkers, 
+      spells, 
+      other
+    } = sortedByTypes
+
+    if (typeline.includes('creature')) {
+      return {...sortedByTypes, 
+        creatures: [...creatures, cardData]}
+    } else if (typeline.includes('land')) {
+      return {...sortedByTypes, 
+        lands: [...lands, cardData]} 
+    } else if (typeline.includes('enchantment')) {
+      return {...sortedByTypes, 
+        enchantments: [...enchantments, cardData]}
+    } else if (typeline.includes('artifact')) {
+      return {...sortedByTypes, 
+        artifacts: [...artifacts, cardData]}
+    } else if (typeline.includes('planeswalker')) {
+      return {...sortedByTypes, 
+        planeswalkers: [...planeswalkers, cardData]}
+    } else if (typeline.includes('sorcery')) {
+      return {...sortedByTypes, 
+        spells: [...spells, cardData]}
+    } else if (typeline.includes('instant')) {
+      return {...sortedByTypes, 
+        spells: [...spells, cardData]}
+    } else {
+      return {...sortedByTypes, 
+        other: [...other, cardData]}
+    }
+  }, {
+    artifacts: [],
+    enchantments: [],
+    spells: [],
+    planeswalkers: [],
+    lands: [],
+    creatures: [],
+    other: []
+  })
 }
 
 const decklistStyle = {
@@ -51,44 +93,53 @@ const decklistStyle = {
     overflow: 'scroll',
 }
 
-//container
-export class DeckList extends React.Component {
-    constructor() {
-        super();
-        this.getCardInfo = this.getCardInfo.bind(this);
-    }
+export class DeckList extends React.Component<DeckListProps> {
+  constructor(props) {
+      super(props);
+      this.getCardInfo = this.getCardInfo.bind(this);
+  }
 
-    getCardInfo(cardInfo, buttonType) {
-        if (buttonType === 'increment') {
-            this.props.dispatch(incrementCardCount(cardInfo));
-        } else if (buttonType === 'decrement') {
-            this.props.dispatch(decrementCardCount(cardInfo));
-        } else if (buttonType === 'maybe') {
-            this.props.dispatch(moveToMaybe(cardInfo));
-        }
+  getCardInfo(cardInfo, buttonType) {
+    if (buttonType === 'increment') {
+      this.props.dispatch(incrementCardCount(cardInfo));
+    } else if (buttonType === 'decrement') {
+      this.props.dispatch(decrementCardCount(cardInfo));
+    } else if (buttonType === 'maybe') {
+      this.props.dispatch(moveToMaybe(cardInfo));
     }
+  }
 
-    render() {
-        // expecting deck lists sort data here?
-        const sortedByTypes = organizeCards(this.props.main)
+  render() {
+    // expecting deck lists sort data here?
+    const sortedByTypes = organizeCards(this.props.deckList)
+    const {
+      creatures, 
+      lands, 
+      enchantments, 
+      artifacts, 
+      planeswalkers, 
+      spells, 
+      other
+    } = sortedByTypes
 
-        return (
-            <div>
-                <div style={decklistStyle}>
-                    <div><b> DECK TITLE </b></div>
-                        <DeckTypeSelection />
-                        <DeckListEntries getCardInfo={this.getCardInfo} type={"Creatures"} data={sortedByTypes.creatures} counts={this.props.counts}/>
-                        <DeckListEntries getCardInfo={this.getCardInfo} type={"Spells"} data={sortedByTypes.spells} counts={this.props.counts} />
-                        <DeckListEntries getCardInfo={this.getCardInfo} type={"Enchantments"} data={sortedByTypes.enchantments} counts={this.props.counts}/>
-                        <DeckListEntries getCardInfo={this.getCardInfo} type={"Artifacts"} data={sortedByTypes.artifacts} counts={this.props.counts}/>
-                        <DeckListEntries getCardInfo={this.getCardInfo} type={"Planeswalkers"} data={sortedByTypes.planeswalkers} counts={this.props.counts}/>
-                        <DeckListEntries getCardInfo={this.getCardInfo} type={"Lands"} data={sortedByTypes.lands} counts={this.props.counts}/>
-                        <DeckListEntries getCardInfo={this.getCardInfo} type={"Other *debugging*"} data={sortedByTypes.other} counts={this.props.counts}/>
-                </div>
-                <Metrics main={this.props.main} counts={this.props.counts}/>
-            </div>
-        )
-    }
+    return (
+      <div>
+        <div style={decklistStyle}>
+          <div><b> DECK TITLE </b></div>
+          <DeckTypeSelection />
+          <DeckListEntries getCardInfo={this.getCardInfo} type={"Creatures"} data={creatures} counts={this.props.cardCount}/>
+          <DeckListEntries getCardInfo={this.getCardInfo} type={"Spells"} data={spells} counts={this.props.cardCount} />
+          <DeckListEntries getCardInfo={this.getCardInfo} type={"Enchantments"} data={enchantments} counts={this.props.cardCount}/>
+          <DeckListEntries getCardInfo={this.getCardInfo} type={"Artifacts"} data={artifacts} counts={this.props.cardCount}/>
+          <DeckListEntries getCardInfo={this.getCardInfo} type={"Planeswalkers"} data={planeswalkers} counts={this.props.cardCount}/>
+          <DeckListEntries getCardInfo={this.getCardInfo} type={"Lands"} data={lands} counts={this.props.cardCount}/>
+          <DeckListEntries getCardInfo={this.getCardInfo} type={"Other *debugging*"} data={other} counts={this.props.cardCount}/>
+        </div>
+          
+        /* <Metrics main={this.props.deckList} counts={this.props.cardCount}/> */
+      </div>
+    )
+  }
 }
 
 export default connect(mapStateToProps)(DeckList);

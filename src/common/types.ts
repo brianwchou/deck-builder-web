@@ -21,3 +21,7 @@ export interface CardInfo {
     toughness: string,
     typeLine: string,
 }
+
+export interface CardCount {
+  [index: string]: number
+}

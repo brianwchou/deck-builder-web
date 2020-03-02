@@ -24,7 +24,8 @@
       "src/components/Metrics/Metrics.tsx",
       "src/containers/DeckList/DeckListEntry.tsx",
       "src/containers/DeckList/DeckListEntries.tsx",
-      "src/containers/Search/Search.tsx"
+      "src/containers/Search/Search.tsx",
+      "src/reducers/CardCountReducer.ts"
   ],
   "include": [
       "src/components/Card"

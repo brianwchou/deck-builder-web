@@ -4,9 +4,12 @@ import deckList from '../reducers/DeckListReducer';
 import maybeBoard from '../reducers/MaybeBoardReducer';
 import cardCount from '../reducers/CardCountReducer';
 
-export default combineReducers({
-    searchDisplay,
-    deckList,
-    cardCount,
-    maybeBoard,
+const rootReducer = combineReducers({
+  searchDisplay,
+  deckList,
+  cardCount,
+  maybeBoard,
 });
+
+export default rootReducer
+export type RootState = ReturnType<typeof rootReducer>

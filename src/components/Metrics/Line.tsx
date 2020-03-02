@@ -1,5 +1,5 @@
-import React from 'react'
-import './graphs.css'
+import React from 'react';
+import './graphs.css';
 
 type LineProps = {
     top: number,

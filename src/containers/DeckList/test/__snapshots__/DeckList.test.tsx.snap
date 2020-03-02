@@ -1,5 +1,5 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`DeckList rendering no cards correctly 1`] = `ShallowWrapper {}`;
+exports[`DeckList empty decklist renders correctly 1`] = `ShallowWrapper {}`;
 
-exports[`DeckList rendering with cards correctly 1`] = `ShallowWrapper {}`;
+exports[`DeckList filled decklist renders correctly 1`] = `ShallowWrapper {}`;
