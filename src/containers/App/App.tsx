@@ -10,10 +10,10 @@ const App = () => {
     <div>
       <Navbar />
       <BrowserRouter basename="/deck-builder-web/">
-          <Switch>
-            <Route exact path="/" component={DeckBuilder} />
-            <Route component={NoMatch} />
-          </Switch>
+        <Switch>
+          <Route exact path="/" component={DeckBuilder} />
+          <Route component={NoMatch} />
+        </Switch>
       </BrowserRouter>
     </div>
   )
