@@ -1,20 +1,30 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Navbar renders correctly 1`] = `
-<nav>
-  <ul
-    className="nav"
+<div
+  className="ui inverted segment"
+>
+  <div
+    className="ui inverted secondary menu"
   >
-    <li
-      className="horizontal"
+    <a
+      className="active item"
+      onClick={[Function]}
     >
-      <a
-        className="changeColor"
-        href="/"
-      >
-        Home
-      </a>
-    </li>
-  </ul>
-</nav>
+      Home
+    </a>
+    <a
+      className="item"
+      onClick={[Function]}
+    >
+      Decks
+    </a>
+    <a
+      className="item"
+      onClick={[Function]}
+    >
+      Friends
+    </a>
+  </div>
+</div>
 `;

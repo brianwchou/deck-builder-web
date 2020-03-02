@@ -30,12 +30,4 @@ export default function Navbar () {
       </Menu>
     </Segment>
   )
-
-  // return (
-  //   <nav>
-  //     <ul className = "nav">
-  //       <li className = "horizontal"><a className = "changeColor" href="/">Home</a></li>
-  //     </ul>
-  //   </nav>
-  // )
 }
