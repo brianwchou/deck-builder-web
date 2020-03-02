@@ -1,7 +1,7 @@
 import { DECKLIST } from '../actions/CardActions';
 import { CardInfo } from '../common/types';
 
-interface DeckListAction {
+export interface DeckListAction {
   type: string,
   card: CardInfo
 }

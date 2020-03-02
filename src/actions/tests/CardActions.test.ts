@@ -1,55 +1,7 @@
 import * as CardActions from '../../actions/CardActions';
 import configureMockStore from 'redux-mock-store';
 import thunk from 'redux-thunk';
-import { CardInfo } from '../../common/types';
-
-const dummyCardStart: CardInfo = { 
-  artist: "",
-  cmc: 2,
-  color_identity: ["B"],
-  colors: ["B"],
-  image_uris: {
-    small: "",
-    normal: "",
-    large: "",
-    png: "",
-    art_crop: "",
-    border_crop: ""
-  },
-  mana_cost: "{1}{B}",
-  name: "Cover of Darkness",
-  oracle_text: "",
-  power: undefined,
-  rarity: "rare",
-  reserved: false,
-  setName: undefined,
-  toughness: undefined,
-  typeLine: "Enchantment"
-};
-
-const dummyCardUnchanged: CardInfo = { 
-  artist: "",
-  cmc: 2,
-  color_identity: ["B"],
-  colors: ["B"],
-  image_uris: {
-    small: "",
-    normal: "",
-    large: "",
-    png: "",
-    art_crop: "",
-    border_crop: ""
-  },
-  mana_cost: "{1}{B}",
-  name: "Cover of Darkness",
-  oracle_text: "",
-  power: undefined,
-  rarity: "rare",
-  reserved: false,
-  setName: undefined,
-  toughness: undefined,
-  typeLine: "Enchantment"
-};
+import { dummyCardStart, dummyCardUnchanged } from '../../common/testUil';
 
 const mockStore = configureMockStore([thunk]);
 
@@ -63,7 +15,7 @@ describe('[Unit] addToDeckList', () => {
         const actions = store.getActions();
         const expectedPayload = [   
             { type: 'DECKLIST_ADD', card: dummyCardUnchanged },
-            { type: 'CARD_COUNT_ADD', name: 'Cover of Darkness' } 
+            { type: 'CARD_COUNT_ADD', name: dummyCardStart.name } 
         ];
 
         expect(actions).toEqual(expectedPayload);

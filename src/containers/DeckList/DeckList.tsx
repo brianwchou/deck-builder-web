@@ -9,7 +9,7 @@ import { CardInfo, CardCount } from '../../common/types'
 import { Dispatch } from 'react';
 import { AnyAction } from 'redux';
 
-interface OrangizedCards {
+export interface OrangizedCards {
   artifacts: CardInfo[],
   enchantments: CardInfo[],
   spells: CardInfo[],
@@ -19,13 +19,13 @@ interface OrangizedCards {
   other: CardInfo[]
 }
 
-interface DeckListState {
+export interface DeckListState {
   deckList: CardInfo[],
   cardCount: CardCount
 }
 
-interface DeckListProps extends DeckListState {
-  dispatch: Dispatch<AnyAction>
+export interface DeckListProps extends DeckListState {
+  dispatch?: Dispatch<AnyAction>
 }
 
 export const mapStateToProps = (state: DeckListState) => {
