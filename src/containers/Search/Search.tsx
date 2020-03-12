@@ -4,7 +4,6 @@ import { filteredSearchURL } from '../../common/URLs';
 import { getCardSearchData } from '../../actions/SearchActions';
 import './Search.css';
 import { Error } from '../../components/Error/Error';
-import { Button } from 'semantic-ui-react';
 
 const manaSymbolStyle = {
   maxWidth: "15px",
@@ -77,7 +76,7 @@ class Search extends React.Component<SearchProps, SearchState> {
       <form onSubmit={this.getCards}>
         <input className="field" type="text" onChange={this.onSearchTextChange}/>
 
-        <Button type="submit">search</Button> 
+        <button type="submit">search</button> 
         
         <br/>
         
