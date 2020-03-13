@@ -2,7 +2,7 @@ import React, {  Dispatch } from 'react'
 import { connect } from 'react-redux';
 import { filteredSearchURL } from '../../common/URLs';
 import { getCardSearchData } from '../../actions/SearchActions';
-import './Search.css';
+// import './Search.css';
 import { Error } from '../../components/Error/Error';
 import { Button, TextField, Checkbox, Select, MenuItem, InputLabel, FormControl, Grid } from '@material-ui/core';
 
@@ -77,10 +77,10 @@ class Search extends React.Component<SearchProps, SearchState> {
     return (
       <Grid container>
         <form onSubmit={this.getCards}>
-          <Grid item xs={10}>
+          <Grid item xs={8}>
             <TextField id="standard-basic" onChange={this.onSearchTextChange}/>
           </Grid>
-          <Grid item xs={2}>
+          <Grid item xs={4}>
             <Button size="small" variant="contained" type="submit">search</Button> 
           </Grid>
           
