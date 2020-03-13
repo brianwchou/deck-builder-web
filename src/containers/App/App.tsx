@@ -1,6 +1,5 @@
 import { BrowserRouter, Route, Switch} from 'react-router-dom';
 // import './App.css';
-import Navbar from '../../components/Navbar';
 import NoMatch from '../../components/NoMatch';
 import DeckBuilder from '../../containers/DeckBuilder';
 import React from 'react';
@@ -11,7 +10,7 @@ const App = () => {
     <Box width="100%" height="100%">
       <AppBar position="static">
         <Toolbar>
-          hello world
+          deck builder
         </Toolbar>
       </AppBar>
       <BrowserRouter basename="/deck-builder-web/">
