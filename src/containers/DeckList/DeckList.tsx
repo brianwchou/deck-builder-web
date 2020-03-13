@@ -136,7 +136,7 @@ export class DeckList extends React.Component<DeckListProps> {
           <DeckListEntries getCardInfo={this.getCardInfo} type={"Other *debugging*"} data={other} counts={this.props.cardCount}/>
         </div>
           
-        /* <Metrics main={this.props.deckList} counts={this.props.cardCount}/> */
+        <Metrics main={this.props.deckList} counts={this.props.cardCount}/>
       </div>
     )
   }
