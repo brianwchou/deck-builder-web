@@ -7,7 +7,7 @@ import { AppBar, Toolbar, Box } from '@material-ui/core';
 
 const App = () => {
   return (
-    <Box width="100%" height="100%">
+    <Box>
       <AppBar position="static">
         <Toolbar>
           deck builder

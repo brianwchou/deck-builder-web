@@ -5,6 +5,7 @@ import SearchCardDisplay from '../../containers/SearchCardDisplay/SearchCardDisp
 import MaybeBoardDisplay from '../../containers/MaybeBoardDisplay/MaybeBoardDisplay';
 // import './DeckBuilder.css';
 import { Grid } from '@material-ui/core'
+import Metrics from '../Metrics';
 
 const tag = <img className="background" src="https://cdn.arstechnica.net/wp-content/uploads/2016/01/159984_CN-980x597.jpg" alt="default"/>
 
@@ -22,6 +23,9 @@ export default function DeckBuilder() {
       </Grid>
       <Grid item xs={8}>
         <MaybeBoardDisplay />
+      </Grid>
+      <Grid item xs = {4}>
+        <Metrics />
       </Grid>
     </Grid>
   )
