@@ -2,7 +2,7 @@ import React, {  Dispatch } from 'react'
 import { connect } from 'react-redux';
 import { filteredSearchURL } from '../../common/URLs';
 import { getCardSearchData } from '../../actions/SearchActions';
-import { Button, TextField, Checkbox, Select, MenuItem, InputLabel, FormControl, Grid } from '@material-ui/core';
+import { Button, TextField, Checkbox, Select, MenuItem, InputLabel, FormControl, Grid, Box } from '@material-ui/core';
 
 const manaSymbolStyle = {
   maxWidth: "15px",
@@ -75,18 +75,19 @@ class Search extends React.Component<SearchProps, SearchState> {
     return (
       <form onSubmit={this.getCards}>
         <Grid container>
-          <Grid container item spacing={3}>
-              <Grid item xl={6}>
-                <TextField
-                  error={this.props.error}
-                  id="outlined-error-helper-text"
-                  helperText={""}
-                  onChange={this.onSearchTextChange}
-                />
-              </Grid>
-              <Grid item xl={4}>
-                <Button size="small" variant="contained" type="submit">search</Button> 
-              </Grid>
+          <Grid container spacing={3}>
+          <Grid item xs={7} >
+          <TextField
+            error={this.props.error}
+            id="outlined-error-helper-text"
+            fullWidth
+            helperText={""}
+            onChange={this.onSearchTextChange}
+          />
+          </Grid>
+          <Grid item>
+              <Button size="small" variant="contained" type="submit">search</Button> 
+          </Grid>
           </Grid>
           <br/>
           <Grid container item xs={6} spacing={1}>
