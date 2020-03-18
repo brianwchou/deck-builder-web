@@ -13,12 +13,14 @@ const App = () => {
           deck builder
         </Toolbar>
       </AppBar>
-      <BrowserRouter basename="/deck-builder-web/">
-          <Switch>
-            <Route exact path="/" component={DeckBuilder} />
-            <Route component={NoMatch} />
-          </Switch>
-      </BrowserRouter>
+      <Box px={5} pt={1}>
+        <BrowserRouter basename="/deck-builder-web/">
+            <Switch>
+              <Route exact path="/" component={DeckBuilder} />
+              <Route component={NoMatch} />
+            </Switch>
+        </BrowserRouter>
+      </Box>
     </Box>
   )
 }

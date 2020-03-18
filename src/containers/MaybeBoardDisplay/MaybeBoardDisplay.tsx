@@ -13,8 +13,8 @@ const maybeBoardStyle = {
     display: 'flex',
     flexWrap: 'wrap',
     border: 'solid black thin',
-    width: '63vw',
-    height: '28vh',
+    width: '50vw',
+    height: '30vh',
     overflow: 'scroll',
 }
 

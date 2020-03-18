@@ -15,13 +15,13 @@ export default function DeckBuilder() {
       <Grid item xs={12}>
         <Search />
       </Grid>
-      <Grid item xs={8}>
+      <Grid item xs={7}>
         <SearchCardDisplay />
       </Grid>
       <Grid item xs = {4}>
         <DeckList />
       </Grid>
-      <Grid item xs={8}>
+      <Grid item xs={7}>
         <MaybeBoardDisplay />
       </Grid>
       <Grid item xs = {4}>
@@ -30,4 +30,3 @@ export default function DeckBuilder() {
     </Grid>
   )
 }
-      

@@ -14,7 +14,7 @@ const cardBoxStyle = {
     display: 'flex',
     flexWrap: 'wrap',
     border: 'solid black thin',
-    width: '63vw',
+    width: '50vw',
     height: '50vh',
     overflow: 'scroll',
 } as React.CSSProperties

@@ -2,8 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import DeckTypeSelection from '../DeckList/DeckTypeSelection';
 import DeckListEntries from '../DeckList/DeckListEntries';
-import {incrementCardCount, decrementCardCount, moveToMaybe} from '../../actions/CardActions';
-import './DeckList.css'
+import { incrementCardCount, decrementCardCount, moveToMaybe } from '../../actions/CardActions';
 import { CardInfo, CardCount } from '../../common/types'
 import { Dispatch } from 'react';
 import { AnyAction } from 'redux';
@@ -88,7 +87,6 @@ const decklistStyle = {
     border: 'solid black thin',
     width: '35vw',
     height: '50vh',
-    padding: '15px',
     overflow: 'scroll',
 }
 
