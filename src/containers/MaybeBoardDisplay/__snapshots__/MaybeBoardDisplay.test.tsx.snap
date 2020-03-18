@@ -7,9 +7,9 @@ exports[`MaybeBoardDisplay rendering cards correctly 1`] = `
       "border": "solid black thin",
       "display": "flex",
       "flexWrap": "wrap",
-      "height": "28vh",
+      "height": "30vh",
       "overflow": "scroll",
-      "width": "63vw",
+      "width": "50vw",
     }
   }
 >

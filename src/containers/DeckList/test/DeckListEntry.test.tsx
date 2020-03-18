@@ -9,25 +9,25 @@ configure({ adapter: new Adapter() });
 describe('DeckListEntry', () => {
     
     test('rendering correctly', () => {
-        const mockNoCard = {}
-        const tree = renderer
-        .create(<DeckListEntry card={mockNoCard} />)
-        .toJSON();
+      const mockNoCard = {}
+      const tree = renderer
+      .create(<DeckListEntry card={mockNoCard} />)
+      .toJSON();
 
-    expect(tree).toMatchSnapshot();
+      expect(tree).toMatchSnapshot();
     });
 
-    test('clicking a button calls getCardInfo', () => {
-        const mockCard = {name: "thing in the ice"}
-        const mockTarget = {target: { name: "increment"} }
-        const onClickSpy = jest.fn()
-        const wrapper = shallow(<DeckListEntry card={mockCard} getCardInfo={onClickSpy} />)
+    // test('clicking a button calls getCardInfo', () => {
+    //   const mockCard = {name: "thing in the ice"}
+    //   const mockTarget = {target: { name: "increment"} }
+    //   const onClickSpy = jest.fn()
+    //   const wrapper = shallow(<DeckListEntry card={mockCard} getCardInfo={onClickSpy} />)
 
-        let container = wrapper.find("div")
-        let containerButton = container.find("button").at(0)
+    //   let container = wrapper.find("div")
+    //   let containerButton = container.find("button").at(0)
 
-        expect(onClickSpy).not.toHaveBeenCalled();
-        containerButton.simulate('click', mockTarget);
-        expect(onClickSpy).toHaveBeenCalled();
-    });
+    //   expect(onClickSpy).not.toHaveBeenCalled();
+    //   containerButton.simulate('click', mockTarget);
+    //   expect(onClickSpy).toHaveBeenCalled();
+    // });
 });

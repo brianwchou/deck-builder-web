@@ -2,33 +2,86 @@
 
 exports[`DeckListEntry rendering correctly 1`] = `
 <div
-  className="flex alignment"
+  className="MuiGrid-root MuiGrid-container"
 >
-  <div
-    className="flex count"
-  >
+  <div>
     x
     <button
+      className="MuiButtonBase-root MuiButton-root MuiButton-text MuiButton-textPrimary"
+      disabled={false}
       name="increment"
+      onBlur={[Function]}
       onClick={[Function]}
+      onDragLeave={[Function]}
+      onFocus={[Function]}
+      onKeyDown={[Function]}
+      onKeyUp={[Function]}
+      onMouseDown={[Function]}
+      onMouseLeave={[Function]}
+      onMouseUp={[Function]}
+      onTouchEnd={[Function]}
+      onTouchMove={[Function]}
+      onTouchStart={[Function]}
+      tabIndex={0}
+      type="button"
     >
-      +
+      <span
+        className="MuiButton-label"
+      >
+        +
+      </span>
     </button>
   </div>
-  <div
-    className="flex name"
-  >
+  <div>
     <button
+      className="MuiButtonBase-root MuiButton-root MuiButton-text MuiButton-textPrimary"
+      disabled={false}
       name="decrement"
+      onBlur={[Function]}
       onClick={[Function]}
+      onDragLeave={[Function]}
+      onFocus={[Function]}
+      onKeyDown={[Function]}
+      onKeyUp={[Function]}
+      onMouseDown={[Function]}
+      onMouseLeave={[Function]}
+      onMouseUp={[Function]}
+      onTouchEnd={[Function]}
+      onTouchMove={[Function]}
+      onTouchStart={[Function]}
+      tabIndex={0}
+      type="button"
     >
-      -
+      <span
+        className="MuiButton-label"
+      >
+        -
+      </span>
     </button>
     <button
+      className="MuiButtonBase-root MuiButton-root MuiButton-text MuiButton-textPrimary"
+      disabled={false}
       name="maybe"
+      onBlur={[Function]}
       onClick={[Function]}
+      onDragLeave={[Function]}
+      onFocus={[Function]}
+      onKeyDown={[Function]}
+      onKeyUp={[Function]}
+      onMouseDown={[Function]}
+      onMouseLeave={[Function]}
+      onMouseUp={[Function]}
+      onTouchEnd={[Function]}
+      onTouchMove={[Function]}
+      onTouchStart={[Function]}
+      tabIndex={0}
+      type="button"
     >
-      maybe
+      <span
+        className="MuiButton-label"
+      >
+        maybe
+      </span>
     </button>
   </div>
 </div>
