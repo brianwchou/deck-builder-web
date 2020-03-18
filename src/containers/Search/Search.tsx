@@ -88,7 +88,8 @@ class Search extends React.Component<SearchProps, SearchState> {
           <Grid item>
               <Button size="small" variant="contained" type="submit">search</Button> 
           </Grid>
-          </Grid>
+
+        </Grid>
           <br/>
           <Grid container item xs={6} spacing={1}>
             <Grid item xs={2}>
