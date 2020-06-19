@@ -2,7 +2,6 @@
   "name": "mtgdeckbuilder",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://brianwchou.github.io/deck-builder-web/",
   "dependencies": {
     "@types/jest": "^24.0.15",
     "@types/node": "^12.0.12",
@@ -28,9 +27,7 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "coverage": "npm test -- --coverage --watchAll=false",
-    "eject": "react-scripts eject",
-    "predeploy": "npm run build",
-    "deploy": "gh-pages ‘auto commit [ci skip]’ -d build"
+    "eject": "react-scripts eject"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -42,7 +39,6 @@
     "not op_mini all"
   ],
   "devDependencies": {
-    "gh-pages": "^2.1.1",
     "redux-mock-store": "^1.5.3"
   }
 }
