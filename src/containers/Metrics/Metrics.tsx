@@ -1,6 +1,8 @@
 import React from 'react';
 import Graph from './Graph'
 import { CardInfo } from '../../common/types';
+import { connect } from 'react-redux';
+
 
 const metricsStyle = {
     border: 'solid black thin',
@@ -21,6 +23,13 @@ type MetricsProps = {
 interface CMCMetric {
     cmc: number,
     count: number
+}
+
+const mapStateToProps = (state) => {
+  return {
+    main: state.deckList,
+    counts: state.cardCount
+  }
 }
 
 function Metrics ({ main, counts }: MetricsProps) {
@@ -64,4 +73,4 @@ function Metrics ({ main, counts }: MetricsProps) {
     )
 }
 
-export default Metrics
+export default connect(mapStateToProps)(Metrics);

@@ -3,22 +3,31 @@ import Search from '../../containers/Search';
 import DeckList from '../../containers/DeckList/DeckList';
 import SearchCardDisplay from '../../containers/SearchCardDisplay/SearchCardDisplay';
 import MaybeBoardDisplay from '../../containers/MaybeBoardDisplay/MaybeBoardDisplay';
-import './DeckBuilder.css';
+// import './DeckBuilder.css';
+import { Grid } from '@material-ui/core'
+import Metrics from '../Metrics';
+
+const tag = <img className="background" src="https://cdn.arstechnica.net/wp-content/uploads/2016/01/159984_CN-980x597.jpg" alt="default"/>
 
 export default function DeckBuilder() {
-    return (
-      <div>
+  return (
+    <Grid container>
+      <Grid item xs={12}>
         <Search />
-        <div className="flexboxes">
-          <div className="column">
-          <SearchCardDisplay />
-          <MaybeBoardDisplay />
-          </div>
-          <div className="column">
-            <DeckList />
-          </div>
-        </div>
-        <img className="background" src="https://cdn.arstechnica.net/wp-content/uploads/2016/01/159984_CN-980x597.jpg" alt="default"/>
-      </div>
-    )
+      </Grid>
+      <Grid item xs={8}>
+        <SearchCardDisplay />
+      </Grid>
+      <Grid item xs = {4}>
+        <DeckList />
+      </Grid>
+      <Grid item xs={8}>
+        <MaybeBoardDisplay />
+      </Grid>
+      <Grid item xs = {4}>
+        <Metrics />
+      </Grid>
+    </Grid>
+  )
 }
+      

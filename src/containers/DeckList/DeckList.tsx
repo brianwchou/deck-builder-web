@@ -1,6 +1,5 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import Metrics from '../../components/Metrics';
 import DeckTypeSelection from '../DeckList/DeckTypeSelection';
 import DeckListEntries from '../DeckList/DeckListEntries';
 import {incrementCardCount, decrementCardCount, moveToMaybe} from '../../actions/CardActions';
@@ -112,6 +111,7 @@ export class DeckList extends React.Component<DeckListProps> {
   render() {
     // expecting deck lists sort data here?
     const sortedByTypes = organizeCards(this.props.deckList)
+    
     const {
       creatures, 
       lands, 
@@ -135,8 +135,6 @@ export class DeckList extends React.Component<DeckListProps> {
           <DeckListEntries getCardInfo={this.getCardInfo} type={"Lands"} data={lands} counts={this.props.cardCount}/>
           <DeckListEntries getCardInfo={this.getCardInfo} type={"Other *debugging*"} data={other} counts={this.props.cardCount}/>
         </div>
-          
-        /* <Metrics main={this.props.deckList} counts={this.props.cardCount}/> */
       </div>
     )
   }
